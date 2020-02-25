@@ -131,16 +131,16 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: simulator@localhost
+    from: noreply.simulator@cbo.gov.om
   swagger:
     default-include-pattern: /api/.*
     title: simulator API
     description: simulator API documentation
     version: 0.0.1
     terms-of-service-url:
-    contact-name:
+    contact-name: Ramakrishna R
     contact-url:
-    contact-email:
+    contact-email: ramakrishna.raja@cbo.gov.om
     license:
     license-url:
 # ===================================================================
