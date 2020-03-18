@@ -1,0 +1,112 @@
+{
+    "name": "MtiConfig",
+    "fields": [
+        {
+            "fieldName": "mtiDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "3",
+            "fieldValidateRulesMaxlength": "255",
+            "fieldValidateRulesPattern": "[a-zA-Z0-9 _.]*"
+        },
+        {
+            "fieldName": "tnType",
+            "fieldType": "TranType",
+            "fieldValues": "NMM,TRANSACTIONS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isoType",
+            "fieldType": "IsoVersions",
+            "fieldValues": "GCCISO87,MBIISO93"
+        },
+        {
+            "fieldName": "mti",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "repeatMti",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "responseMti",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "responseRepeatMti",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "nmmIdentifierDe",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "nmmIdentifierDeVal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "responseIdentifierDe",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "responseIdentifierDeVal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[0-9]*"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200225154000",
+    "entityTableName": "mti_config",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

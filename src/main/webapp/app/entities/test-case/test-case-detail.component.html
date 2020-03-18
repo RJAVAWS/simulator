@@ -1,0 +1,560 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="testCase">
+            <h2><span jhiTranslate="simulatorApp.testCase.detail.title">Test Case</span> {{ testCase.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="simulatorApp.testCase.caseDescription">Case Description</span></dt>
+                <dd>
+                    <span>{{ testCase.caseDescription }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.psdnType">Psdn Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.PsdnType.' + testCase.psdnType }}">{{ testCase.psdnType }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.reqResType">Req Res Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.ReqResType.' + testCase.reqResType }}">{{ testCase.reqResType }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.mti">Mti</span></dt>
+                <dd>
+                    <span>{{ testCase.mti }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de001">De 001</span></dt>
+                <dd>
+                    <span>{{ testCase.de001 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de002">De 002</span></dt>
+                <dd>
+                    <span>{{ testCase.de002 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de003">De 003</span></dt>
+                <dd>
+                    <span>{{ testCase.de003 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de004">De 004</span></dt>
+                <dd>
+                    <span>{{ testCase.de004 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de005">De 005</span></dt>
+                <dd>
+                    <span>{{ testCase.de005 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de006">De 006</span></dt>
+                <dd>
+                    <span>{{ testCase.de006 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de007">De 007</span></dt>
+                <dd>
+                    <span>{{ testCase.de007 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de008">De 008</span></dt>
+                <dd>
+                    <span>{{ testCase.de008 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de009">De 009</span></dt>
+                <dd>
+                    <span>{{ testCase.de009 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de010">De 010</span></dt>
+                <dd>
+                    <span>{{ testCase.de010 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de011">De 011</span></dt>
+                <dd>
+                    <span>{{ testCase.de011 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de012">De 012</span></dt>
+                <dd>
+                    <span>{{ testCase.de012 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de013">De 013</span></dt>
+                <dd>
+                    <span>{{ testCase.de013 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de014">De 014</span></dt>
+                <dd>
+                    <span>{{ testCase.de014 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de015">De 015</span></dt>
+                <dd>
+                    <span>{{ testCase.de015 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de016">De 016</span></dt>
+                <dd>
+                    <span>{{ testCase.de016 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de017">De 017</span></dt>
+                <dd>
+                    <span>{{ testCase.de017 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de018">De 018</span></dt>
+                <dd>
+                    <span>{{ testCase.de018 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de019">De 019</span></dt>
+                <dd>
+                    <span>{{ testCase.de019 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de020">De 020</span></dt>
+                <dd>
+                    <span>{{ testCase.de020 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de021">De 021</span></dt>
+                <dd>
+                    <span>{{ testCase.de021 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de022">De 022</span></dt>
+                <dd>
+                    <span>{{ testCase.de022 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de023">De 023</span></dt>
+                <dd>
+                    <span>{{ testCase.de023 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de024">De 024</span></dt>
+                <dd>
+                    <span>{{ testCase.de024 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de025">De 025</span></dt>
+                <dd>
+                    <span>{{ testCase.de025 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de026">De 026</span></dt>
+                <dd>
+                    <span>{{ testCase.de026 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de027">De 027</span></dt>
+                <dd>
+                    <span>{{ testCase.de027 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de028">De 028</span></dt>
+                <dd>
+                    <span>{{ testCase.de028 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de029">De 029</span></dt>
+                <dd>
+                    <span>{{ testCase.de029 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de030">De 030</span></dt>
+                <dd>
+                    <span>{{ testCase.de030 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de031">De 031</span></dt>
+                <dd>
+                    <span>{{ testCase.de031 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de032">De 032</span></dt>
+                <dd>
+                    <span>{{ testCase.de032 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de033">De 033</span></dt>
+                <dd>
+                    <span>{{ testCase.de033 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de034">De 034</span></dt>
+                <dd>
+                    <span>{{ testCase.de034 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de035">De 035</span></dt>
+                <dd>
+                    <span>{{ testCase.de035 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de036">De 036</span></dt>
+                <dd>
+                    <span>{{ testCase.de036 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de037">De 037</span></dt>
+                <dd>
+                    <span>{{ testCase.de037 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de038">De 038</span></dt>
+                <dd>
+                    <span>{{ testCase.de038 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de039">De 039</span></dt>
+                <dd>
+                    <span>{{ testCase.de039 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de040">De 040</span></dt>
+                <dd>
+                    <span>{{ testCase.de040 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de041">De 041</span></dt>
+                <dd>
+                    <span>{{ testCase.de041 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de042">De 042</span></dt>
+                <dd>
+                    <span>{{ testCase.de042 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de043">De 043</span></dt>
+                <dd>
+                    <span>{{ testCase.de043 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de044">De 044</span></dt>
+                <dd>
+                    <span>{{ testCase.de044 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de045">De 045</span></dt>
+                <dd>
+                    <span>{{ testCase.de045 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de046">De 046</span></dt>
+                <dd>
+                    <span>{{ testCase.de046 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de047">De 047</span></dt>
+                <dd>
+                    <span>{{ testCase.de047 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de048">De 048</span></dt>
+                <dd>
+                    <span>{{ testCase.de048 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de049">De 049</span></dt>
+                <dd>
+                    <span>{{ testCase.de049 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de050">De 050</span></dt>
+                <dd>
+                    <span>{{ testCase.de050 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de051">De 051</span></dt>
+                <dd>
+                    <span>{{ testCase.de051 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de052">De 052</span></dt>
+                <dd>
+                    <span>{{ testCase.de052 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de053">De 053</span></dt>
+                <dd>
+                    <span>{{ testCase.de053 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de054">De 054</span></dt>
+                <dd>
+                    <span>{{ testCase.de054 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de055">De 055</span></dt>
+                <dd>
+                    <span>{{ testCase.de055 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de056">De 056</span></dt>
+                <dd>
+                    <span>{{ testCase.de056 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de057">De 057</span></dt>
+                <dd>
+                    <span>{{ testCase.de057 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de058">De 058</span></dt>
+                <dd>
+                    <span>{{ testCase.de058 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de059">De 059</span></dt>
+                <dd>
+                    <span>{{ testCase.de059 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de060">De 060</span></dt>
+                <dd>
+                    <span>{{ testCase.de060 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de061">De 061</span></dt>
+                <dd>
+                    <span>{{ testCase.de061 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de062">De 062</span></dt>
+                <dd>
+                    <span>{{ testCase.de062 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de063">De 063</span></dt>
+                <dd>
+                    <span>{{ testCase.de063 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de064">De 064</span></dt>
+                <dd>
+                    <span>{{ testCase.de064 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de065">De 065</span></dt>
+                <dd>
+                    <span>{{ testCase.de065 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de066">De 066</span></dt>
+                <dd>
+                    <span>{{ testCase.de066 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de067">De 067</span></dt>
+                <dd>
+                    <span>{{ testCase.de067 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de068">De 068</span></dt>
+                <dd>
+                    <span>{{ testCase.de068 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de069">De 069</span></dt>
+                <dd>
+                    <span>{{ testCase.de069 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de070">De 070</span></dt>
+                <dd>
+                    <span>{{ testCase.de070 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de071">De 071</span></dt>
+                <dd>
+                    <span>{{ testCase.de071 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de072">De 072</span></dt>
+                <dd>
+                    <span>{{ testCase.de072 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de073">De 073</span></dt>
+                <dd>
+                    <span>{{ testCase.de073 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de074">De 074</span></dt>
+                <dd>
+                    <span>{{ testCase.de074 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de075">De 075</span></dt>
+                <dd>
+                    <span>{{ testCase.de075 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de076">De 076</span></dt>
+                <dd>
+                    <span>{{ testCase.de076 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de077">De 077</span></dt>
+                <dd>
+                    <span>{{ testCase.de077 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de078">De 078</span></dt>
+                <dd>
+                    <span>{{ testCase.de078 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de079">De 079</span></dt>
+                <dd>
+                    <span>{{ testCase.de079 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de080">De 080</span></dt>
+                <dd>
+                    <span>{{ testCase.de080 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de081">De 081</span></dt>
+                <dd>
+                    <span>{{ testCase.de081 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de082">De 082</span></dt>
+                <dd>
+                    <span>{{ testCase.de082 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de083">De 083</span></dt>
+                <dd>
+                    <span>{{ testCase.de083 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de084">De 084</span></dt>
+                <dd>
+                    <span>{{ testCase.de084 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de085">De 085</span></dt>
+                <dd>
+                    <span>{{ testCase.de085 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de086">De 086</span></dt>
+                <dd>
+                    <span>{{ testCase.de086 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de087">De 087</span></dt>
+                <dd>
+                    <span>{{ testCase.de087 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de088">De 088</span></dt>
+                <dd>
+                    <span>{{ testCase.de088 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de089">De 089</span></dt>
+                <dd>
+                    <span>{{ testCase.de089 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de090">De 090</span></dt>
+                <dd>
+                    <span>{{ testCase.de090 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de091">De 091</span></dt>
+                <dd>
+                    <span>{{ testCase.de091 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de092">De 092</span></dt>
+                <dd>
+                    <span>{{ testCase.de092 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de093">De 093</span></dt>
+                <dd>
+                    <span>{{ testCase.de093 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de094">De 094</span></dt>
+                <dd>
+                    <span>{{ testCase.de094 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de095">De 095</span></dt>
+                <dd>
+                    <span>{{ testCase.de095 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de096">De 096</span></dt>
+                <dd>
+                    <span>{{ testCase.de096 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de097">De 097</span></dt>
+                <dd>
+                    <span>{{ testCase.de097 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de098">De 098</span></dt>
+                <dd>
+                    <span>{{ testCase.de098 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de099">De 099</span></dt>
+                <dd>
+                    <span>{{ testCase.de099 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de100">De 100</span></dt>
+                <dd>
+                    <span>{{ testCase.de100 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de101">De 101</span></dt>
+                <dd>
+                    <span>{{ testCase.de101 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de102">De 102</span></dt>
+                <dd>
+                    <span>{{ testCase.de102 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de103">De 103</span></dt>
+                <dd>
+                    <span>{{ testCase.de103 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de104">De 104</span></dt>
+                <dd>
+                    <span>{{ testCase.de104 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de105">De 105</span></dt>
+                <dd>
+                    <span>{{ testCase.de105 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de106">De 106</span></dt>
+                <dd>
+                    <span>{{ testCase.de106 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de107">De 107</span></dt>
+                <dd>
+                    <span>{{ testCase.de107 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de108">De 108</span></dt>
+                <dd>
+                    <span>{{ testCase.de108 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de109">De 109</span></dt>
+                <dd>
+                    <span>{{ testCase.de109 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de110">De 110</span></dt>
+                <dd>
+                    <span>{{ testCase.de110 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de111">De 111</span></dt>
+                <dd>
+                    <span>{{ testCase.de111 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de112">De 112</span></dt>
+                <dd>
+                    <span>{{ testCase.de112 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de113">De 113</span></dt>
+                <dd>
+                    <span>{{ testCase.de113 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de114">De 114</span></dt>
+                <dd>
+                    <span>{{ testCase.de114 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de115">De 115</span></dt>
+                <dd>
+                    <span>{{ testCase.de115 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de116">De 116</span></dt>
+                <dd>
+                    <span>{{ testCase.de116 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de117">De 117</span></dt>
+                <dd>
+                    <span>{{ testCase.de117 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de118">De 118</span></dt>
+                <dd>
+                    <span>{{ testCase.de118 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de119">De 119</span></dt>
+                <dd>
+                    <span>{{ testCase.de119 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de120">De 120</span></dt>
+                <dd>
+                    <span>{{ testCase.de120 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de121">De 121</span></dt>
+                <dd>
+                    <span>{{ testCase.de121 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de122">De 122</span></dt>
+                <dd>
+                    <span>{{ testCase.de122 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de123">De 123</span></dt>
+                <dd>
+                    <span>{{ testCase.de123 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de124">De 124</span></dt>
+                <dd>
+                    <span>{{ testCase.de124 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de125">De 125</span></dt>
+                <dd>
+                    <span>{{ testCase.de125 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de126">De 126</span></dt>
+                <dd>
+                    <span>{{ testCase.de126 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de127">De 127</span></dt>
+                <dd>
+                    <span>{{ testCase.de127 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.de128">De 128</span></dt>
+                <dd>
+                    <span>{{ testCase.de128 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.testCase.card">Card</span></dt>
+                <dd>
+                    <div *ngIf="testCase.cardId">
+                        <a [routerLink]="['/card', testCase.cardId, 'view']">{{ testCase.cardId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/test-case', testCase.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "simulatorApp": {
+    "TranType": {
+      "null": "",
+      "NMM": "NMM",
+      "TRANSACTIONS": "TRANSACTIONS"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="keyConfig">
+            <h2><span jhiTranslate="simulatorApp.keyConfig.detail.title">Key Config</span> {{ keyConfig.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="simulatorApp.keyConfig.pmType">Pm Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.PinMacType.' + keyConfig.pmType }}">{{ keyConfig.pmType }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.key">Key</span></dt>
+                <dd>
+                    <span>{{ keyConfig.key }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.kcv">Kcv</span></dt>
+                <dd>
+                    <span>{{ keyConfig.kcv }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.status">Status</span></dt>
+                <dd>
+                    <span>{{ keyConfig.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.de01">De 01</span></dt>
+                <dd>
+                    <span>{{ keyConfig.de01 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.de02">De 02</span></dt>
+                <dd>
+                    <span>{{ keyConfig.de02 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.de03">De 03</span></dt>
+                <dd>
+                    <span>{{ keyConfig.de03 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.de04">De 04</span></dt>
+                <dd>
+                    <span>{{ keyConfig.de04 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.de05">De 05</span></dt>
+                <dd>
+                    <span>{{ keyConfig.de05 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.keyConfig.bank">Bank</span></dt>
+                <dd>
+                    <div *ngIf="keyConfig.bankId">
+                        <a [routerLink]="['/bank', keyConfig.bankId, 'view']">{{ keyConfig.bankId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/key-config', keyConfig.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

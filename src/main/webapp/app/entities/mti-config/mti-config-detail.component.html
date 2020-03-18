@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="mtiConfig">
+            <h2><span jhiTranslate="simulatorApp.mtiConfig.detail.title">Mti Config</span> {{ mtiConfig.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.mtiDescription">Mti Description</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.mtiDescription }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.tnType">Tn Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.TranType.' + mtiConfig.tnType }}">{{ mtiConfig.tnType }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.isoType">Iso Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.IsoVersions.' + mtiConfig.isoType }}">{{ mtiConfig.isoType }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.mti">Mti</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.mti }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.repeatMti">Repeat Mti</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.repeatMti }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.responseMti">Response Mti</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.responseMti }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.responseRepeatMti">Response Repeat Mti</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.responseRepeatMti }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.nmmIdentifierDe">Nmm Identifier De</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.nmmIdentifierDe }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.nmmIdentifierDeVal">Nmm Identifier De Val</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.nmmIdentifierDeVal }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.responseIdentifierDe">Response Identifier De</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.responseIdentifierDe }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.mtiConfig.responseIdentifierDeVal">Response Identifier De Val</span></dt>
+                <dd>
+                    <span>{{ mtiConfig.responseIdentifierDeVal }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/mti-config', mtiConfig.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

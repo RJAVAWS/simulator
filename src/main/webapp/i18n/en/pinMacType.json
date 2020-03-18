@@ -1,0 +1,9 @@
+{
+  "simulatorApp": {
+    "PinMacType": {
+      "null": "",
+      "PIN": "PIN",
+      "MAC": "MAC"
+    }
+  }
+}

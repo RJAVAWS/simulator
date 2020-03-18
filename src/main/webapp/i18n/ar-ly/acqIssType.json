@@ -1,0 +1,9 @@
+{
+  "simulatorApp": {
+    "AcqIssType": {
+      "null": "",
+      "ACQUIRING": "ACQUIRING",
+      "ISSUING": "ISSUING"
+    }
+  }
+}

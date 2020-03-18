@@ -1,0 +1,31 @@
+{
+  "simulatorApp": {
+    "keyConfig": {
+      "home": {
+        "title": "Key Configs",
+        "createLabel": "Create a new Key Config",
+        "createOrEditLabel": "Create or edit a Key Config",
+        "notFound": "No Key Configs found"
+      },
+      "created": "A new Key Config is created with identifier {{ param }}",
+      "updated": "A Key Config is updated with identifier {{ param }}",
+      "deleted": "A Key Config is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Key Config {{ id }}?"
+      },
+      "detail": {
+        "title": "Key Config"
+      },
+      "pmType": "Pm Type",
+      "key": "Key",
+      "kcv": "Kcv",
+      "status": "Status",
+      "de01": "De 01",
+      "de02": "De 02",
+      "de03": "De 03",
+      "de04": "De 04",
+      "de05": "De 05",
+      "bank": "Bank"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "simulatorApp": {
+    "emv": {
+      "home": {
+        "title": "Emvs",
+        "createLabel": "Create a new Emv",
+        "createOrEditLabel": "Create or edit a Emv",
+        "notFound": "No Emvs found"
+      },
+      "created": "A new Emv is created with identifier {{ param }}",
+      "updated": "A Emv is updated with identifier {{ param }}",
+      "deleted": "A Emv is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Emv {{ id }}?"
+      },
+      "detail": {
+        "title": "Emv"
+      },
+      "emvDescription": "Emv Description",
+      "de5F2A": "De 5 F 2 A",
+      "de82": "De 82",
+      "de84": "De 84",
+      "de95": "De 95",
+      "de9A": "De 9 A",
+      "de9C": "De 9 C",
+      "de9F02": "De 9 F 02",
+      "de9F03": "De 9 F 03",
+      "de9F09": "De 9 F 09",
+      "de9F10": "De 9 F 10",
+      "de9F1A": "De 9 F 1 A",
+      "de9F1E": "De 9 F 1 E",
+      "de9F26": "De 9 F 26",
+      "de9F27": "De 9 F 27",
+      "de9F33": "De 9 F 33",
+      "de9F34": "De 9 F 34",
+      "de9F35": "De 9 F 35",
+      "de9F36": "De 9 F 36",
+      "de9F37": "De 9 F 37",
+      "de9F41": "De 9 F 41",
+      "de9F53": "De 9 F 53",
+      "de8A": "De 8 A",
+      "de71": "De 71",
+      "de72": "De 72",
+      "de91": "De 91",
+      "others": "Others"
+    }
+  }
+}

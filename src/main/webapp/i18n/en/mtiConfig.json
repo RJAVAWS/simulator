@@ -1,0 +1,32 @@
+{
+  "simulatorApp": {
+    "mtiConfig": {
+      "home": {
+        "title": "Mti Configs",
+        "createLabel": "Create a new Mti Config",
+        "createOrEditLabel": "Create or edit a Mti Config",
+        "notFound": "No Mti Configs found"
+      },
+      "created": "A new Mti Config is created with identifier {{ param }}",
+      "updated": "A Mti Config is updated with identifier {{ param }}",
+      "deleted": "A Mti Config is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mti Config {{ id }}?"
+      },
+      "detail": {
+        "title": "Mti Config"
+      },
+      "mtiDescription": "Mti Description",
+      "tnType": "Tn Type",
+      "isoType": "Iso Type",
+      "mti": "Mti",
+      "repeatMti": "Repeat Mti",
+      "responseMti": "Response Mti",
+      "responseRepeatMti": "Response Repeat Mti",
+      "nmmIdentifierDe": "Nmm Identifier De",
+      "nmmIdentifierDeVal": "Nmm Identifier De Val",
+      "responseIdentifierDe": "Response Identifier De",
+      "responseIdentifierDeVal": "Response Identifier De Val"
+    }
+  }
+}

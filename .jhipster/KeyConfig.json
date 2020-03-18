@@ -1,0 +1,71 @@
+{
+    "name": "KeyConfig",
+    "fields": [
+        {
+            "fieldName": "pmType",
+            "fieldType": "PinMacType",
+            "fieldValues": "PIN,MAC"
+        },
+        {
+            "fieldName": "key",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[a-zA-Z0-9]*"
+        },
+        {
+            "fieldName": "kcv",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[a-zA-Z0-9]*"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "de01",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "de02",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "de03",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "de04",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "de05",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bank",
+            "otherEntityRelationshipName": "keyConfig",
+            "relationshipName": "bank",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200225154100",
+    "entityTableName": "key_config",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

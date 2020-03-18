@@ -1,0 +1,37 @@
+{
+  "simulatorApp": {
+    "bank": {
+      "home": {
+        "title": "Banks",
+        "createLabel": "Create a new Bank",
+        "createOrEditLabel": "Create or edit a Bank",
+        "notFound": "No Banks found"
+      },
+      "created": "A new Bank is created with identifier {{ param }}",
+      "updated": "A Bank is updated with identifier {{ param }}",
+      "deleted": "A Bank is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bank {{ id }}?"
+      },
+      "detail": {
+        "title": "Bank"
+      },
+      "name": "Name",
+      "code": "Code",
+      "logoLabel": "Logo of bank",
+      "logo": "Icon",
+      "ip": "Ip",
+      "port": "Port",
+      "isoType": "Iso Type",
+      "signOnOffFlag": "Sign On",
+      "pinExchangeFlag": "Pin Exchange",
+      "macExchangeFlag": "Mac Exchange",
+      "echoFlag": "Echo",
+      "cutoverFlag": "Cutover",
+      "masterKey": "Master Key",
+      "card": "Card",
+      "keyConfig": "Key Config",
+      "transaction": "Transaction"
+    }
+  }
+}

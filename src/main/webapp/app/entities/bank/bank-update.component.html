@@ -1,0 +1,300 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-bank-heading" jhiTranslate="simulatorApp.bank.home.createOrEditLabel">Create or edit a Bank</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.bank.name"
+                           for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div
+                        *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.minlength"
+                               jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                            This field is required to be at least 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.maxlength"
+                               jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 150 }">
+                            This field cannot be longer than 150 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.pattern" jhiTranslate="entity.validation.pattern"
+                               [translateValues]="{ pattern: 'Name' }">
+                            This field should follow pattern for "Name".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.bank.code"
+                           for="field_code">Code</label>
+                    <input type="number" class="form-control" name="code" id="field_code"
+                           formControlName="code"/>
+                    <div
+                        *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('code')?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('code')?.errors?.min" jhiTranslate="entity.validation.min"
+                               [translateValues]="{ min: 3 }">
+                            This field should be at least 3.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('code')?.errors?.max" jhiTranslate="entity.validation.max"
+                               [translateValues]="{ max: 10 }">
+                            This field cannot be more than 10.
+                        </small>
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.get('code')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.bank.ip" for="field_ip">Ip</label>
+                    <input type="text" class="form-control" name="ip" id="field_ip"
+                           formControlName="ip"/>
+                    <div
+                        *ngIf="editForm.get('ip')!.invalid && (editForm.get('ip')!.dirty || editForm.get('ip')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ip')?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ip')?.errors?.pattern" jhiTranslate="entity.validation.pattern"
+                               [translateValues]="{ pattern: 'Ip' }">
+                            This field should follow pattern for "Ip".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.bank.port"
+                           for="field_port">Port</label>
+                    <input type="text" class="form-control" name="port" id="field_port"
+                           formControlName="port"/>
+                    <div
+                        *ngIf="editForm.get('port')!.invalid && (editForm.get('port')!.dirty || editForm.get('port')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('port')?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('port')?.errors?.minlength"
+                               jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 4 }">
+                            This field is required to be at least 4 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('port')?.errors?.maxlength"
+                               jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
+                            This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.bank.isoType" for="field_isoType">Iso
+                        Type</label>
+                    <select class="form-control" name="isoType" formControlName="isoType" id="field_isoType">
+                        <option value="GCCISO87">{{ 'simulatorApp.IsoVersions.GCCISO87' | translate }}</option>
+                        <option value="MBIISO93">{{ 'simulatorApp.IsoVersions.MBIISO93' | translate }}</option>
+                    </select>
+                    <div
+                        *ngIf="editForm.get('isoType')!.invalid && (editForm.get('isoType')!.dirty || editForm.get('isoType')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('isoType')?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.bank.masterKey"
+                           for="field_masterKey">Master
+                        Key</label>
+                    <input type="text" class="form-control" name="masterKey" id="field_masterKey"
+                           formControlName="masterKey"/>
+                    <div
+                        *ngIf="editForm.get('masterKey')!.invalid && (editForm.get('masterKey')!.dirty || editForm.get('masterKey')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('masterKey')?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('masterKey')?.errors?.pattern"
+                               jhiTranslate="entity.validation.pattern"
+                               [translateValues]="{ pattern: 'Master Key' }">
+                            This field should follow pattern for "Master Key".
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="logo" name="logo" formControlName="logo"
+                       id="field_logo"/>
+                <div class="row">
+                    <div class="col-3">
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn input-group-text" type="button" id="dropdownBasic1" ngbDropdownToggle
+                                    jhiTranslate="simulatorApp.bank.logo">Icon
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <div *ngFor="let ico of iconsList">
+                                    <button type="button" ngbDropdownItem (click)="onSelectIcon(ico.iconName)">
+                                        <fa-icon icon="{{ ico.iconName  }}" fixedWidth="true"></fa-icon>
+                                        {{ ico.iconName  }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary">
+                            <fa-icon [icon]="selectedIcon" fixedWidth="true"></fa-icon>
+                            {{selectedIcon}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label class="form-control-label" jhiTranslate="simulatorApp.bank.signOnOffFlag"
+                               for="field_signOnOffFlag">Sign On</label>
+                    </div>
+                    <div class="col">
+                        <ui-switch name="signOnOffFlag" id="field_signOnOffFlag"
+                                   formControlName="signOnOffFlag"></ui-switch>
+                    </div>
+                </div>
+                <div
+                    *ngIf="editForm.get('signOnOffFlag')!.invalid && (editForm.get('signOnOffFlag')!.dirty || editForm.get('signOnOffFlag')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('signOnOffFlag')?.errors?.required"
+                           jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label class="form-control-label" jhiTranslate="simulatorApp.bank.pinExchangeFlag"
+                               for="field_pinExchangeFlag">Pin Exchange</label>
+                    </div>
+                    <div class="col">
+                        <ui-switch name="pinExchangeFlag" id="field_pinExchangeFlag"
+                                   formControlName="pinExchangeFlag"></ui-switch>
+                    </div>
+                </div>
+                <div
+                    *ngIf="editForm.get('pinExchangeFlag')!.invalid && (editForm.get('pinExchangeFlag')!.dirty || editForm.get('pinExchangeFlag')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('pinExchangeFlag')?.errors?.required"
+                           jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label class="form-control-label" jhiTranslate="simulatorApp.bank.macExchangeFlag"
+                               for="field_macExchangeFlag">Mac Exchange</label>
+                    </div>
+                    <div class="col">
+                        <ui-switch name="macExchangeFlag" id="field_macExchangeFlag"
+                                   formControlName="macExchangeFlag"></ui-switch>
+                    </div>
+                </div>
+                <div
+                    *ngIf="editForm.get('macExchangeFlag')!.invalid && (editForm.get('macExchangeFlag')!.dirty || editForm.get('macExchangeFlag')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('macExchangeFlag')?.errors?.required"
+                           jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label class="form-control-label" jhiTranslate="simulatorApp.bank.echoFlag"
+                               for="field_echoFlag">Echo </label>
+                    </div>
+                    <div class="col">
+                        <ui-switch name="echoFlag" id="field_echoFlag"
+                                   formControlName="echoFlag"></ui-switch>
+                    </div>
+                </div>
+                <div
+                    *ngIf="editForm.get('echoFlag')!.invalid && (editForm.get('echoFlag')!.dirty || editForm.get('echoFlag')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('echoFlag')?.errors?.required"
+                           jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label class="form-control-label" jhiTranslate="simulatorApp.bank.cutoverFlag"
+                               for="field_cutoverFlag">Cutover</label>
+                    </div>
+                    <div class="col">
+                        <ui-switch name="cutoverFlag" id="field_cutoverFlag"
+                                   formControlName="cutoverFlag"></ui-switch>
+                    </div>
+                </div>
+                <div
+                    *ngIf="editForm.get('cutoverFlag')!.invalid && (editForm.get('cutoverFlag')!.dirty || editForm.get('cutoverFlag')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('cutoverFlag')?.errors?.required"
+                           jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                        class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,862 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-test-case-heading" jhiTranslate="simulatorApp.testCase.home.createOrEditLabel">Create or edit a Test Case</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.caseDescription" for="field_caseDescription">Case Description</label>
+                    <input type="text" class="form-control" name="caseDescription" id="field_caseDescription"
+                           formControlName="caseDescription"/>
+                    <div *ngIf="editForm.get('caseDescription')!.invalid && (editForm.get('caseDescription')!.dirty || editForm.get('caseDescription')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('caseDescription')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('caseDescription')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('caseDescription')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('caseDescription')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Case Description' }">
+                            This field should follow pattern for "Case Description".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.psdnType" for="field_psdnType">Psdn Type</label>
+                    <select class="form-control" name="psdnType" formControlName="psdnType" id="field_psdnType">
+                        <option value="PRIMARY">{{ 'simulatorApp.PsdnType.PRIMARY' | translate }}</option>
+                        <option value="SECONDARY">{{ 'simulatorApp.PsdnType.SECONDARY' | translate }}</option>
+                        <option value="DEFAULT">{{ 'simulatorApp.PsdnType.DEFAULT' | translate }}</option>
+                        <option value="NMM">{{ 'simulatorApp.PsdnType.NMM' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('psdnType')!.invalid && (editForm.get('psdnType')!.dirty || editForm.get('psdnType')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('psdnType')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.reqResType" for="field_reqResType">Req Res Type</label>
+                    <select class="form-control" name="reqResType" formControlName="reqResType" id="field_reqResType">
+                        <option value="REQUEST">{{ 'simulatorApp.ReqResType.REQUEST' | translate }}</option>
+                        <option value="RESPONSE">{{ 'simulatorApp.ReqResType.RESPONSE' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('reqResType')!.invalid && (editForm.get('reqResType')!.dirty || editForm.get('reqResType')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('reqResType')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.mti" for="field_mti">Mti</label>
+                    <input type="text" class="form-control" name="mti" id="field_mti"
+                           formControlName="mti"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de001" for="field_de001">De 001</label>
+                    <textarea class="form-control" name="de001" id="field_de001"
+                              formControlName="de001"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de002" for="field_de002">De 002</label>
+                    <textarea class="form-control" name="de002" id="field_de002"
+                              formControlName="de002"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de003" for="field_de003">De 003</label>
+                    <textarea class="form-control" name="de003" id="field_de003"
+                              formControlName="de003"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de004" for="field_de004">De 004</label>
+                    <textarea class="form-control" name="de004" id="field_de004"
+                              formControlName="de004"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de005" for="field_de005">De 005</label>
+                    <textarea class="form-control" name="de005" id="field_de005"
+                              formControlName="de005"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de006" for="field_de006">De 006</label>
+                    <textarea class="form-control" name="de006" id="field_de006"
+                              formControlName="de006"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de007" for="field_de007">De 007</label>
+                    <textarea class="form-control" name="de007" id="field_de007"
+                              formControlName="de007"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de008" for="field_de008">De 008</label>
+                    <textarea class="form-control" name="de008" id="field_de008"
+                              formControlName="de008"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de009" for="field_de009">De 009</label>
+                    <textarea class="form-control" name="de009" id="field_de009"
+                              formControlName="de009"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de010" for="field_de010">De 010</label>
+                    <textarea class="form-control" name="de010" id="field_de010"
+                              formControlName="de010"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de011" for="field_de011">De 011</label>
+                    <textarea class="form-control" name="de011" id="field_de011"
+                              formControlName="de011"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de012" for="field_de012">De 012</label>
+                    <textarea class="form-control" name="de012" id="field_de012"
+                              formControlName="de012"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de013" for="field_de013">De 013</label>
+                    <textarea class="form-control" name="de013" id="field_de013"
+                              formControlName="de013"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de014" for="field_de014">De 014</label>
+                    <textarea class="form-control" name="de014" id="field_de014"
+                              formControlName="de014"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de015" for="field_de015">De 015</label>
+                    <textarea class="form-control" name="de015" id="field_de015"
+                              formControlName="de015"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de016" for="field_de016">De 016</label>
+                    <textarea class="form-control" name="de016" id="field_de016"
+                              formControlName="de016"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de017" for="field_de017">De 017</label>
+                    <textarea class="form-control" name="de017" id="field_de017"
+                              formControlName="de017"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de018" for="field_de018">De 018</label>
+                    <textarea class="form-control" name="de018" id="field_de018"
+                              formControlName="de018"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de019" for="field_de019">De 019</label>
+                    <textarea class="form-control" name="de019" id="field_de019"
+                              formControlName="de019"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de020" for="field_de020">De 020</label>
+                    <textarea class="form-control" name="de020" id="field_de020"
+                              formControlName="de020"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de021" for="field_de021">De 021</label>
+                    <textarea class="form-control" name="de021" id="field_de021"
+                              formControlName="de021"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de022" for="field_de022">De 022</label>
+                    <textarea class="form-control" name="de022" id="field_de022"
+                              formControlName="de022"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de023" for="field_de023">De 023</label>
+                    <textarea class="form-control" name="de023" id="field_de023"
+                              formControlName="de023"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de024" for="field_de024">De 024</label>
+                    <textarea class="form-control" name="de024" id="field_de024"
+                              formControlName="de024"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de025" for="field_de025">De 025</label>
+                    <textarea class="form-control" name="de025" id="field_de025"
+                              formControlName="de025"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de026" for="field_de026">De 026</label>
+                    <textarea class="form-control" name="de026" id="field_de026"
+                              formControlName="de026"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de027" for="field_de027">De 027</label>
+                    <textarea class="form-control" name="de027" id="field_de027"
+                              formControlName="de027"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de028" for="field_de028">De 028</label>
+                    <textarea class="form-control" name="de028" id="field_de028"
+                              formControlName="de028"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de029" for="field_de029">De 029</label>
+                    <textarea class="form-control" name="de029" id="field_de029"
+                              formControlName="de029"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de030" for="field_de030">De 030</label>
+                    <textarea class="form-control" name="de030" id="field_de030"
+                              formControlName="de030"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de031" for="field_de031">De 031</label>
+                    <textarea class="form-control" name="de031" id="field_de031"
+                              formControlName="de031"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de032" for="field_de032">De 032</label>
+                    <textarea class="form-control" name="de032" id="field_de032"
+                              formControlName="de032"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de033" for="field_de033">De 033</label>
+                    <textarea class="form-control" name="de033" id="field_de033"
+                              formControlName="de033"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de034" for="field_de034">De 034</label>
+                    <textarea class="form-control" name="de034" id="field_de034"
+                              formControlName="de034"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de035" for="field_de035">De 035</label>
+                    <textarea class="form-control" name="de035" id="field_de035"
+                              formControlName="de035"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de036" for="field_de036">De 036</label>
+                    <textarea class="form-control" name="de036" id="field_de036"
+                              formControlName="de036"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de037" for="field_de037">De 037</label>
+                    <textarea class="form-control" name="de037" id="field_de037"
+                              formControlName="de037"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de038" for="field_de038">De 038</label>
+                    <textarea class="form-control" name="de038" id="field_de038"
+                              formControlName="de038"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de039" for="field_de039">De 039</label>
+                    <textarea class="form-control" name="de039" id="field_de039"
+                              formControlName="de039"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de040" for="field_de040">De 040</label>
+                    <textarea class="form-control" name="de040" id="field_de040"
+                              formControlName="de040"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de041" for="field_de041">De 041</label>
+                    <textarea class="form-control" name="de041" id="field_de041"
+                              formControlName="de041"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de042" for="field_de042">De 042</label>
+                    <textarea class="form-control" name="de042" id="field_de042"
+                              formControlName="de042"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de043" for="field_de043">De 043</label>
+                    <textarea class="form-control" name="de043" id="field_de043"
+                              formControlName="de043"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de044" for="field_de044">De 044</label>
+                    <textarea class="form-control" name="de044" id="field_de044"
+                              formControlName="de044"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de045" for="field_de045">De 045</label>
+                    <textarea class="form-control" name="de045" id="field_de045"
+                              formControlName="de045"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de046" for="field_de046">De 046</label>
+                    <textarea class="form-control" name="de046" id="field_de046"
+                              formControlName="de046"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de047" for="field_de047">De 047</label>
+                    <textarea class="form-control" name="de047" id="field_de047"
+                              formControlName="de047"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de048" for="field_de048">De 048</label>
+                    <textarea class="form-control" name="de048" id="field_de048"
+                              formControlName="de048"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de049" for="field_de049">De 049</label>
+                    <textarea class="form-control" name="de049" id="field_de049"
+                              formControlName="de049"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de050" for="field_de050">De 050</label>
+                    <textarea class="form-control" name="de050" id="field_de050"
+                              formControlName="de050"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de051" for="field_de051">De 051</label>
+                    <textarea class="form-control" name="de051" id="field_de051"
+                              formControlName="de051"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de052" for="field_de052">De 052</label>
+                    <textarea class="form-control" name="de052" id="field_de052"
+                              formControlName="de052"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de053" for="field_de053">De 053</label>
+                    <textarea class="form-control" name="de053" id="field_de053"
+                              formControlName="de053"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de054" for="field_de054">De 054</label>
+                    <textarea class="form-control" name="de054" id="field_de054"
+                              formControlName="de054"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de055" for="field_de055">De 055</label>
+                    <textarea class="form-control" name="de055" id="field_de055"
+                              formControlName="de055"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de056" for="field_de056">De 056</label>
+                    <textarea class="form-control" name="de056" id="field_de056"
+                              formControlName="de056"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de057" for="field_de057">De 057</label>
+                    <textarea class="form-control" name="de057" id="field_de057"
+                              formControlName="de057"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de058" for="field_de058">De 058</label>
+                    <textarea class="form-control" name="de058" id="field_de058"
+                              formControlName="de058"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de059" for="field_de059">De 059</label>
+                    <textarea class="form-control" name="de059" id="field_de059"
+                              formControlName="de059"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de060" for="field_de060">De 060</label>
+                    <textarea class="form-control" name="de060" id="field_de060"
+                              formControlName="de060"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de061" for="field_de061">De 061</label>
+                    <textarea class="form-control" name="de061" id="field_de061"
+                              formControlName="de061"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de062" for="field_de062">De 062</label>
+                    <textarea class="form-control" name="de062" id="field_de062"
+                              formControlName="de062"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de063" for="field_de063">De 063</label>
+                    <textarea class="form-control" name="de063" id="field_de063"
+                              formControlName="de063"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de064" for="field_de064">De 064</label>
+                    <textarea class="form-control" name="de064" id="field_de064"
+                              formControlName="de064"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de065" for="field_de065">De 065</label>
+                    <textarea class="form-control" name="de065" id="field_de065"
+                              formControlName="de065"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de066" for="field_de066">De 066</label>
+                    <textarea class="form-control" name="de066" id="field_de066"
+                              formControlName="de066"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de067" for="field_de067">De 067</label>
+                    <textarea class="form-control" name="de067" id="field_de067"
+                              formControlName="de067"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de068" for="field_de068">De 068</label>
+                    <textarea class="form-control" name="de068" id="field_de068"
+                              formControlName="de068"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de069" for="field_de069">De 069</label>
+                    <textarea class="form-control" name="de069" id="field_de069"
+                              formControlName="de069"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de070" for="field_de070">De 070</label>
+                    <textarea class="form-control" name="de070" id="field_de070"
+                              formControlName="de070"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de071" for="field_de071">De 071</label>
+                    <textarea class="form-control" name="de071" id="field_de071"
+                              formControlName="de071"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de072" for="field_de072">De 072</label>
+                    <textarea class="form-control" name="de072" id="field_de072"
+                              formControlName="de072"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de073" for="field_de073">De 073</label>
+                    <textarea class="form-control" name="de073" id="field_de073"
+                              formControlName="de073"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de074" for="field_de074">De 074</label>
+                    <textarea class="form-control" name="de074" id="field_de074"
+                              formControlName="de074"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de075" for="field_de075">De 075</label>
+                    <textarea class="form-control" name="de075" id="field_de075"
+                              formControlName="de075"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de076" for="field_de076">De 076</label>
+                    <textarea class="form-control" name="de076" id="field_de076"
+                              formControlName="de076"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de077" for="field_de077">De 077</label>
+                    <textarea class="form-control" name="de077" id="field_de077"
+                              formControlName="de077"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de078" for="field_de078">De 078</label>
+                    <textarea class="form-control" name="de078" id="field_de078"
+                              formControlName="de078"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de079" for="field_de079">De 079</label>
+                    <textarea class="form-control" name="de079" id="field_de079"
+                              formControlName="de079"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de080" for="field_de080">De 080</label>
+                    <textarea class="form-control" name="de080" id="field_de080"
+                              formControlName="de080"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de081" for="field_de081">De 081</label>
+                    <textarea class="form-control" name="de081" id="field_de081"
+                              formControlName="de081"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de082" for="field_de082">De 082</label>
+                    <textarea class="form-control" name="de082" id="field_de082"
+                              formControlName="de082"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de083" for="field_de083">De 083</label>
+                    <textarea class="form-control" name="de083" id="field_de083"
+                              formControlName="de083"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de084" for="field_de084">De 084</label>
+                    <textarea class="form-control" name="de084" id="field_de084"
+                              formControlName="de084"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de085" for="field_de085">De 085</label>
+                    <textarea class="form-control" name="de085" id="field_de085"
+                              formControlName="de085"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de086" for="field_de086">De 086</label>
+                    <textarea class="form-control" name="de086" id="field_de086"
+                              formControlName="de086"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de087" for="field_de087">De 087</label>
+                    <textarea class="form-control" name="de087" id="field_de087"
+                              formControlName="de087"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de088" for="field_de088">De 088</label>
+                    <textarea class="form-control" name="de088" id="field_de088"
+                              formControlName="de088"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de089" for="field_de089">De 089</label>
+                    <textarea class="form-control" name="de089" id="field_de089"
+                              formControlName="de089"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de090" for="field_de090">De 090</label>
+                    <textarea class="form-control" name="de090" id="field_de090"
+                              formControlName="de090"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de091" for="field_de091">De 091</label>
+                    <textarea class="form-control" name="de091" id="field_de091"
+                              formControlName="de091"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de092" for="field_de092">De 092</label>
+                    <textarea class="form-control" name="de092" id="field_de092"
+                              formControlName="de092"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de093" for="field_de093">De 093</label>
+                    <textarea class="form-control" name="de093" id="field_de093"
+                              formControlName="de093"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de094" for="field_de094">De 094</label>
+                    <textarea class="form-control" name="de094" id="field_de094"
+                              formControlName="de094"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de095" for="field_de095">De 095</label>
+                    <textarea class="form-control" name="de095" id="field_de095"
+                              formControlName="de095"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de096" for="field_de096">De 096</label>
+                    <textarea class="form-control" name="de096" id="field_de096"
+                              formControlName="de096"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de097" for="field_de097">De 097</label>
+                    <textarea class="form-control" name="de097" id="field_de097"
+                              formControlName="de097"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de098" for="field_de098">De 098</label>
+                    <textarea class="form-control" name="de098" id="field_de098"
+                              formControlName="de098"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de099" for="field_de099">De 099</label>
+                    <textarea class="form-control" name="de099" id="field_de099"
+                              formControlName="de099"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de100" for="field_de100">De 100</label>
+                    <textarea class="form-control" name="de100" id="field_de100"
+                              formControlName="de100"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de101" for="field_de101">De 101</label>
+                    <textarea class="form-control" name="de101" id="field_de101"
+                              formControlName="de101"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de102" for="field_de102">De 102</label>
+                    <textarea class="form-control" name="de102" id="field_de102"
+                              formControlName="de102"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de103" for="field_de103">De 103</label>
+                    <textarea class="form-control" name="de103" id="field_de103"
+                              formControlName="de103"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de104" for="field_de104">De 104</label>
+                    <textarea class="form-control" name="de104" id="field_de104"
+                              formControlName="de104"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de105" for="field_de105">De 105</label>
+                    <textarea class="form-control" name="de105" id="field_de105"
+                              formControlName="de105"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de106" for="field_de106">De 106</label>
+                    <textarea class="form-control" name="de106" id="field_de106"
+                              formControlName="de106"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de107" for="field_de107">De 107</label>
+                    <textarea class="form-control" name="de107" id="field_de107"
+                              formControlName="de107"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de108" for="field_de108">De 108</label>
+                    <textarea class="form-control" name="de108" id="field_de108"
+                              formControlName="de108"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de109" for="field_de109">De 109</label>
+                    <textarea class="form-control" name="de109" id="field_de109"
+                              formControlName="de109"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de110" for="field_de110">De 110</label>
+                    <textarea class="form-control" name="de110" id="field_de110"
+                              formControlName="de110"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de111" for="field_de111">De 111</label>
+                    <textarea class="form-control" name="de111" id="field_de111"
+                              formControlName="de111"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de112" for="field_de112">De 112</label>
+                    <textarea class="form-control" name="de112" id="field_de112"
+                              formControlName="de112"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de113" for="field_de113">De 113</label>
+                    <textarea class="form-control" name="de113" id="field_de113"
+                              formControlName="de113"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de114" for="field_de114">De 114</label>
+                    <textarea class="form-control" name="de114" id="field_de114"
+                              formControlName="de114"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de115" for="field_de115">De 115</label>
+                    <textarea class="form-control" name="de115" id="field_de115"
+                              formControlName="de115"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de116" for="field_de116">De 116</label>
+                    <textarea class="form-control" name="de116" id="field_de116"
+                              formControlName="de116"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de117" for="field_de117">De 117</label>
+                    <textarea class="form-control" name="de117" id="field_de117"
+                              formControlName="de117"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de118" for="field_de118">De 118</label>
+                    <textarea class="form-control" name="de118" id="field_de118"
+                              formControlName="de118"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de119" for="field_de119">De 119</label>
+                    <textarea class="form-control" name="de119" id="field_de119"
+                              formControlName="de119"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de120" for="field_de120">De 120</label>
+                    <textarea class="form-control" name="de120" id="field_de120"
+                              formControlName="de120"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de121" for="field_de121">De 121</label>
+                    <textarea class="form-control" name="de121" id="field_de121"
+                              formControlName="de121"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de122" for="field_de122">De 122</label>
+                    <textarea class="form-control" name="de122" id="field_de122"
+                              formControlName="de122"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de123" for="field_de123">De 123</label>
+                    <textarea class="form-control" name="de123" id="field_de123"
+                              formControlName="de123"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de124" for="field_de124">De 124</label>
+                    <textarea class="form-control" name="de124" id="field_de124"
+                              formControlName="de124"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de125" for="field_de125">De 125</label>
+                    <textarea class="form-control" name="de125" id="field_de125"
+                              formControlName="de125"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de126" for="field_de126">De 126</label>
+                    <textarea class="form-control" name="de126" id="field_de126"
+                              formControlName="de126"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de127" for="field_de127">De 127</label>
+                    <textarea class="form-control" name="de127" id="field_de127"
+                              formControlName="de127"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.de128" for="field_de128">De 128</label>
+                    <textarea class="form-control" name="de128" id="field_de128"
+                              formControlName="de128"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.card" for="field_card">Card</label>
+                    <select class="form-control" id="field_card" name="card" formControlName="cardId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="cardOption.id" *ngFor="let cardOption of cards; trackBy: trackById">{{ cardOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

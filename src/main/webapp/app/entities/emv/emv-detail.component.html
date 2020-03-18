@@ -1,0 +1,134 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="emv">
+            <h2><span jhiTranslate="simulatorApp.emv.detail.title">Emv</span> {{ emv.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="simulatorApp.emv.emvDescription">Emv Description</span></dt>
+                <dd>
+                    <span>{{ emv.emvDescription }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de5F2A">De 5 F 2 A</span></dt>
+                <dd>
+                    <span>{{ emv.de5F2A }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de82">De 82</span></dt>
+                <dd>
+                    <span>{{ emv.de82 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de84">De 84</span></dt>
+                <dd>
+                    <span>{{ emv.de84 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de95">De 95</span></dt>
+                <dd>
+                    <span>{{ emv.de95 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9A">De 9 A</span></dt>
+                <dd>
+                    <span>{{ emv.de9A }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9C">De 9 C</span></dt>
+                <dd>
+                    <span>{{ emv.de9C }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F02">De 9 F 02</span></dt>
+                <dd>
+                    <span>{{ emv.de9F02 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F03">De 9 F 03</span></dt>
+                <dd>
+                    <span>{{ emv.de9F03 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F09">De 9 F 09</span></dt>
+                <dd>
+                    <span>{{ emv.de9F09 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F10">De 9 F 10</span></dt>
+                <dd>
+                    <span>{{ emv.de9F10 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F1A">De 9 F 1 A</span></dt>
+                <dd>
+                    <span>{{ emv.de9F1A }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F1E">De 9 F 1 E</span></dt>
+                <dd>
+                    <span>{{ emv.de9F1E }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F26">De 9 F 26</span></dt>
+                <dd>
+                    <span>{{ emv.de9F26 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F27">De 9 F 27</span></dt>
+                <dd>
+                    <span>{{ emv.de9F27 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F33">De 9 F 33</span></dt>
+                <dd>
+                    <span>{{ emv.de9F33 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F34">De 9 F 34</span></dt>
+                <dd>
+                    <span>{{ emv.de9F34 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F35">De 9 F 35</span></dt>
+                <dd>
+                    <span>{{ emv.de9F35 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F36">De 9 F 36</span></dt>
+                <dd>
+                    <span>{{ emv.de9F36 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F37">De 9 F 37</span></dt>
+                <dd>
+                    <span>{{ emv.de9F37 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F41">De 9 F 41</span></dt>
+                <dd>
+                    <span>{{ emv.de9F41 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de9F53">De 9 F 53</span></dt>
+                <dd>
+                    <span>{{ emv.de9F53 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de8A">De 8 A</span></dt>
+                <dd>
+                    <span>{{ emv.de8A }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de71">De 71</span></dt>
+                <dd>
+                    <span>{{ emv.de71 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de72">De 72</span></dt>
+                <dd>
+                    <span>{{ emv.de72 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.de91">De 91</span></dt>
+                <dd>
+                    <span>{{ emv.de91 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.others">Others</span></dt>
+                <dd>
+                    <span>{{ emv.others }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/emv', emv.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

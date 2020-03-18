@@ -1,0 +1,560 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transaction">
+            <h2><span jhiTranslate="simulatorApp.transaction.detail.title">Transaction</span> {{ transaction.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="simulatorApp.transaction.tranType">Tran Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.AcqIssType.' + transaction.tranType }}">{{ transaction.tranType }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.status">Status</span></dt>
+                <dd>
+                    <span>{{ transaction.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.mti">Mti</span></dt>
+                <dd>
+                    <span>{{ transaction.mti }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de001">De 001</span></dt>
+                <dd>
+                    <span>{{ transaction.de001 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de002">De 002</span></dt>
+                <dd>
+                    <span>{{ transaction.de002 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de003">De 003</span></dt>
+                <dd>
+                    <span>{{ transaction.de003 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de004">De 004</span></dt>
+                <dd>
+                    <span>{{ transaction.de004 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de005">De 005</span></dt>
+                <dd>
+                    <span>{{ transaction.de005 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de006">De 006</span></dt>
+                <dd>
+                    <span>{{ transaction.de006 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de007">De 007</span></dt>
+                <dd>
+                    <span>{{ transaction.de007 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de008">De 008</span></dt>
+                <dd>
+                    <span>{{ transaction.de008 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de009">De 009</span></dt>
+                <dd>
+                    <span>{{ transaction.de009 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de010">De 010</span></dt>
+                <dd>
+                    <span>{{ transaction.de010 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de011">De 011</span></dt>
+                <dd>
+                    <span>{{ transaction.de011 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de012">De 012</span></dt>
+                <dd>
+                    <span>{{ transaction.de012 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de013">De 013</span></dt>
+                <dd>
+                    <span>{{ transaction.de013 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de014">De 014</span></dt>
+                <dd>
+                    <span>{{ transaction.de014 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de015">De 015</span></dt>
+                <dd>
+                    <span>{{ transaction.de015 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de016">De 016</span></dt>
+                <dd>
+                    <span>{{ transaction.de016 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de017">De 017</span></dt>
+                <dd>
+                    <span>{{ transaction.de017 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de018">De 018</span></dt>
+                <dd>
+                    <span>{{ transaction.de018 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de019">De 019</span></dt>
+                <dd>
+                    <span>{{ transaction.de019 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de020">De 020</span></dt>
+                <dd>
+                    <span>{{ transaction.de020 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de021">De 021</span></dt>
+                <dd>
+                    <span>{{ transaction.de021 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de022">De 022</span></dt>
+                <dd>
+                    <span>{{ transaction.de022 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de023">De 023</span></dt>
+                <dd>
+                    <span>{{ transaction.de023 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de024">De 024</span></dt>
+                <dd>
+                    <span>{{ transaction.de024 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de025">De 025</span></dt>
+                <dd>
+                    <span>{{ transaction.de025 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de026">De 026</span></dt>
+                <dd>
+                    <span>{{ transaction.de026 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de027">De 027</span></dt>
+                <dd>
+                    <span>{{ transaction.de027 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de028">De 028</span></dt>
+                <dd>
+                    <span>{{ transaction.de028 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de029">De 029</span></dt>
+                <dd>
+                    <span>{{ transaction.de029 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de030">De 030</span></dt>
+                <dd>
+                    <span>{{ transaction.de030 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de031">De 031</span></dt>
+                <dd>
+                    <span>{{ transaction.de031 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de032">De 032</span></dt>
+                <dd>
+                    <span>{{ transaction.de032 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de033">De 033</span></dt>
+                <dd>
+                    <span>{{ transaction.de033 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de034">De 034</span></dt>
+                <dd>
+                    <span>{{ transaction.de034 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de035">De 035</span></dt>
+                <dd>
+                    <span>{{ transaction.de035 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de036">De 036</span></dt>
+                <dd>
+                    <span>{{ transaction.de036 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de037">De 037</span></dt>
+                <dd>
+                    <span>{{ transaction.de037 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de038">De 038</span></dt>
+                <dd>
+                    <span>{{ transaction.de038 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de039">De 039</span></dt>
+                <dd>
+                    <span>{{ transaction.de039 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de040">De 040</span></dt>
+                <dd>
+                    <span>{{ transaction.de040 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de041">De 041</span></dt>
+                <dd>
+                    <span>{{ transaction.de041 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de042">De 042</span></dt>
+                <dd>
+                    <span>{{ transaction.de042 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de043">De 043</span></dt>
+                <dd>
+                    <span>{{ transaction.de043 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de044">De 044</span></dt>
+                <dd>
+                    <span>{{ transaction.de044 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de045">De 045</span></dt>
+                <dd>
+                    <span>{{ transaction.de045 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de046">De 046</span></dt>
+                <dd>
+                    <span>{{ transaction.de046 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de047">De 047</span></dt>
+                <dd>
+                    <span>{{ transaction.de047 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de048">De 048</span></dt>
+                <dd>
+                    <span>{{ transaction.de048 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de049">De 049</span></dt>
+                <dd>
+                    <span>{{ transaction.de049 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de050">De 050</span></dt>
+                <dd>
+                    <span>{{ transaction.de050 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de051">De 051</span></dt>
+                <dd>
+                    <span>{{ transaction.de051 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de052">De 052</span></dt>
+                <dd>
+                    <span>{{ transaction.de052 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de053">De 053</span></dt>
+                <dd>
+                    <span>{{ transaction.de053 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de054">De 054</span></dt>
+                <dd>
+                    <span>{{ transaction.de054 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de055">De 055</span></dt>
+                <dd>
+                    <span>{{ transaction.de055 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de056">De 056</span></dt>
+                <dd>
+                    <span>{{ transaction.de056 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de057">De 057</span></dt>
+                <dd>
+                    <span>{{ transaction.de057 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de058">De 058</span></dt>
+                <dd>
+                    <span>{{ transaction.de058 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de059">De 059</span></dt>
+                <dd>
+                    <span>{{ transaction.de059 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de060">De 060</span></dt>
+                <dd>
+                    <span>{{ transaction.de060 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de061">De 061</span></dt>
+                <dd>
+                    <span>{{ transaction.de061 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de062">De 062</span></dt>
+                <dd>
+                    <span>{{ transaction.de062 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de063">De 063</span></dt>
+                <dd>
+                    <span>{{ transaction.de063 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de064">De 064</span></dt>
+                <dd>
+                    <span>{{ transaction.de064 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de065">De 065</span></dt>
+                <dd>
+                    <span>{{ transaction.de065 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de066">De 066</span></dt>
+                <dd>
+                    <span>{{ transaction.de066 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de067">De 067</span></dt>
+                <dd>
+                    <span>{{ transaction.de067 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de068">De 068</span></dt>
+                <dd>
+                    <span>{{ transaction.de068 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de069">De 069</span></dt>
+                <dd>
+                    <span>{{ transaction.de069 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de070">De 070</span></dt>
+                <dd>
+                    <span>{{ transaction.de070 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de071">De 071</span></dt>
+                <dd>
+                    <span>{{ transaction.de071 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de072">De 072</span></dt>
+                <dd>
+                    <span>{{ transaction.de072 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de073">De 073</span></dt>
+                <dd>
+                    <span>{{ transaction.de073 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de074">De 074</span></dt>
+                <dd>
+                    <span>{{ transaction.de074 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de075">De 075</span></dt>
+                <dd>
+                    <span>{{ transaction.de075 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de076">De 076</span></dt>
+                <dd>
+                    <span>{{ transaction.de076 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de077">De 077</span></dt>
+                <dd>
+                    <span>{{ transaction.de077 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de078">De 078</span></dt>
+                <dd>
+                    <span>{{ transaction.de078 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de079">De 079</span></dt>
+                <dd>
+                    <span>{{ transaction.de079 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de080">De 080</span></dt>
+                <dd>
+                    <span>{{ transaction.de080 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de081">De 081</span></dt>
+                <dd>
+                    <span>{{ transaction.de081 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de082">De 082</span></dt>
+                <dd>
+                    <span>{{ transaction.de082 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de083">De 083</span></dt>
+                <dd>
+                    <span>{{ transaction.de083 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de084">De 084</span></dt>
+                <dd>
+                    <span>{{ transaction.de084 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de085">De 085</span></dt>
+                <dd>
+                    <span>{{ transaction.de085 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de086">De 086</span></dt>
+                <dd>
+                    <span>{{ transaction.de086 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de087">De 087</span></dt>
+                <dd>
+                    <span>{{ transaction.de087 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de088">De 088</span></dt>
+                <dd>
+                    <span>{{ transaction.de088 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de089">De 089</span></dt>
+                <dd>
+                    <span>{{ transaction.de089 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de090">De 090</span></dt>
+                <dd>
+                    <span>{{ transaction.de090 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de091">De 091</span></dt>
+                <dd>
+                    <span>{{ transaction.de091 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de092">De 092</span></dt>
+                <dd>
+                    <span>{{ transaction.de092 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de093">De 093</span></dt>
+                <dd>
+                    <span>{{ transaction.de093 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de094">De 094</span></dt>
+                <dd>
+                    <span>{{ transaction.de094 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de095">De 095</span></dt>
+                <dd>
+                    <span>{{ transaction.de095 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de096">De 096</span></dt>
+                <dd>
+                    <span>{{ transaction.de096 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de097">De 097</span></dt>
+                <dd>
+                    <span>{{ transaction.de097 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de098">De 098</span></dt>
+                <dd>
+                    <span>{{ transaction.de098 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de099">De 099</span></dt>
+                <dd>
+                    <span>{{ transaction.de099 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de100">De 100</span></dt>
+                <dd>
+                    <span>{{ transaction.de100 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de101">De 101</span></dt>
+                <dd>
+                    <span>{{ transaction.de101 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de102">De 102</span></dt>
+                <dd>
+                    <span>{{ transaction.de102 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de103">De 103</span></dt>
+                <dd>
+                    <span>{{ transaction.de103 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de104">De 104</span></dt>
+                <dd>
+                    <span>{{ transaction.de104 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de105">De 105</span></dt>
+                <dd>
+                    <span>{{ transaction.de105 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de106">De 106</span></dt>
+                <dd>
+                    <span>{{ transaction.de106 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de107">De 107</span></dt>
+                <dd>
+                    <span>{{ transaction.de107 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de108">De 108</span></dt>
+                <dd>
+                    <span>{{ transaction.de108 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de109">De 109</span></dt>
+                <dd>
+                    <span>{{ transaction.de109 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de110">De 110</span></dt>
+                <dd>
+                    <span>{{ transaction.de110 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de111">De 111</span></dt>
+                <dd>
+                    <span>{{ transaction.de111 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de112">De 112</span></dt>
+                <dd>
+                    <span>{{ transaction.de112 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de113">De 113</span></dt>
+                <dd>
+                    <span>{{ transaction.de113 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de114">De 114</span></dt>
+                <dd>
+                    <span>{{ transaction.de114 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de115">De 115</span></dt>
+                <dd>
+                    <span>{{ transaction.de115 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de116">De 116</span></dt>
+                <dd>
+                    <span>{{ transaction.de116 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de117">De 117</span></dt>
+                <dd>
+                    <span>{{ transaction.de117 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de118">De 118</span></dt>
+                <dd>
+                    <span>{{ transaction.de118 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de119">De 119</span></dt>
+                <dd>
+                    <span>{{ transaction.de119 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de120">De 120</span></dt>
+                <dd>
+                    <span>{{ transaction.de120 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de121">De 121</span></dt>
+                <dd>
+                    <span>{{ transaction.de121 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de122">De 122</span></dt>
+                <dd>
+                    <span>{{ transaction.de122 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de123">De 123</span></dt>
+                <dd>
+                    <span>{{ transaction.de123 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de124">De 124</span></dt>
+                <dd>
+                    <span>{{ transaction.de124 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de125">De 125</span></dt>
+                <dd>
+                    <span>{{ transaction.de125 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de126">De 126</span></dt>
+                <dd>
+                    <span>{{ transaction.de126 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de127">De 127</span></dt>
+                <dd>
+                    <span>{{ transaction.de127 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.de128">De 128</span></dt>
+                <dd>
+                    <span>{{ transaction.de128 }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.isoMsg">Iso Msg</span></dt>
+                <dd>
+                    <span>{{ transaction.isoMsg }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.transaction.bank">Bank</span></dt>
+                <dd>
+                    <div *ngIf="transaction.bankId">
+                        <a [routerLink]="['/bank', transaction.bankId, 'view']">{{ transaction.bankId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transaction', transaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

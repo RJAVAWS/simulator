@@ -1,0 +1,113 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="simulatorApp.emv.home.title">Emvs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-emv" [routerLink]="['/emv/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="simulatorApp.emv.home.createLabel">
+            Create a new Emv
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="emvs?.length === 0">
+        <span jhiTranslate="simulatorApp.emv.home.notFound">No emvs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="emvs?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emvDescription"><span jhiTranslate="simulatorApp.emv.emvDescription">Emv Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de5F2A"><span jhiTranslate="simulatorApp.emv.de5F2A">De 5 F 2 A</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de82"><span jhiTranslate="simulatorApp.emv.de82">De 82</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de84"><span jhiTranslate="simulatorApp.emv.de84">De 84</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de95"><span jhiTranslate="simulatorApp.emv.de95">De 95</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9A"><span jhiTranslate="simulatorApp.emv.de9A">De 9 A</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9C"><span jhiTranslate="simulatorApp.emv.de9C">De 9 C</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F02"><span jhiTranslate="simulatorApp.emv.de9F02">De 9 F 02</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F03"><span jhiTranslate="simulatorApp.emv.de9F03">De 9 F 03</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F09"><span jhiTranslate="simulatorApp.emv.de9F09">De 9 F 09</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F10"><span jhiTranslate="simulatorApp.emv.de9F10">De 9 F 10</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F1A"><span jhiTranslate="simulatorApp.emv.de9F1A">De 9 F 1 A</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F1E"><span jhiTranslate="simulatorApp.emv.de9F1E">De 9 F 1 E</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F26"><span jhiTranslate="simulatorApp.emv.de9F26">De 9 F 26</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F27"><span jhiTranslate="simulatorApp.emv.de9F27">De 9 F 27</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F33"><span jhiTranslate="simulatorApp.emv.de9F33">De 9 F 33</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F34"><span jhiTranslate="simulatorApp.emv.de9F34">De 9 F 34</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F35"><span jhiTranslate="simulatorApp.emv.de9F35">De 9 F 35</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F36"><span jhiTranslate="simulatorApp.emv.de9F36">De 9 F 36</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F37"><span jhiTranslate="simulatorApp.emv.de9F37">De 9 F 37</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F41"><span jhiTranslate="simulatorApp.emv.de9F41">De 9 F 41</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de9F53"><span jhiTranslate="simulatorApp.emv.de9F53">De 9 F 53</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de8A"><span jhiTranslate="simulatorApp.emv.de8A">De 8 A</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de71"><span jhiTranslate="simulatorApp.emv.de71">De 71</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de72"><span jhiTranslate="simulatorApp.emv.de72">De 72</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de91"><span jhiTranslate="simulatorApp.emv.de91">De 91</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="others"><span jhiTranslate="simulatorApp.emv.others">Others</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let emv of emvs ;trackBy: trackId">
+                    <td><a [routerLink]="['/emv', emv.id, 'view']">{{ emv.id }}</a></td>
+                    <td>{{ emv.emvDescription }}</td>
+                    <td>{{ emv.de5F2A }}</td>
+                    <td>{{ emv.de82 }}</td>
+                    <td>{{ emv.de84 }}</td>
+                    <td>{{ emv.de95 }}</td>
+                    <td>{{ emv.de9A }}</td>
+                    <td>{{ emv.de9C }}</td>
+                    <td>{{ emv.de9F02 }}</td>
+                    <td>{{ emv.de9F03 }}</td>
+                    <td>{{ emv.de9F09 }}</td>
+                    <td>{{ emv.de9F10 }}</td>
+                    <td>{{ emv.de9F1A }}</td>
+                    <td>{{ emv.de9F1E }}</td>
+                    <td>{{ emv.de9F26 }}</td>
+                    <td>{{ emv.de9F27 }}</td>
+                    <td>{{ emv.de9F33 }}</td>
+                    <td>{{ emv.de9F34 }}</td>
+                    <td>{{ emv.de9F35 }}</td>
+                    <td>{{ emv.de9F36 }}</td>
+                    <td>{{ emv.de9F37 }}</td>
+                    <td>{{ emv.de9F41 }}</td>
+                    <td>{{ emv.de9F53 }}</td>
+                    <td>{{ emv.de8A }}</td>
+                    <td>{{ emv.de71 }}</td>
+                    <td>{{ emv.de72 }}</td>
+                    <td>{{ emv.de91 }}</td>
+                    <td>{{ emv.others }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/emv', emv.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/emv', emv.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(emv)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

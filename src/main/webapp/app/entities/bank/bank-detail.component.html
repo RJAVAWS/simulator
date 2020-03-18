@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bank">
+            <h2><span jhiTranslate="simulatorApp.bank.detail.title">Bank</span> {{ bank.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="simulatorApp.bank.name">Name</span></dt>
+                <dd>
+                    <span>{{ bank.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.code">Code</span></dt>
+                <dd>
+                    <span>{{ bank.code }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.logo">Logo</span></dt>
+                <dd>
+                    <span>{{ bank.logo }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.ip">Ip</span></dt>
+                <dd>
+                    <span>{{ bank.ip }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.port">Port</span></dt>
+                <dd>
+                    <span>{{ bank.port }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.isoType">Iso Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.IsoVersions.' + bank.isoType }}">{{ bank.isoType }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.signOnOffFlag">Sign On Off Flag</span></dt>
+                <dd>
+                    <span>{{ bank.signOnOffFlag }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.pinExchangeFlag">Pin Exchange Flag</span></dt>
+                <dd>
+                    <span>{{ bank.pinExchangeFlag }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.macExchangeFlag">Mac Exchange Flag</span></dt>
+                <dd>
+                    <span>{{ bank.macExchangeFlag }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.echoFlag">Echo Flag</span></dt>
+                <dd>
+                    <span>{{ bank.echoFlag }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.cutoverFlag">Cutover Flag</span></dt>
+                <dd>
+                    <span>{{ bank.cutoverFlag }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.bank.masterKey">Master Key</span></dt>
+                <dd>
+                    <span>{{ bank.masterKey }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bank', bank.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

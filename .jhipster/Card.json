@@ -1,0 +1,114 @@
+{
+    "name": "Card",
+    "fields": [
+        {
+            "fieldName": "cardDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "3",
+            "fieldValidateRulesMaxlength": "255",
+            "fieldValidateRulesPattern": "[a-zA-Z0-9 _.]*"
+        },
+        {
+            "fieldName": "cardNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "16",
+            "fieldValidateRulesMaxlength": "19",
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "cvv",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "3",
+            "fieldValidateRulesMaxlength": "3",
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "expiry",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "4",
+            "fieldValidateRulesMaxlength": "4",
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "pin",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "4",
+            "fieldValidateRulesMaxlength": "4",
+            "fieldValidateRulesPattern": "[0-9]*"
+        },
+        {
+            "fieldName": "track2data",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "[a-zA-Z0-9=]*"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "emv",
+            "otherEntityRelationshipName": "card",
+            "relationshipValidateRules": "required",
+            "relationshipName": "emv",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "testCase",
+            "otherEntityRelationshipName": "card",
+            "relationshipValidateRules": "required",
+            "relationshipName": "testCase"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bank",
+            "otherEntityRelationshipName": "card",
+            "relationshipName": "bank",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200225153700",
+    "entityTableName": "card",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

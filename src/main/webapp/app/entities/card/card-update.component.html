@@ -1,0 +1,184 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-card-heading" jhiTranslate="simulatorApp.card.home.createOrEditLabel">Create or edit a Card</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.cardDescription" for="field_cardDescription">Card Description</label>
+                    <input type="text" class="form-control" name="cardDescription" id="field_cardDescription"
+                           formControlName="cardDescription"/>
+                    <div *ngIf="editForm.get('cardDescription')!.invalid && (editForm.get('cardDescription')!.dirty || editForm.get('cardDescription')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cardDescription')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cardDescription')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cardDescription')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cardDescription')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Card Description' }">
+                            This field should follow pattern for "Card Description".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.cardNumber" for="field_cardNumber">Card Number</label>
+                    <input type="text" class="form-control" name="cardNumber" id="field_cardNumber"
+                           formControlName="cardNumber"/>
+                    <div *ngIf="editForm.get('cardNumber')!.invalid && (editForm.get('cardNumber')!.dirty || editForm.get('cardNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cardNumber')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cardNumber')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 16 }">
+                        This field is required to be at least 16 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cardNumber')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 19 }">
+                        This field cannot be longer than 19 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cardNumber')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Card Number' }">
+                            This field should follow pattern for "Card Number".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.cvv" for="field_cvv">Cvv</label>
+                    <input type="text" class="form-control" name="cvv" id="field_cvv"
+                           formControlName="cvv"/>
+                    <div *ngIf="editForm.get('cvv')!.invalid && (editForm.get('cvv')!.dirty || editForm.get('cvv')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cvv')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cvv')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cvv')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 3 }">
+                        This field cannot be longer than 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cvv')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cvv' }">
+                            This field should follow pattern for "Cvv".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.expiry" for="field_expiry">Expiry</label>
+                    <input type="text" class="form-control" name="expiry" id="field_expiry"
+                           formControlName="expiry"/>
+                    <div *ngIf="editForm.get('expiry')!.invalid && (editForm.get('expiry')!.dirty || editForm.get('expiry')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('expiry')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('expiry')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 4 }">
+                        This field is required to be at least 4 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('expiry')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4 }">
+                        This field cannot be longer than 4 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('expiry')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Expiry' }">
+                            This field should follow pattern for "Expiry".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.pin" for="field_pin">Pin</label>
+                    <input type="text" class="form-control" name="pin" id="field_pin"
+                           formControlName="pin"/>
+                    <div *ngIf="editForm.get('pin')!.invalid && (editForm.get('pin')!.dirty || editForm.get('pin')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pin')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pin')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 4 }">
+                        This field is required to be at least 4 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pin')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4 }">
+                        This field cannot be longer than 4 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pin')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Pin' }">
+                            This field should follow pattern for "Pin".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.track2data" for="field_track2data">Track 2 Data</label>
+                    <input type="text" class="form-control" name="track2data" id="field_track2data"
+                           formControlName="track2data"/>
+                    <div *ngIf="editForm.get('track2data')!.invalid && (editForm.get('track2data')!.dirty || editForm.get('track2data')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('track2data')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('track2data')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Track 2 Data' }">
+                            This field should follow pattern for "Track 2 Data".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.emv" for="field_emv">Emv</label>
+                    <select class="form-control" id="field_emv" name="emv" formControlName="emvId">
+                        <option *ngIf="!editForm.get('emvId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="emvOption.id" *ngFor="let emvOption of emvs; trackBy: trackById">{{ emvOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('emvId')!.invalid && (editForm.get('emvId')!.dirty || editForm.get('emvId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('emvId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.bank" for="field_bank">Bank</label>
+                    <select class="form-control" id="field_bank" name="bank" formControlName="bankId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="bankOption.id" *ngFor="let bankOption of banks; trackBy: trackById">{{ bankOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

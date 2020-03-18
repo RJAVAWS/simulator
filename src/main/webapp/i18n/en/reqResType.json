@@ -1,0 +1,9 @@
+{
+  "simulatorApp": {
+    "ReqResType": {
+      "null": "",
+      "REQUEST": "REQUEST",
+      "RESPONSE": "RESPONSE"
+    }
+  }
+}

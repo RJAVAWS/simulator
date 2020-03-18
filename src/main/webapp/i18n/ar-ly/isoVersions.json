@@ -1,0 +1,9 @@
+{
+  "simulatorApp": {
+    "IsoVersions": {
+      "null": "",
+      "GCCISO87": "GCCISO87",
+      "MBIISO93": "MBIISO93"
+    }
+  }
+}

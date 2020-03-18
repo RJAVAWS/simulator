@@ -1,0 +1,11 @@
+{
+  "simulatorApp": {
+    "PsdnType": {
+      "null": "",
+      "PRIMARY": "PRIMARY",
+      "SECONDARY": "SECONDARY",
+      "DEFAULT": "DEFAULT",
+      "NMM": "NMM"
+    }
+  }
+}

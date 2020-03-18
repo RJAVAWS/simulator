@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="simulatorApp.keyConfig.home.title">Key Configs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-key-config" [routerLink]="['/key-config/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="simulatorApp.keyConfig.home.createLabel">
+            Create a new Key Config
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="keyConfigs?.length === 0">
+        <span jhiTranslate="simulatorApp.keyConfig.home.notFound">No keyConfigs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="keyConfigs?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="pmType"><span jhiTranslate="simulatorApp.keyConfig.pmType">Pm Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="key"><span jhiTranslate="simulatorApp.keyConfig.key">Key</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="kcv"><span jhiTranslate="simulatorApp.keyConfig.kcv">Kcv</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="simulatorApp.keyConfig.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de01"><span jhiTranslate="simulatorApp.keyConfig.de01">De 01</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de02"><span jhiTranslate="simulatorApp.keyConfig.de02">De 02</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de03"><span jhiTranslate="simulatorApp.keyConfig.de03">De 03</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de04"><span jhiTranslate="simulatorApp.keyConfig.de04">De 04</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="de05"><span jhiTranslate="simulatorApp.keyConfig.de05">De 05</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="bankId"><span jhiTranslate="simulatorApp.keyConfig.bank">Bank</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let keyConfig of keyConfigs ;trackBy: trackId">
+                    <td><a [routerLink]="['/key-config', keyConfig.id, 'view']">{{ keyConfig.id }}</a></td>
+                    <td jhiTranslate="{{ 'simulatorApp.PinMacType.' + keyConfig.pmType }}">{{ keyConfig.pmType }}</td>
+                    <td>{{ keyConfig.key }}</td>
+                    <td>{{ keyConfig.kcv }}</td>
+                    <td>{{ keyConfig.status }}</td>
+                    <td>{{ keyConfig.de01 }}</td>
+                    <td>{{ keyConfig.de02 }}</td>
+                    <td>{{ keyConfig.de03 }}</td>
+                    <td>{{ keyConfig.de04 }}</td>
+                    <td>{{ keyConfig.de05 }}</td>
+                    <td>
+                        <div *ngIf="keyConfig.bankId">
+                            <a [routerLink]="['/bank', keyConfig.bankId , 'view']" >{{ keyConfig.bankId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/key-config', keyConfig.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/key-config', keyConfig.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(keyConfig)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

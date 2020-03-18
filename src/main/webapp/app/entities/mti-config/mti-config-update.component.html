@@ -1,0 +1,192 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-mti-config-heading" jhiTranslate="simulatorApp.mtiConfig.home.createOrEditLabel">Create or edit a Mti Config</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.mtiDescription" for="field_mtiDescription">Mti Description</label>
+                    <input type="text" class="form-control" name="mtiDescription" id="field_mtiDescription"
+                           formControlName="mtiDescription"/>
+                    <div *ngIf="editForm.get('mtiDescription')!.invalid && (editForm.get('mtiDescription')!.dirty || editForm.get('mtiDescription')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mtiDescription')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mtiDescription')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mtiDescription')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mtiDescription')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Mti Description' }">
+                            This field should follow pattern for "Mti Description".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.tnType" for="field_tnType">Tn Type</label>
+                    <select class="form-control" name="tnType" formControlName="tnType" id="field_tnType">
+                        <option value="NMM">{{ 'simulatorApp.TranType.NMM' | translate }}</option>
+                        <option value="TRANSACTIONS">{{ 'simulatorApp.TranType.TRANSACTIONS' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('tnType')!.invalid && (editForm.get('tnType')!.dirty || editForm.get('tnType')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tnType')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.isoType" for="field_isoType">Iso Type</label>
+                    <select class="form-control" name="isoType" formControlName="isoType" id="field_isoType">
+                        <option value="GCCISO87">{{ 'simulatorApp.IsoVersions.GCCISO87' | translate }}</option>
+                        <option value="MBIISO93">{{ 'simulatorApp.IsoVersions.MBIISO93' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.mti" for="field_mti">Mti</label>
+                    <input type="text" class="form-control" name="mti" id="field_mti"
+                           formControlName="mti"/>
+                    <div *ngIf="editForm.get('mti')!.invalid && (editForm.get('mti')!.dirty || editForm.get('mti')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mti')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mti')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Mti' }">
+                            This field should follow pattern for "Mti".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.repeatMti" for="field_repeatMti">Repeat Mti</label>
+                    <input type="text" class="form-control" name="repeatMti" id="field_repeatMti"
+                           formControlName="repeatMti"/>
+                    <div *ngIf="editForm.get('repeatMti')!.invalid && (editForm.get('repeatMti')!.dirty || editForm.get('repeatMti')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('repeatMti')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('repeatMti')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Repeat Mti' }">
+                            This field should follow pattern for "Repeat Mti".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.responseMti" for="field_responseMti">Response Mti</label>
+                    <input type="text" class="form-control" name="responseMti" id="field_responseMti"
+                           formControlName="responseMti"/>
+                    <div *ngIf="editForm.get('responseMti')!.invalid && (editForm.get('responseMti')!.dirty || editForm.get('responseMti')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('responseMti')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('responseMti')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Response Mti' }">
+                            This field should follow pattern for "Response Mti".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.responseRepeatMti" for="field_responseRepeatMti">Response Repeat Mti</label>
+                    <input type="text" class="form-control" name="responseRepeatMti" id="field_responseRepeatMti"
+                           formControlName="responseRepeatMti"/>
+                    <div *ngIf="editForm.get('responseRepeatMti')!.invalid && (editForm.get('responseRepeatMti')!.dirty || editForm.get('responseRepeatMti')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('responseRepeatMti')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('responseRepeatMti')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Response Repeat Mti' }">
+                            This field should follow pattern for "Response Repeat Mti".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.nmmIdentifierDe" for="field_nmmIdentifierDe">Nmm Identifier De</label>
+                    <input type="text" class="form-control" name="nmmIdentifierDe" id="field_nmmIdentifierDe"
+                           formControlName="nmmIdentifierDe"/>
+                    <div *ngIf="editForm.get('nmmIdentifierDe')!.invalid && (editForm.get('nmmIdentifierDe')!.dirty || editForm.get('nmmIdentifierDe')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nmmIdentifierDe')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Nmm Identifier De' }">
+                            This field should follow pattern for "Nmm Identifier De".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.nmmIdentifierDeVal" for="field_nmmIdentifierDeVal">Nmm Identifier De Val</label>
+                    <input type="text" class="form-control" name="nmmIdentifierDeVal" id="field_nmmIdentifierDeVal"
+                           formControlName="nmmIdentifierDeVal"/>
+                    <div *ngIf="editForm.get('nmmIdentifierDeVal')!.invalid && (editForm.get('nmmIdentifierDeVal')!.dirty || editForm.get('nmmIdentifierDeVal')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nmmIdentifierDeVal')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Nmm Identifier De Val' }">
+                            This field should follow pattern for "Nmm Identifier De Val".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.responseIdentifierDe" for="field_responseIdentifierDe">Response Identifier De</label>
+                    <input type="text" class="form-control" name="responseIdentifierDe" id="field_responseIdentifierDe"
+                           formControlName="responseIdentifierDe"/>
+                    <div *ngIf="editForm.get('responseIdentifierDe')!.invalid && (editForm.get('responseIdentifierDe')!.dirty || editForm.get('responseIdentifierDe')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('responseIdentifierDe')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('responseIdentifierDe')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Response Identifier De' }">
+                            This field should follow pattern for "Response Identifier De".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.mtiConfig.responseIdentifierDeVal" for="field_responseIdentifierDeVal">Response Identifier De Val</label>
+                    <input type="text" class="form-control" name="responseIdentifierDeVal" id="field_responseIdentifierDeVal"
+                           formControlName="responseIdentifierDeVal"/>
+                    <div *ngIf="editForm.get('responseIdentifierDeVal')!.invalid && (editForm.get('responseIdentifierDeVal')!.dirty || editForm.get('responseIdentifierDeVal')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('responseIdentifierDeVal')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('responseIdentifierDeVal')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Response Identifier De Val' }">
+                            This field should follow pattern for "Response Identifier De Val".
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

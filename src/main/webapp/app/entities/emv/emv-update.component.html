@@ -1,0 +1,206 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-emv-heading" jhiTranslate="simulatorApp.emv.home.createOrEditLabel">Create or edit a Emv</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.emvDescription" for="field_emvDescription">Emv Description</label>
+                    <input type="text" class="form-control" name="emvDescription" id="field_emvDescription"
+                           formControlName="emvDescription"/>
+                    <div *ngIf="editForm.get('emvDescription')!.invalid && (editForm.get('emvDescription')!.dirty || editForm.get('emvDescription')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emvDescription')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emvDescription')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emvDescription')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emvDescription')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Emv Description' }">
+                            This field should follow pattern for "Emv Description".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de5F2A" for="field_de5F2A">De 5 F 2 A</label>
+                    <textarea class="form-control" name="de5F2A" id="field_de5F2A"
+                              formControlName="de5F2A"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de82" for="field_de82">De 82</label>
+                    <textarea class="form-control" name="de82" id="field_de82"
+                              formControlName="de82"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de84" for="field_de84">De 84</label>
+                    <textarea class="form-control" name="de84" id="field_de84"
+                              formControlName="de84"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de95" for="field_de95">De 95</label>
+                    <textarea class="form-control" name="de95" id="field_de95"
+                              formControlName="de95"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9A" for="field_de9A">De 9 A</label>
+                    <textarea class="form-control" name="de9A" id="field_de9A"
+                              formControlName="de9A"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9C" for="field_de9C">De 9 C</label>
+                    <textarea class="form-control" name="de9C" id="field_de9C"
+                              formControlName="de9C"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F02" for="field_de9F02">De 9 F 02</label>
+                    <textarea class="form-control" name="de9F02" id="field_de9F02"
+                              formControlName="de9F02"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F03" for="field_de9F03">De 9 F 03</label>
+                    <textarea class="form-control" name="de9F03" id="field_de9F03"
+                              formControlName="de9F03"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F09" for="field_de9F09">De 9 F 09</label>
+                    <textarea class="form-control" name="de9F09" id="field_de9F09"
+                              formControlName="de9F09"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F10" for="field_de9F10">De 9 F 10</label>
+                    <textarea class="form-control" name="de9F10" id="field_de9F10"
+                              formControlName="de9F10"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F1A" for="field_de9F1A">De 9 F 1 A</label>
+                    <textarea class="form-control" name="de9F1A" id="field_de9F1A"
+                              formControlName="de9F1A"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F1E" for="field_de9F1E">De 9 F 1 E</label>
+                    <textarea class="form-control" name="de9F1E" id="field_de9F1E"
+                              formControlName="de9F1E"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F26" for="field_de9F26">De 9 F 26</label>
+                    <textarea class="form-control" name="de9F26" id="field_de9F26"
+                              formControlName="de9F26"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F27" for="field_de9F27">De 9 F 27</label>
+                    <textarea class="form-control" name="de9F27" id="field_de9F27"
+                              formControlName="de9F27"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F33" for="field_de9F33">De 9 F 33</label>
+                    <textarea class="form-control" name="de9F33" id="field_de9F33"
+                              formControlName="de9F33"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F34" for="field_de9F34">De 9 F 34</label>
+                    <textarea class="form-control" name="de9F34" id="field_de9F34"
+                              formControlName="de9F34"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F35" for="field_de9F35">De 9 F 35</label>
+                    <textarea class="form-control" name="de9F35" id="field_de9F35"
+                              formControlName="de9F35"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F36" for="field_de9F36">De 9 F 36</label>
+                    <textarea class="form-control" name="de9F36" id="field_de9F36"
+                              formControlName="de9F36"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F37" for="field_de9F37">De 9 F 37</label>
+                    <textarea class="form-control" name="de9F37" id="field_de9F37"
+                              formControlName="de9F37"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F41" for="field_de9F41">De 9 F 41</label>
+                    <textarea class="form-control" name="de9F41" id="field_de9F41"
+                              formControlName="de9F41"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de9F53" for="field_de9F53">De 9 F 53</label>
+                    <textarea class="form-control" name="de9F53" id="field_de9F53"
+                              formControlName="de9F53"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de8A" for="field_de8A">De 8 A</label>
+                    <textarea class="form-control" name="de8A" id="field_de8A"
+                              formControlName="de8A"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de71" for="field_de71">De 71</label>
+                    <textarea class="form-control" name="de71" id="field_de71"
+                              formControlName="de71"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de72" for="field_de72">De 72</label>
+                    <textarea class="form-control" name="de72" id="field_de72"
+                              formControlName="de72"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.de91" for="field_de91">De 91</label>
+                    <textarea class="form-control" name="de91" id="field_de91"
+                              formControlName="de91"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.emv.others" for="field_others">Others</label>
+                    <textarea class="form-control" name="others" id="field_others"
+                              formControlName="others"></textarea>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

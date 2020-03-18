@@ -1,12 +1,20 @@
 {
   "global": {
-    "title": "Simulator",
+    "title": "محاكي",
+    "version": "V1.0",
     "browsehappy": "أنت تستخدم متصفح <strong>قديم</strong> . من فضلك <a href=\"http://browsehappy.com/?locale=en\">قم بتحديث متصفحك</a> لتحسين تجربتك.",
     "menu": {
       "home": "الصفحة الرئيسية",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "الكيانات",
+        "main": "خيارات",
+        "bank": "مصرف",
+        "card": "بطاقة",
+        "emv": "امف",
+        "testCase": "حالة اختبار",
+        "mtiConfig": "Mti التكوين",
+        "keyConfig": "مفتاح التكوين",
+        "transaction": "عملية تجارية",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -36,8 +44,8 @@
     "form": {
       "username.label": "اسم المستخدم",
       "username.placeholder": "إسم المستخدم الخاص بك",
-      "currentpassword.label": "Current password",
-      "currentpassword.placeholder": "Current password",
+      "currentpassword.label": "كلمة المرور الحالية",
+      "currentpassword.placeholder": "كلمة المرور الحالية",
       "newpassword.label": "كلمة السر الجديدة",
       "newpassword.placeholder": "كلمة السر الجديدة",
       "confirmpassword.label": "تأكيد كلمة السر الجديدة",

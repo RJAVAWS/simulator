@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="card">
+            <h2><span jhiTranslate="simulatorApp.card.detail.title">Card</span> {{ card.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="simulatorApp.card.cardDescription">Card Description</span></dt>
+                <dd>
+                    <span>{{ card.cardDescription }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.card.cardNumber">Card Number</span></dt>
+                <dd>
+                    <span>{{ card.cardNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.card.cvv">Cvv</span></dt>
+                <dd>
+                    <span>{{ card.cvv }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.card.expiry">Expiry</span></dt>
+                <dd>
+                    <span>{{ card.expiry }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.card.pin">Pin</span></dt>
+                <dd>
+                    <span>{{ card.pin }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.card.track2data">Track 2 Data</span></dt>
+                <dd>
+                    <span>{{ card.track2data }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.card.emv">Emv</span></dt>
+                <dd>
+                    <div *ngIf="card.emvId">
+                        <a [routerLink]="['/emv', card.emvId, 'view']">{{ card.emvId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.card.bank">Bank</span></dt>
+                <dd>
+                    <div *ngIf="card.bankId">
+                        <a [routerLink]="['/bank', card.bankId, 'view']">{{ card.bankId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/card', card.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

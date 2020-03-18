@@ -1,0 +1,138 @@
+{
+    "name": "Bank",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "3",
+            "fieldValidateRulesMaxlength": "150",
+            "fieldValidateRulesPattern": "[a-zA-Z ]*"
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "3",
+            "fieldValidateRulesMax": "10"
+        },
+        {
+            "fieldName": "logo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ip",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "(([0-1]?[0-9]{1,2}\\.)|(2[0-4][0-9]\\.)|(25[0-5]\\.)){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))"
+        },
+        {
+            "fieldName": "port",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "4",
+            "fieldValidateRulesMaxlength": "10"
+        },
+        {
+            "fieldName": "isoType",
+            "fieldType": "IsoVersions",
+            "fieldValues": "GCCISO87,MBIISO93",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "signOnOffFlag",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pinExchangeFlag",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "macExchangeFlag",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "echoFlag",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cutoverFlag",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "masterKey",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[a-zA-Z0-9]+$"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "card",
+            "otherEntityRelationshipName": "bank",
+            "relationshipValidateRules": "required",
+            "relationshipName": "card"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "keyConfig",
+            "otherEntityRelationshipName": "bank",
+            "relationshipValidateRules": "required",
+            "relationshipName": "keyConfig"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "transaction",
+            "otherEntityRelationshipName": "bank",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transaction"
+        }
+    ],
+    "changelogDate": "20200225153600",
+    "entityTableName": "bank",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
