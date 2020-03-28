@@ -62,6 +62,15 @@ public class CardServiceImpl implements CardService {
     }
 
     /**
+     * Get all the cards with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<CardDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return cardRepository.findAllWithEagerRelationships(pageable).map(cardMapper::toDto);
+    }
+
+    /**
      * Get one card by id.
      *
      * @param id the id of the entity.
@@ -71,7 +80,7 @@ public class CardServiceImpl implements CardService {
     @Transactional(readOnly = true)
     public Optional<CardDTO> findOne(Long id) {
         log.debug("Request to get Card : {}", id);
-        return cardRepository.findById(id)
+        return cardRepository.findOneWithEagerRelationships(id)
             .map(cardMapper::toDto);
     }
 

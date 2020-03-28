@@ -43,14 +43,14 @@ public class BankResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_CODE = 3;
-    private static final Integer UPDATED_CODE = 4;
+    private static final String DEFAULT_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_CODE = "BBBBBBBBBB";
 
     private static final String DEFAULT_LOGO = "AAAAAAAAAA";
     private static final String UPDATED_LOGO = "BBBBBBBBBB";
 
-    private static final String DEFAULT_IP = "254.74.3.07";
-    private static final String UPDATED_IP = "12.204.051.244";
+    private static final String DEFAULT_IP = "250.254.2.251";
+    private static final String UPDATED_IP = "1.82.251.250";
 
     private static final String DEFAULT_PORT = "AAAAAAAAAA";
     private static final String UPDATED_PORT = "BBBBBBBBBB";

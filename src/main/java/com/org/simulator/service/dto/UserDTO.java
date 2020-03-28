@@ -1,5 +1,6 @@
 package com.org.simulator.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.org.simulator.config.Constants;
 
 import com.org.simulator.domain.Authority;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class UserDTO {
 
     private Long id;
+    private Long bankId;
 
     @NotBlank
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -48,6 +50,7 @@ public class UserDTO {
 
     private Instant lastModifiedDate;
 
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private Set<String> authorities;
 
     public UserDTO() {
@@ -67,6 +70,7 @@ public class UserDTO {
         this.createdDate = user.getCreatedDate();
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
+        this.bankId = user.getBankId();
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());
@@ -176,21 +180,31 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
+    public Long getBankId() {
+        return bankId;
+    }
+
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
-            "login='" + login + '\'' +
+            "id=" + id +
+            ", bankId=" + bankId +
+            ", login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
             ", imageUrl='" + imageUrl + '\'' +
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
-            ", createdBy=" + createdBy +
+            ", createdBy='" + createdBy + '\'' +
             ", createdDate=" + createdDate +
             ", lastModifiedBy='" + lastModifiedBy + '\'' +
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
-            "}";
+            '}';
     }
 }

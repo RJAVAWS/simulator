@@ -18,9 +18,9 @@ public class BankDTO implements Serializable {
     private String name;
 
     @NotNull
-    @Min(value = 3)
-    @Max(value = 10)
-    private Integer code;
+    @Size(min = 9, max = 150)
+    @Pattern(regexp = "[0-9]*")
+    private String code;
 
     private String logo;
 
@@ -30,6 +30,7 @@ public class BankDTO implements Serializable {
 
     @NotNull
     @Size(min = 4, max = 10)
+    @Pattern(regexp = "[0-9]*")
     private String port;
 
     @NotNull
@@ -71,11 +72,11 @@ public class BankDTO implements Serializable {
         this.name = name;
     }
 
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -185,7 +186,7 @@ public class BankDTO implements Serializable {
         return "BankDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", code=" + getCode() +
+            ", code='" + getCode() + "'" +
             ", logo='" + getLogo() + "'" +
             ", ip='" + getIp() + "'" +
             ", port='" + getPort() + "'" +

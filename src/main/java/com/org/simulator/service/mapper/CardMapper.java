@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Card} and its DTO {@link CardDTO}.
  */
-@Mapper(componentModel = "spring", uses = {EmvMapper.class, BankMapper.class})
+@Mapper(componentModel = "spring", uses = {EmvMapper.class, TestCaseMapper.class, BankMapper.class})
 public interface CardMapper extends EntityMapper<CardDTO, Card> {
 
     @Mapping(source = "emv.id", target = "emvId")
@@ -17,7 +17,6 @@ public interface CardMapper extends EntityMapper<CardDTO, Card> {
     CardDTO toDto(Card card);
 
     @Mapping(source = "emvId", target = "emv")
-    @Mapping(target = "testCases", ignore = true)
     @Mapping(target = "removeTestCase", ignore = true)
     @Mapping(source = "bankId", target = "bank")
     Card toEntity(CardDTO cardDTO);

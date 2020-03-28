@@ -87,11 +87,12 @@
             "ownerSide": true
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-many",
             "otherEntityName": "testCase",
             "otherEntityRelationshipName": "card",
-            "relationshipValidateRules": "required",
-            "relationshipName": "testCase"
+            "relationshipName": "testCase",
+            "otherEntityField": "id",
+            "ownerSide": true
         },
         {
             "relationshipType": "many-to-one",

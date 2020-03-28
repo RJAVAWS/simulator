@@ -838,14 +838,6 @@
                     <textarea class="form-control" name="de128" id="field_de128"
                               formControlName="de128"></textarea>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.testCase.card" for="field_card">Card</label>
-                    <select class="form-control" id="field_card" name="card" formControlName="cardId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="cardOption.id" *ngFor="let cardOption of cards; trackBy: trackById">{{ cardOption.id }}</option>
-                    </select>
-                </div>
             </div>
 
             <div>

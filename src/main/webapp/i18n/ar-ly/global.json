@@ -15,6 +15,9 @@
         "mtiConfig": "Mti التكوين",
         "keyConfig": "مفتاح التكوين",
         "transaction": "عملية تجارية",
+        "bank": "Bank",
+        "card": "Card",
+        "testCase": "Test Case",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

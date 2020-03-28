@@ -536,12 +536,6 @@
                 <dd>
                     <span>{{ testCase.de128 }}</span>
                 </dd>
-                <dt><span jhiTranslate="simulatorApp.testCase.card">Card</span></dt>
-                <dd>
-                    <div *ngIf="testCase.cardId">
-                        <a [routerLink]="['/card', testCase.cardId, 'view']">{{ testCase.cardId }}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

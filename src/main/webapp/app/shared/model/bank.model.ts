@@ -6,7 +6,7 @@ import { IsoVersions } from 'app/shared/model/enumerations/iso-versions.model';
 export interface IBank {
   id?: number;
   name?: string;
-  code?: number;
+  code?: string;
   logo?: string;
   ip?: string;
   port?: string;
@@ -26,7 +26,7 @@ export class Bank implements IBank {
   constructor(
     public id?: number,
     public name?: string,
-    public code?: number,
+    public code?: string,
     public logo?: string,
     public ip?: string,
     public port?: string,

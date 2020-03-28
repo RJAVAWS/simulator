@@ -1,11 +1,13 @@
 package com.org.simulator.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.org.simulator.domain.enumeration.PsdnType;
 
@@ -555,9 +557,9 @@ public class TestCase implements Serializable {
     @Column(name = "de_128")
     private String de128;
 
-    @ManyToOne
-    @JsonIgnoreProperties("testCases")
-    private Card card;
+    @ManyToMany(mappedBy = "testCases")
+    @JsonIgnore
+    private Set<Card> cards = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -2284,17 +2286,29 @@ public class TestCase implements Serializable {
         this.de128 = de128;
     }
 
-    public Card getCard() {
-        return card;
+    public Set<Card> getCards() {
+        return cards;
     }
 
-    public TestCase card(Card card) {
-        this.card = card;
+    public TestCase cards(Set<Card> cards) {
+        this.cards = cards;
         return this;
     }
 
-    public void setCard(Card card) {
-        this.card = card;
+    public TestCase addCard(Card card) {
+        this.cards.add(card);
+        card.getTestCases().add(this);
+        return this;
+    }
+
+    public TestCase removeCard(Card card) {
+        this.cards.remove(card);
+        card.getTestCases().remove(this);
+        return this;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

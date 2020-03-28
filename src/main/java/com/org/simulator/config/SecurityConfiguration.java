@@ -94,7 +94,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/cards/**").hasAuthority(AuthoritiesConstants.USER)
             .antMatchers("/api/emvs/**").hasAuthority(AuthoritiesConstants.USER)
             .antMatchers("/api/key-configs/**").hasAuthority(AuthoritiesConstants.USER)
-            .antMatchers("/api/transactions/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER)
+            .antMatchers("/api/transactions/**").hasAnyAuthority(AuthoritiesConstants.USER)
             .and()
             .httpBasic()
             .and()

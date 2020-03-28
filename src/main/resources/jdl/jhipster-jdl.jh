@@ -1,10 +1,10 @@
 
 entity Bank{
 	name String required minlength(3) maxlength(150) pattern(/[a-zA-Z ]*/),
-    code Integer required min(3) max(10),
+    code String required minlength(9) maxlength(150) pattern(/[0-9]*/),
     logo String,
     ip String required pattern(/(([0-1]?[0-9]{1,2}\.)|(2[0-4][0-9]\.)|(25[0-5]\.)){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))/),
-    port String required minlength(4) maxlength(10),
+    port String required minlength(4) maxlength(10) pattern(/[0-9]*/),
     isoType IsoVersions required,
     signOnOffFlag Boolean required,
     pinExchangeFlag Boolean required,
@@ -62,7 +62,7 @@ entity TestCase{
     psdnType PsdnType required,
     reqResType ReqResType required,
     mti String,
-       de001 TextBlob,
+    de001 TextBlob,
     de002 TextBlob,
     de003 TextBlob,
     de004 TextBlob,
@@ -238,7 +238,7 @@ entity Transaction{
 	tranType AcqIssType,
 	status Integer,
     mti String,
-        de001 TextBlob,
+    de001 TextBlob,
     de002 TextBlob,
     de003 TextBlob,
     de004 TextBlob,
@@ -373,6 +373,8 @@ enum AcqIssType {
     ACQUIRING, ISSUING
 }
 
+
+
 relationship OneToOne{
 	Card{emv required} to Emv
 }
@@ -380,9 +382,11 @@ relationship OneToOne{
 relationship OneToMany{
 	Bank{card required} to Card,
     Bank{keyConfig required} to KeyConfig,
-    Bank{transaction required} to Transaction,
-    
-    Card{testCase required} to TestCase,
+    Bank{transaction required} to Transaction
+}
+
+relationship ManyToMany{
+Card{testCase} to TestCase{card}
 }
 
 

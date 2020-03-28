@@ -2,8 +2,10 @@ package com.org.simulator.service;
 
 import com.org.simulator.config.Constants;
 import com.org.simulator.domain.Authority;
+import com.org.simulator.domain.Bank;
 import com.org.simulator.domain.User;
 import com.org.simulator.repository.AuthorityRepository;
+import com.org.simulator.repository.BankRepository;
 import com.org.simulator.repository.UserRepository;
 import com.org.simulator.security.AuthoritiesConstants;
 import com.org.simulator.security.SecurityUtils;
@@ -43,11 +45,14 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    private final BankRepository bankRepository;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager, BankRepository bankRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.bankRepository = bankRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -127,7 +132,7 @@ public class UserService {
 
     private boolean removeNonActivatedUser(User existingUser) {
         if (existingUser.getActivated()) {
-             return false;
+            return false;
         }
         userRepository.delete(existingUser);
         userRepository.flush();
@@ -154,6 +159,7 @@ public class UserService {
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
         user.setActivated(true);
+        user.setBankId(userDTO.getBankId());
         if (userDTO.getAuthorities() != null) {
             Set<Authority> authorities = userDTO.getAuthorities().stream()
                 .map(authorityRepository::findById)
@@ -215,6 +221,7 @@ public class UserService {
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
                 user.setLangKey(userDTO.getLangKey());
+                user.setBankId(userDTO.getBankId());
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 userDTO.getAuthorities().stream()
@@ -290,10 +297,20 @@ public class UserService {
 
     /**
      * Gets a list of all the authorities.
+     *
      * @return a list of all the authorities.
      */
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
+    }
+
+    /**
+     * Gets a map of all bank and and names.
+     *
+     * @return a map of all bank id and names.
+     */
+    public Map<Long, String> getBankKeyValueMap() {
+        return bankRepository.findAll().stream().collect(Collectors.toMap(Bank::getId, Bank::getName));
     }
 
 

@@ -9,8 +9,6 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { ITestCase, TestCase } from 'app/shared/model/test-case.model';
 import { TestCaseService } from './test-case.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
-import { ICard } from 'app/shared/model/card.model';
-import { CardService } from 'app/entities/card/card.service';
 
 @Component({
   selector: 'jhi-test-case-update',
@@ -18,7 +16,6 @@ import { CardService } from 'app/entities/card/card.service';
 })
 export class TestCaseUpdateComponent implements OnInit {
   isSaving = false;
-  cards: ICard[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -156,15 +153,13 @@ export class TestCaseUpdateComponent implements OnInit {
     de125: [],
     de126: [],
     de127: [],
-    de128: [],
-    cardId: []
+    de128: []
   });
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected testCaseService: TestCaseService,
-    protected cardService: CardService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -172,8 +167,6 @@ export class TestCaseUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ testCase }) => {
       this.updateForm(testCase);
-
-      this.cardService.query().subscribe((res: HttpResponse<ICard[]>) => (this.cards = res.body || []));
     });
   }
 
@@ -311,8 +304,7 @@ export class TestCaseUpdateComponent implements OnInit {
       de125: testCase.de125,
       de126: testCase.de126,
       de127: testCase.de127,
-      de128: testCase.de128,
-      cardId: testCase.cardId
+      de128: testCase.de128
     });
   }
 
@@ -481,8 +473,7 @@ export class TestCaseUpdateComponent implements OnInit {
       de125: this.editForm.get(['de125'])!.value,
       de126: this.editForm.get(['de126'])!.value,
       de127: this.editForm.get(['de127'])!.value,
-      de128: this.editForm.get(['de128'])!.value,
-      cardId: this.editForm.get(['cardId'])!.value
+      de128: this.editForm.get(['de128'])!.value
     };
   }
 
@@ -500,9 +491,5 @@ export class TestCaseUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: ICard): any {
-    return item.id;
   }
 }

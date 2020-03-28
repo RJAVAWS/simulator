@@ -177,6 +177,16 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 
 To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
+## Useful Commands (optional)
+
+To import the jhipseter jdl use the below command
+
+    jhipster import-jdl my_file1.jdl my_file2.jdl
+
+To clear liquibase checksums
+
+    mvn liquibase:clearCheckSums
+
 [jhipster homepage and latest documentation]: https://www.jhipster.tech
 [jhipster 6.7.1 archive]: https://www.jhipster.tech/documentation-archive/v6.7.1
 [using jhipster in development]: https://www.jhipster.tech/documentation-archive/v6.7.1/development/

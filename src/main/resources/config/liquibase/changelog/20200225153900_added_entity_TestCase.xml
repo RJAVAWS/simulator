@@ -412,9 +412,6 @@
             <column name="de_128" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-            <column name="card_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>

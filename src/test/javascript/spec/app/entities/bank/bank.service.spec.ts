@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       elemDefault = new Bank(
         0,
         'AAAAAAA',
-        0,
+        'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
@@ -70,7 +70,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            code: 1,
+            code: 'BBBBBB',
             logo: 'BBBBBB',
             ip: 'BBBBBB',
             port: 'BBBBBB',
@@ -98,7 +98,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            code: 1,
+            code: 'BBBBBB',
             logo: 'BBBBBB',
             ip: 'BBBBBB',
             port: 'BBBBBB',

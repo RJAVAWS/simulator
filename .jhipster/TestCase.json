@@ -677,11 +677,12 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "card",
             "otherEntityRelationshipName": "testCase",
             "relationshipName": "card",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
     "changelogDate": "20200225153900",

@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="simulatorApp.bank.code"
                            for="field_code">Code</label>
-                    <input type="number" class="form-control" name="code" id="field_code"
+                    <input type="text" class="form-control" name="code" id="field_code"
                            formControlName="code"/>
                     <div
                         *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
@@ -52,18 +52,19 @@
                             This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('code')?.errors?.min" jhiTranslate="entity.validation.min"
-                               [translateValues]="{ min: 3 }">
-                            This field should be at least 3.
+                               *ngIf="editForm.get('code')?.errors?.minlength"
+                               jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 9 }">
+                            This field is required to be at least 9 characters.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('code')?.errors?.max" jhiTranslate="entity.validation.max"
-                               [translateValues]="{ max: 10 }">
-                            This field cannot be more than 10.
+                               *ngIf="editForm.get('code')?.errors?.maxlength"
+                               jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 150 }">
+                            This field cannot be longer than 150 characters.
                         </small>
                         <small class="form-text text-danger"
-                               [hidden]="!editForm.get('code')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
+                               *ngIf="editForm.get('code')?.errors?.pattern" jhiTranslate="entity.validation.pattern"
+                               [translateValues]="{ pattern: 'Code' }">
+                            This field should follow pattern for "Code".
                         </small>
                     </div>
                 </div>
@@ -75,8 +76,7 @@
                     <div
                         *ngIf="editForm.get('ip')!.invalid && (editForm.get('ip')!.dirty || editForm.get('ip')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('ip')?.errors?.required"
-                               jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('ip')?.errors?.required" jhiTranslate="entity.validation.required">
                             This field is required.
                         </small>
                         <small class="form-text text-danger"
@@ -95,8 +95,7 @@
                     <div
                         *ngIf="editForm.get('port')!.invalid && (editForm.get('port')!.dirty || editForm.get('port')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('port')?.errors?.required"
-                               jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('port')?.errors?.required" jhiTranslate="entity.validation.required">
                             This field is required.
                         </small>
                         <small class="form-text text-danger"
@@ -108,6 +107,11 @@
                                *ngIf="editForm.get('port')?.errors?.maxlength"
                                jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
                             This field cannot be longer than 10 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('port')?.errors?.pattern" jhiTranslate="entity.validation.pattern"
+                               [translateValues]="{ pattern: 'Port' }">
+                            This field should follow pattern for "Port".
                         </small>
                     </div>
                 </div>

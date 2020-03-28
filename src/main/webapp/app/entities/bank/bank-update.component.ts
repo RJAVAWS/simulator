@@ -21,7 +21,7 @@ export class BankUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(150), Validators.pattern('[a-zA-Z ]*')]],
-    code: [null, [Validators.required, Validators.min(3), Validators.max(10)]],
+    code: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(150), Validators.pattern('[0-9]*')]],
     logo: [],
     ip: [
       null,
@@ -30,7 +30,7 @@ export class BankUpdateComponent implements OnInit {
         Validators.pattern('(([0-1]?[0-9]{1,2}\\.)|(2[0-4][0-9]\\.)|(25[0-5]\\.)){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))')
       ]
     ],
-    port: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
+    port: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[0-9]*')]],
     isoType: [null, [Validators.required]],
     signOnOffFlag: [null, [Validators.required]],
     pinExchangeFlag: [null, [Validators.required]],

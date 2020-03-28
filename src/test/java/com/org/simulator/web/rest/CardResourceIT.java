@@ -3,7 +3,6 @@ package com.org.simulator.web.rest;
 import com.org.simulator.SimulatorApp;
 import com.org.simulator.domain.Card;
 import com.org.simulator.domain.Emv;
-import com.org.simulator.domain.TestCase;
 import com.org.simulator.repository.CardRepository;
 import com.org.simulator.service.CardService;
 import com.org.simulator.service.dto.CardDTO;
@@ -12,9 +11,12 @@ import com.org.simulator.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -24,11 +26,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.org.simulator.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -59,8 +63,14 @@ public class CardResourceIT {
     @Autowired
     private CardRepository cardRepository;
 
+    @Mock
+    private CardRepository cardRepositoryMock;
+
     @Autowired
     private CardMapper cardMapper;
+
+    @Mock
+    private CardService cardServiceMock;
 
     @Autowired
     private CardService cardService;
@@ -120,16 +130,6 @@ public class CardResourceIT {
             emv = TestUtil.findAll(em, Emv.class).get(0);
         }
         card.setEmv(emv);
-        // Add required entity
-        TestCase testCase;
-        if (TestUtil.findAll(em, TestCase.class).isEmpty()) {
-            testCase = TestCaseResourceIT.createEntity(em);
-            em.persist(testCase);
-            em.flush();
-        } else {
-            testCase = TestUtil.findAll(em, TestCase.class).get(0);
-        }
-        card.getTestCases().add(testCase);
         return card;
     }
     /**
@@ -156,16 +156,6 @@ public class CardResourceIT {
             emv = TestUtil.findAll(em, Emv.class).get(0);
         }
         card.setEmv(emv);
-        // Add required entity
-        TestCase testCase;
-        if (TestUtil.findAll(em, TestCase.class).isEmpty()) {
-            testCase = TestCaseResourceIT.createUpdatedEntity(em);
-            em.persist(testCase);
-            em.flush();
-        } else {
-            testCase = TestUtil.findAll(em, TestCase.class).get(0);
-        }
-        card.getTestCases().add(testCase);
         return card;
     }
 
@@ -352,6 +342,39 @@ public class CardResourceIT {
             .andExpect(jsonPath("$.[*].track2data").value(hasItem(DEFAULT_TRACK_2_DATA)));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllCardsWithEagerRelationshipsIsEnabled() throws Exception {
+        CardResource cardResource = new CardResource(cardServiceMock);
+        when(cardServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restCardMockMvc = MockMvcBuilders.standaloneSetup(cardResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restCardMockMvc.perform(get("/api/cards?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(cardServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllCardsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        CardResource cardResource = new CardResource(cardServiceMock);
+            when(cardServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restCardMockMvc = MockMvcBuilders.standaloneSetup(cardResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restCardMockMvc.perform(get("/api/cards?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(cardServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getCard() throws Exception {

@@ -62,7 +62,10 @@ public class Card implements Serializable {
     @JoinColumn(unique = true)
     private Emv emv;
 
-    @OneToMany(mappedBy = "card")
+    @ManyToMany
+    @JoinTable(name = "card_test_case",
+               joinColumns = @JoinColumn(name = "card_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "test_case_id", referencedColumnName = "id"))
     private Set<TestCase> testCases = new HashSet<>();
 
     @ManyToOne
@@ -180,13 +183,13 @@ public class Card implements Serializable {
 
     public Card addTestCase(TestCase testCase) {
         this.testCases.add(testCase);
-        testCase.setCard(this);
+        testCase.getCards().add(this);
         return this;
     }
 
     public Card removeTestCase(TestCase testCase) {
         this.testCases.remove(testCase);
-        testCase.setCard(null);
+        testCase.getCards().remove(this);
         return this;
     }
 

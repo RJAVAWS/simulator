@@ -1,3 +1,4 @@
+import { ICard } from 'app/shared/model/card.model';
 import { PsdnType } from 'app/shared/model/enumerations/psdn-type.model';
 import { ReqResType } from 'app/shared/model/enumerations/req-res-type.model';
 
@@ -135,7 +136,7 @@ export interface ITestCase {
   de126?: any;
   de127?: any;
   de128?: any;
-  cardId?: number;
+  cards?: ICard[];
 }
 
 export class TestCase implements ITestCase {
@@ -273,6 +274,6 @@ export class TestCase implements ITestCase {
     public de126?: any,
     public de127?: any,
     public de128?: any,
-    public cardId?: number
+    public cards?: ICard[]
   ) {}
 }

@@ -39,7 +39,10 @@
                 <th scope="col" jhiSortBy="mti"><span jhiTranslate="simulatorApp.testCase.mti">Mti</span>
                     <fa-icon icon="sort"></fa-icon>
                 </th>
-                <th scope="col" jhiSortBy="cardId"><span jhiTranslate="simulatorApp.testCase.card">Card</span>
+                <th scope="col" jhiSortBy="mti"><span jhiTranslate="simulatorApp.testCase.de003">De 003</span>
+                    <fa-icon icon="sort"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="mti"><span jhiTranslate="simulatorApp.testCase.de037">De 037</span>
                     <fa-icon icon="sort"></fa-icon>
                 </th>
                 <th scope="col"></th>
@@ -53,11 +56,8 @@
                 <td jhiTranslate="{{ 'simulatorApp.PsdnType.' + testCase.psdnType }}">{{ testCase.psdnType }}</td>
                 <td jhiTranslate="{{ 'simulatorApp.ReqResType.' + testCase.reqResType }}">{{ testCase.reqResType }}</td>
                 <td>{{ testCase.mti }}</td>
-                <td>
-                    <div *ngIf="testCase.cardId">
-                        <a [routerLink]="['/card', testCase.cardId , 'view']">{{ testCase.cardId }}</a>
-                    </div>
-                </td>
+                <td>{{ testCase.de003 }}</td>
+                <td>{{ testCase.de037 }}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

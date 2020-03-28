@@ -14,6 +14,18 @@
                                  referencedColumnNames="id"
                                  referencedTableName="emv"/>
 
+        <addForeignKeyConstraint baseColumnNames="card_id"
+                                 baseTableName="card_test_case"
+                                 constraintName="fk_card_test_case_card_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="card"/>
+
+        <addForeignKeyConstraint baseColumnNames="test_case_id"
+                                 baseTableName="card_test_case"
+                                 constraintName="fk_card_test_case_test_case_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="test_case"/>
+        
         <addForeignKeyConstraint baseColumnNames="bank_id"
                                  baseTableName="card"
                                  constraintName="fk_card_bank_id"

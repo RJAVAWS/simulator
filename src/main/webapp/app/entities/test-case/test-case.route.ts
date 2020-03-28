@@ -38,7 +38,7 @@ export const testCaseRoute: Routes = [
     path: '',
     component: TestCaseComponent,
     data: {
-      authorities: ['ROLE_ADMIN'],
+      authorities: ['ROLE_ADMIN', 'ROLE_USER'],
       pageTitle: 'simulatorApp.testCase.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -50,7 +50,7 @@ export const testCaseRoute: Routes = [
       testCase: TestCaseResolve
     },
     data: {
-      authorities: ['ROLE_ADMIN'],
+      authorities: ['ROLE_ADMIN', 'ROLE_USER'],
       pageTitle: 'simulatorApp.testCase.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const testCaseRoute: Routes = [
       testCase: TestCaseResolve
     },
     data: {
-      authorities: ['ROLE_ADMIN'],
+      authorities: ['ROLE_ADMIN', 'ROLE_USER'],
       pageTitle: 'simulatorApp.testCase.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const testCaseRoute: Routes = [
       testCase: TestCaseResolve
     },
     data: {
-      authorities: ['ROLE_ADMIN'],
+      authorities: ['ROLE_ADMIN', 'ROLE_USER'],
       pageTitle: 'simulatorApp.testCase.home.title'
     },
     canActivate: [UserRouteAccessService]

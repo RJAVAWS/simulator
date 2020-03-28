@@ -9,13 +9,12 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link TestCase} and its DTO {@link TestCaseDTO}.
  */
-@Mapper(componentModel = "spring", uses = {CardMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface TestCaseMapper extends EntityMapper<TestCaseDTO, TestCase> {
 
-    @Mapping(source = "card.id", target = "cardId")
-    TestCaseDTO toDto(TestCase testCase);
 
-    @Mapping(source = "cardId", target = "card")
+    @Mapping(target = "cards", ignore = true)
+    @Mapping(target = "removeCard", ignore = true)
     TestCase toEntity(TestCaseDTO testCaseDTO);
 
     default TestCase fromId(Long id) {

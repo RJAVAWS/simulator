@@ -412,8 +412,6 @@ public class TestCaseDTO implements Serializable {
     private String de128;
 
 
-    private Long cardId;
-
     public Long getId() {
         return id;
     }
@@ -1478,14 +1476,6 @@ public class TestCaseDTO implements Serializable {
         this.de128 = de128;
     }
 
-    public Long getCardId() {
-        return cardId;
-    }
-
-    public void setCardId(Long cardId) {
-        this.cardId = cardId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -1643,7 +1633,6 @@ public class TestCaseDTO implements Serializable {
             ", de126='" + getDe126() + "'" +
             ", de127='" + getDe127() + "'" +
             ", de128='" + getDe128() + "'" +
-            ", cardId=" + getCardId() +
             "}";
     }
 }

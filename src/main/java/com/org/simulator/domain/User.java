@@ -80,13 +80,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @Column(name = "bank_id")
+    private Long bankId;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "jhi_user_authority",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
-
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
@@ -195,6 +197,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
 
+    public Long getBankId() {
+        return bankId;
+    }
+
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -222,6 +232,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
+            ", bankId='" + bankId + '\'' +
             "}";
     }
 }

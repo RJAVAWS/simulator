@@ -18,7 +18,8 @@
                     <input type="text" class="form-control" name="login"
                            formControlName="login">
 
-                    <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
+                    <div
+                        *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('login')?.errors?.required"
                                jhiTranslate="entity.validation.required">
@@ -45,7 +46,8 @@
                     <input type="text" class="form-control" name="firstName"
                            formControlName="firstName">
 
-                    <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
+                    <div
+                        *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('firstName')?.errors?.maxlength"
                                jhiTranslate="entity.validation.maxlength"
@@ -60,7 +62,8 @@
                     <input type="text" class="form-control" name="lastName"
                            formControlName="lastName">
 
-                    <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
+                    <div
+                        *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('lastName')?.errors?.maxlength"
                                jhiTranslate="entity.validation.maxlength"
@@ -74,7 +77,8 @@
                     <label class="form-control-label" jhiTranslate="userManagement.email">Email</label>
                     <input type="email" class="form-control" name="email" formControlName="email">
 
-                    <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+                    <div
+                        *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('email')?.errors?.required"
                                jhiTranslate="entity.validation.required">
@@ -103,26 +107,52 @@
                     </div>
                 </div>
 
-                <div class="form-check">
-                    <label class="form-check-label" for="activated">
-                        <input class="form-check-input" [attr.disabled]="user.id === undefined ? 'disabled' : null"
-                               type="checkbox" id="activated" name="activated" formControlName="activated">
-                        <span jhiTranslate="userManagement.activated">Activated</span>
-                    </label>
+                <div class="form-group">
+                    <label jhiTranslate="userManagement.profiles">Profiles</label>
+                    <select class="form-control" name="authority" formControlName="authorities"
+                            (change)="onRoleChange($event)">
+                        <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
+                    </select>
                 </div>
+
+                <ng-container *ngIf="isRoleUser">
+                    <div class="form-group">
+                        <label jhiTranslate="userManagement.bank">Bank</label>
+                        <select class="form-control" name="bankId" formControlName="bankId">
+                            <option *ngFor="let entry of bankKeyValueMap | keyvalue"
+                                    [selected]="entry.key === user.bankId"
+                                    value="{{entry.key}}">{{entry.key}} - {{ entry.value }}</option>
+                        </select>
+                        <div
+                            *ngIf="editForm.get('bankId')!.invalid && (editForm.get('bankId')!.dirty || editForm.get('bankId')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('bankId')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </ng-container>
 
                 <div class="form-group" *ngIf="languages && languages.length > 0">
                     <label jhiTranslate="userManagement.langKey">Lang Key</label>
                     <select class="form-control" id="langKey" name="langKey" formControlName="langKey">
-                        <option *ngFor="let language of languages" [value]="language">{{ language | findLanguageFromKey }}</option>
+                        <option *ngFor="let language of languages"
+                                [value]="language">{{ language | findLanguageFromKey }}</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="userManagement.profiles">Profiles</label>
-                    <select class="form-control" multiple name="authority" formControlName="authorities">
-                        <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
-                    </select>
+                    <div class="row">
+                        <div class="col-1">
+                            <ui-switch id="activated" formControlName="activated" name="activated"></ui-switch>
+                        </div>
+                        <div class="col">
+                            <label class="form-check-label toggle-button-padding-top" for="activated"
+                                   jhiTranslate="userManagement.activated">
+                                Activated</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 

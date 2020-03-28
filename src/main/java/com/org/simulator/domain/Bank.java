@@ -30,10 +30,10 @@ public class Bank implements Serializable {
     private String name;
 
     @NotNull
-    @Min(value = 3)
-    @Max(value = 10)
-    @Column(name = "code", nullable = false)
-    private Integer code;
+    @Size(min = 9, max = 150)
+    @Pattern(regexp = "[0-9]*")
+    @Column(name = "code", length = 150, nullable = false)
+    private String code;
 
     @Column(name = "logo")
     private String logo;
@@ -45,6 +45,7 @@ public class Bank implements Serializable {
 
     @NotNull
     @Size(min = 4, max = 10)
+    @Pattern(regexp = "[0-9]*")
     @Column(name = "port", length = 10, nullable = false)
     private String port;
 
@@ -109,16 +110,16 @@ public class Bank implements Serializable {
         this.name = name;
     }
 
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 
-    public Bank code(Integer code) {
+    public Bank code(String code) {
         this.code = code;
         return this;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -349,7 +350,7 @@ public class Bank implements Serializable {
         return "Bank{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", code=" + getCode() +
+            ", code='" + getCode() + "'" +
             ", logo='" + getLogo() + "'" +
             ", ip='" + getIp() + "'" +
             ", port='" + getPort() + "'" +

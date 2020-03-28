@@ -10,10 +10,12 @@ import { ICard, Card } from 'app/shared/model/card.model';
 import { CardService } from './card.service';
 import { IEmv } from 'app/shared/model/emv.model';
 import { EmvService } from 'app/entities/emv/emv.service';
+import { ITestCase } from 'app/shared/model/test-case.model';
+import { TestCaseService } from 'app/entities/test-case/test-case.service';
 import { IBank } from 'app/shared/model/bank.model';
 import { BankService } from 'app/entities/bank/bank.service';
 
-type SelectableEntity = IEmv | IBank;
+type SelectableEntity = IEmv | ITestCase | IBank;
 
 @Component({
   selector: 'jhi-card-update',
@@ -22,6 +24,7 @@ type SelectableEntity = IEmv | IBank;
 export class CardUpdateComponent implements OnInit {
   isSaving = false;
   emvs: IEmv[] = [];
+  testcases: ITestCase[] = [];
   banks: IBank[] = [];
 
   editForm = this.fb.group({
@@ -36,12 +39,14 @@ export class CardUpdateComponent implements OnInit {
     pin: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*')]],
     track2data: [null, [Validators.required, Validators.pattern('[a-zA-Z0-9=]*')]],
     emvId: [null, Validators.required],
+    testCases: [],
     bankId: []
   });
 
   constructor(
     protected cardService: CardService,
     protected emvService: EmvService,
+    protected testCaseService: TestCaseService,
     protected bankService: BankService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -73,6 +78,8 @@ export class CardUpdateComponent implements OnInit {
           }
         });
 
+      this.testCaseService.query().subscribe((res: HttpResponse<ITestCase[]>) => (this.testcases = res.body || []));
+
       this.bankService.query().subscribe((res: HttpResponse<IBank[]>) => (this.banks = res.body || []));
     });
   }
@@ -87,6 +94,7 @@ export class CardUpdateComponent implements OnInit {
       pin: card.pin,
       track2data: card.track2data,
       emvId: card.emvId,
+      testCases: card.testCases,
       bankId: card.bankId
     });
   }
@@ -116,6 +124,7 @@ export class CardUpdateComponent implements OnInit {
       pin: this.editForm.get(['pin'])!.value,
       track2data: this.editForm.get(['track2data'])!.value,
       emvId: this.editForm.get(['emvId'])!.value,
+      testCases: this.editForm.get(['testCases'])!.value,
       bankId: this.editForm.get(['bankId'])!.value
     };
   }
@@ -138,5 +147,16 @@ export class CardUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: ITestCase[], option: ITestCase): ITestCase {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

@@ -38,6 +38,12 @@
                         <a [routerLink]="['/emv', card.emvId, 'view']">{{ card.emvId }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="simulatorApp.card.testCase">Test Case</span></dt>
+                <dd>
+                    <span *ngFor="let testCase of card.testCases; let last = last">
+                        <a [routerLink]="['/test-case', testCase?.id, 'view']">{{ testCase.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
                 <dt><span jhiTranslate="simulatorApp.card.bank">Bank</span></dt>
                 <dd>
                     <div *ngIf="card.bankId">

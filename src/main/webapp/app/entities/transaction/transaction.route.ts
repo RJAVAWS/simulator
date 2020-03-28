@@ -38,7 +38,7 @@ export const transactionRoute: Routes = [
     path: '',
     component: TransactionComponent,
     data: {
-      authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+      authorities: ['ROLE_USER'],
       pageTitle: 'simulatorApp.transaction.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -50,7 +50,7 @@ export const transactionRoute: Routes = [
       transaction: TransactionResolve
     },
     data: {
-      authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+      authorities: ['ROLE_USER'],
       pageTitle: 'simulatorApp.transaction.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const transactionRoute: Routes = [
       transaction: TransactionResolve
     },
     data: {
-      authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+      authorities: ['ROLE_USER'],
       pageTitle: 'simulatorApp.transaction.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const transactionRoute: Routes = [
       transaction: TransactionResolve
     },
     data: {
-      authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+      authorities: ['ROLE_USER'],
       pageTitle: 'simulatorApp.transaction.home.title'
     },
     canActivate: [UserRouteAccessService]

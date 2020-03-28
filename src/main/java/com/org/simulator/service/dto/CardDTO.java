@@ -2,6 +2,8 @@ package com.org.simulator.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -42,6 +44,8 @@ public class CardDTO implements Serializable {
 
 
     private Long emvId;
+
+    private Set<TestCaseDTO> testCases = new HashSet<>();
 
     private Long bankId;
 
@@ -107,6 +111,14 @@ public class CardDTO implements Serializable {
 
     public void setEmvId(Long emvId) {
         this.emvId = emvId;
+    }
+
+    public Set<TestCaseDTO> getTestCases() {
+        return testCases;
+    }
+
+    public void setTestCases(Set<TestCaseDTO> testCases) {
+        this.testCases = testCases;
     }
 
     public Long getBankId() {
