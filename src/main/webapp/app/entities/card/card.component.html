@@ -27,8 +27,6 @@
                     <th scope="col"  jhiSortBy="cardNumber"><span jhiTranslate="simulatorApp.card.cardNumber">Card Number</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="cvv"><span jhiTranslate="simulatorApp.card.cvv">Cvv</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="expiry"><span jhiTranslate="simulatorApp.card.expiry">Expiry</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="pin"><span jhiTranslate="simulatorApp.card.pin">Pin</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="track2data"><span jhiTranslate="simulatorApp.card.track2data">Track 2 Data</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="emvId"><span jhiTranslate="simulatorApp.card.emv">Emv</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="bankId"><span jhiTranslate="simulatorApp.card.bank">Bank</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -41,8 +39,6 @@
                     <td>{{ card.cardNumber }}</td>
                     <td>{{ card.cvv }}</td>
                     <td>{{ card.expiry }}</td>
-                    <td>{{ card.pin }}</td>
-                    <td>{{ card.track2data }}</td>
                     <td>
                         <div *ngIf="card.emvId">
                             <a [routerLink]="['/emv', card.emvId , 'view']" >{{ card.emvId }}</a>
