@@ -17,6 +17,8 @@
         "title": "Card"
       },
       "cardDescription": "Card Description",
+      "scheme": "Scheme",
+      "type": "Type",
       "cardNumber": "Card Number",
       "cvv": "Cvv",
       "expiry": "Expiry",

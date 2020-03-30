@@ -15,6 +15,22 @@
             "fieldValidateRulesPattern": "[a-zA-Z0-9 _.]*"
         },
         {
+            "fieldName": "scheme",
+            "fieldType": "CardScheme",
+            "fieldValues": "MASTER,VISA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "CardType",
+            "fieldValues": "MAGNETIC,EMV",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "cardNumber",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -111,5 +127,6 @@
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",
-    "applications": "*"
+    "applications": "*",
+    "embedded": false
 }

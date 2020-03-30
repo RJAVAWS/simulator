@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -99,6 +100,17 @@ public class BankResource {
     }
 
     /**
+     * {@code GET  /banks/kvpairs} : get all the banks id and name pairs.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of bank id and names in body.
+     */
+    @GetMapping("/banks/kvpairs")
+    public ResponseEntity<Map<Long, String>> getKvpairs(@RequestParam(required = false) Long id) {
+        log.debug("REST request to get all pairs of bank id and name");
+        return ResponseEntity.ok().body(bankService.getKeyValuePair(id));
+    }
+
+    /**
      * {@code GET  /banks/:id} : get the "id" bank.
      *
      * @param id the id of the bankDTO to retrieve.
@@ -123,4 +135,6 @@ public class BankResource {
         bankService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+
 }

@@ -2,6 +2,8 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CardService } from 'app/entities/card/card.service';
 import { ICard, Card } from 'app/shared/model/card.model';
+import { CardScheme } from 'app/shared/model/enumerations/card-scheme.model';
+import { CardType } from 'app/shared/model/enumerations/card-type.model';
 
 describe('Service Tests', () => {
   describe('Card Service', () => {
@@ -20,7 +22,7 @@ describe('Service Tests', () => {
       service = injector.get(CardService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Card(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Card(0, 'AAAAAAA', CardScheme.MASTER, CardType.MAGNETIC, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -55,6 +57,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             cardDescription: 'BBBBBB',
+            scheme: 'BBBBBB',
+            type: 'BBBBBB',
             cardNumber: 'BBBBBB',
             cvv: 'BBBBBB',
             expiry: 'BBBBBB',
@@ -77,6 +81,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             cardDescription: 'BBBBBB',
+            scheme: 'BBBBBB',
+            type: 'BBBBBB',
             cardNumber: 'BBBBBB',
             cvv: 'BBBBBB',
             expiry: 'BBBBBB',

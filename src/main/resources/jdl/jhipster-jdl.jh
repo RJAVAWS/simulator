@@ -20,11 +20,21 @@ entity Bank{
 
 entity Card{
 	cardDescription String required minlength(3) maxlength(255) pattern(/[a-zA-Z0-9 _.]*/),
+	scheme CardScheme required,
+	type CardType required,
     cardNumber String required minlength(16) maxlength(19) pattern(/[0-9]*/),
     cvv String required minlength(3) maxlength(3) pattern(/[0-9]*/),
     expiry String required minlength(4) maxlength(4) pattern(/[0-9]*/),
 	pin String required minlength(4) maxlength(4) pattern(/[0-9]*/),
 	track2data String required pattern(/[a-zA-Z0-9=]*/)
+}
+
+enum CardScheme{
+MASTER, VISA
+}
+
+enum CardType{
+MAGNETIC, EMV
 }
 
 entity Emv{
@@ -376,7 +386,7 @@ enum AcqIssType {
 
 
 relationship OneToOne{
-	Card{emv required} to Emv
+	Card{emv} to Emv
 }
 
 relationship OneToMany{

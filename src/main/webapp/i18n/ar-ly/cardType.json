@@ -1,0 +1,9 @@
+{
+  "simulatorApp": {
+    "CardType": {
+      "null": "",
+      "MAGNETIC": "MAGNETIC",
+      "EMV": "EMV"
+    }
+  }
+}

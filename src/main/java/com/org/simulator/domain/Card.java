@@ -6,8 +6,13 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.org.simulator.domain.enumeration.CardScheme;
+
+import com.org.simulator.domain.enumeration.CardType;
 
 /**
  * A Card.
@@ -27,6 +32,16 @@ public class Card implements Serializable {
     @Pattern(regexp = "[a-zA-Z0-9 _.]*")
     @Column(name = "card_description", length = 255, nullable = false)
     private String cardDescription;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "scheme", nullable = false)
+    private CardScheme scheme;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private CardType type;
 
     @NotNull
     @Size(min = 16, max = 19)
@@ -58,17 +73,17 @@ public class Card implements Serializable {
     private String track2data;
 
     @OneToOne(optional = false)
-    @NotNull
     @JoinColumn(unique = true)
     private Emv emv;
 
     @ManyToMany
     @JoinTable(name = "card_test_case",
-               joinColumns = @JoinColumn(name = "card_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "test_case_id", referencedColumnName = "id"))
+        joinColumns = @JoinColumn(name = "card_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "test_case_id", referencedColumnName = "id"))
     private Set<TestCase> testCases = new HashSet<>();
 
     @ManyToOne
+    @NotNull
     @JsonIgnoreProperties("cards")
     private Bank bank;
 
@@ -92,6 +107,32 @@ public class Card implements Serializable {
 
     public void setCardDescription(String cardDescription) {
         this.cardDescription = cardDescription;
+    }
+
+    public CardScheme getScheme() {
+        return scheme;
+    }
+
+    public Card scheme(CardScheme scheme) {
+        this.scheme = scheme;
+        return this;
+    }
+
+    public void setScheme(CardScheme scheme) {
+        this.scheme = scheme;
+    }
+
+    public CardType getType() {
+        return type;
+    }
+
+    public Card type(CardType type) {
+        this.type = type;
+        return this;
+    }
+
+    public void setType(CardType type) {
+        this.type = type;
     }
 
     public String getCardNumber() {
@@ -232,6 +273,8 @@ public class Card implements Serializable {
         return "Card{" +
             "id=" + getId() +
             ", cardDescription='" + getCardDescription() + "'" +
+            ", scheme='" + getScheme() + "'" +
+            ", type='" + getType() + "'" +
             ", cardNumber='" + getCardNumber() + "'" +
             ", cvv='" + getCvv() + "'" +
             ", expiry='" + getExpiry() + "'" +

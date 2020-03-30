@@ -9,7 +9,7 @@ import javax.persistence.Lob;
  * A DTO for the {@link com.org.simulator.domain.Emv} entity.
  */
 public class EmvDTO implements Serializable {
-
+    
     private Long id;
 
     @NotNull
@@ -95,7 +95,7 @@ public class EmvDTO implements Serializable {
     @Lob
     private String others;
 
-
+    
     public Long getId() {
         return id;
     }

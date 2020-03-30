@@ -9,6 +9,8 @@ import { ICard } from 'app/shared/model/card.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { CardService } from './card.service';
 import { CardDeleteDialogComponent } from './card-delete-dialog.component';
+import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-card',
@@ -22,12 +24,15 @@ export class CardComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  bankKeyValueMap: Map<any, any> = new Map<any, any>();
 
   constructor(
     protected cardService: CardService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    protected kvpairService: KvpairService,
+    private accountService: AccountService
   ) {
     this.cards = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -63,6 +68,9 @@ export class CardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInCards();
+    this.kvpairService.getBank().subscribe(bankKeyValueMap => {
+      this.bankKeyValueMap = bankKeyValueMap;
+    });
   }
 
   ngOnDestroy(): void {

@@ -26,5 +26,4 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
     @Query("select card from Card card left join fetch card.testCases where card.id =:id")
     Optional<Card> findOneWithEagerRelationships(@Param("id") Long id);
-
 }

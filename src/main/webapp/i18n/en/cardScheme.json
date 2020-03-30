@@ -1,0 +1,9 @@
+{
+  "simulatorApp": {
+    "CardScheme": {
+      "null": "",
+      "MASTER": "MASTER",
+      "VISA": "VISA"
+    }
+  }
+}

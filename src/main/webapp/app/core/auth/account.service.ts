@@ -88,6 +88,10 @@ export class AccountService {
     return this.userIdentity ? this.userIdentity.imageUrl : '';
   }
 
+  getBankId(): any {
+    return this.userIdentity ? this.userIdentity.bankId : 0;
+  }
+
   private fetch(): Observable<Account> {
     return this.http.get<Account>(SERVER_API_URL + 'api/account');
   }

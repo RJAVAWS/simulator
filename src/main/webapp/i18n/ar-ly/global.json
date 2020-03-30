@@ -18,6 +18,10 @@
         "bank": "Bank",
         "card": "Card",
         "testCase": "Test Case",
+        "emv": "Emv",
+        "mtiConfig": "Mti Config",
+        "keyConfig": "Key Config",
+        "transaction": "Transaction",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

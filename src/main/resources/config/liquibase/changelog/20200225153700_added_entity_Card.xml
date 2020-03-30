@@ -19,6 +19,12 @@
             <column name="card_description" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="scheme" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
             <column name="card_number" type="varchar(19)">
                 <constraints nullable="false" />
             </column>
@@ -35,10 +41,10 @@
                 <constraints nullable="false" />
             </column>
             <column name="emv_id" type="bigint">
-                <constraints unique="true" nullable="false" uniqueConstraintName="ux_card_emv_id" />
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_card_emv_id" />
             </column>
             <column name="bank_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -56,7 +62,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="card_id, test_case_id" tableName="card_test_case"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
@@ -75,6 +81,8 @@
                   tableName="card">
             <column name="id" type="numeric"/>
             <column name="card_description" type="string"/>
+            <column name="scheme" type="string"/>
+            <column name="type" type="string"/>
             <column name="card_number" type="string"/>
             <column name="cvv" type="string"/>
             <column name="expiry" type="string"/>

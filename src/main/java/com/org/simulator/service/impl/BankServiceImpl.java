@@ -13,7 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Bank}.
@@ -84,5 +86,15 @@ public class BankServiceImpl implements BankService {
     public void delete(Long id) {
         log.debug("Request to delete Bank : {}", id);
         bankRepository.deleteById(id);
+    }
+
+    @Override
+    public Map<Long, String> getKeyValuePair(Long id) {
+        if (id != null && id != 0L) {
+            return bankRepository.findById(id).stream().collect(Collectors.toMap(Bank::getId, Bank::getName));
+        } else {
+            return bankRepository.findAll().stream().collect(Collectors.toMap(Bank::getId, Bank::getName));
+        }
+
     }
 }

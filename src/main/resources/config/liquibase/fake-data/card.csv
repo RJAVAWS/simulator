@@ -1,1 +1,1 @@
-id;card_description;card_number;cvv;expiry;pin;track_2_data;emv_id
+id;card_description;scheme;type;card_number;cvv;expiry;pin;track_2_data;emv_id

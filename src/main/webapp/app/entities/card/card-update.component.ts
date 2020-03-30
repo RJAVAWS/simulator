@@ -13,7 +13,8 @@ import { EmvService } from 'app/entities/emv/emv.service';
 import { ITestCase } from 'app/shared/model/test-case.model';
 import { TestCaseService } from 'app/entities/test-case/test-case.service';
 import { IBank } from 'app/shared/model/bank.model';
-import { BankService } from 'app/entities/bank/bank.service';
+import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
+import { AccountService } from 'app/core/auth/account.service';
 
 type SelectableEntity = IEmv | ITestCase | IBank;
 
@@ -22,10 +23,13 @@ type SelectableEntity = IEmv | ITestCase | IBank;
   templateUrl: './card-update.component.html'
 })
 export class CardUpdateComponent implements OnInit {
+  card!: ICard;
   isSaving = false;
   emvs: IEmv[] = [];
   testcases: ITestCase[] = [];
-  banks: IBank[] = [];
+  isEmv = false;
+  emv = 'EMV';
+  bankKeyValueMap: Map<any, any> = new Map<any, any>();
 
   editForm = this.fb.group({
     id: [],
@@ -33,12 +37,14 @@ export class CardUpdateComponent implements OnInit {
       null,
       [Validators.required, Validators.minLength(3), Validators.maxLength(255), Validators.pattern('[a-zA-Z0-9 _.]*')]
     ],
+    scheme: [null, [Validators.required]],
+    type: [null, [Validators.required]],
     cardNumber: [null, [Validators.required, Validators.minLength(16), Validators.maxLength(19), Validators.pattern('[0-9]*')]],
     cvv: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3), Validators.pattern('[0-9]*')]],
     expiry: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*')]],
     pin: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*')]],
     track2data: [null, [Validators.required, Validators.pattern('[a-zA-Z0-9=]*')]],
-    emvId: [null, Validators.required],
+    emvId: [],
     testCases: [],
     bankId: []
   });
@@ -47,15 +53,16 @@ export class CardUpdateComponent implements OnInit {
     protected cardService: CardService,
     protected emvService: EmvService,
     protected testCaseService: TestCaseService,
-    protected bankService: BankService,
+    protected kvpairService: KvpairService,
     protected activatedRoute: ActivatedRoute,
+    protected accountService: AccountService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ card }) => {
+      this.card = card;
       this.updateForm(card);
-
       this.emvService
         .query({ filter: 'card-is-null' })
         .pipe(
@@ -80,14 +87,23 @@ export class CardUpdateComponent implements OnInit {
 
       this.testCaseService.query().subscribe((res: HttpResponse<ITestCase[]>) => (this.testcases = res.body || []));
 
-      this.bankService.query().subscribe((res: HttpResponse<IBank[]>) => (this.banks = res.body || []));
+      this.kvpairService.getBank(this.accountService.getBankId()).subscribe(bankKeyValueMap => {
+        this.bankKeyValueMap = bankKeyValueMap;
+      });
     });
   }
 
   updateForm(card: ICard): void {
+    if (card.type === this.emv) {
+      this.isEmv = true;
+    } else {
+      this.isEmv = false;
+    }
     this.editForm.patchValue({
       id: card.id,
       cardDescription: card.cardDescription,
+      scheme: card.scheme,
+      type: card.type,
       cardNumber: card.cardNumber,
       cvv: card.cvv,
       expiry: card.expiry,
@@ -118,6 +134,8 @@ export class CardUpdateComponent implements OnInit {
       ...new Card(),
       id: this.editForm.get(['id'])!.value,
       cardDescription: this.editForm.get(['cardDescription'])!.value,
+      scheme: this.editForm.get(['scheme'])!.value,
+      type: this.editForm.get(['type'])!.value,
       cardNumber: this.editForm.get(['cardNumber'])!.value,
       cvv: this.editForm.get(['cvv'])!.value,
       expiry: this.editForm.get(['expiry'])!.value,
@@ -158,5 +176,17 @@ export class CardUpdateComponent implements OnInit {
       }
     }
     return option;
+  }
+
+  private onCardTypeChange($event: any): void {
+    if ($event.target.value === this.emv) {
+      this.isEmv = true;
+      this.editForm.get(['emvId'])!.setValidators(Validators.required);
+    } else {
+      this.isEmv = false;
+      this.editForm.get(['emvId'])!.setValue(null);
+      this.editForm.get(['emvId'])!.clearValidators();
+    }
+    this.editForm.get(['emvId'])!.updateValueAndValidity();
   }
 }

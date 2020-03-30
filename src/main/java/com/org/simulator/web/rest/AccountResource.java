@@ -1,7 +1,9 @@
 package com.org.simulator.web.rest;
 
+import com.org.simulator.domain.Authority;
 import com.org.simulator.domain.User;
 import com.org.simulator.repository.UserRepository;
+import com.org.simulator.security.AuthoritiesConstants;
 import com.org.simulator.security.SecurityUtils;
 import com.org.simulator.service.MailService;
 import com.org.simulator.service.UserService;
@@ -53,7 +55,7 @@ public class AccountResource {
      * {@code POST  /register} : register the user.
      *
      * @param managedUserVM the managed user View Model.
-     * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
+     * @throws InvalidPasswordException  {@code 400 (Bad Request)} if the password is incorrect.
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
      * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
      */
@@ -102,7 +104,18 @@ public class AccountResource {
     @GetMapping("/account")
     public UserDTO getAccount() {
         return userService.getUserWithAuthorities()
-            .map(UserDTO::new)
+            .map(user -> {
+                if (new ArrayList<Authority>(user.getAuthorities()).get(0).getName().equals(AuthoritiesConstants.USER)) {
+                    if (user.getBankId() != null && user.getBankId() != 0L) {
+                        return new UserDTO(user);
+                    } else {
+                        log.debug("User role is " + AuthoritiesConstants.USER + " But user id is " + user.getBankId() + ". So not allowed to login.");
+                        return null;
+                    }
+                } else {
+                    return new UserDTO(user);
+                }
+            })
             .orElseThrow(() -> new AccountResourceException("User could not be found"));
     }
 
@@ -111,7 +124,7 @@ public class AccountResource {
      *
      * @param userDTO the current user information.
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
-     * @throws RuntimeException {@code 500 (Internal Server Error)} if the user login wasn't found.
+     * @throws RuntimeException          {@code 500 (Internal Server Error)} if the user login wasn't found.
      */
     @PostMapping("/account")
     public void saveAccount(@Valid @RequestBody UserDTO userDTO) {
@@ -164,7 +177,7 @@ public class AccountResource {
      *
      * @param keyAndPassword the generated key and the new password.
      * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
-     * @throws RuntimeException {@code 500 (Internal Server Error)} if the password could not be reset.
+     * @throws RuntimeException         {@code 500 (Internal Server Error)} if the password could not be reset.
      */
     @PostMapping(path = "/account/reset-password/finish")
     public void finishPasswordReset(@RequestBody KeyAndPasswordVM keyAndPassword) {

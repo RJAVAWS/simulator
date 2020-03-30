@@ -5,18 +5,26 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import com.org.simulator.domain.enumeration.CardScheme;
+import com.org.simulator.domain.enumeration.CardType;
 
 /**
  * A DTO for the {@link com.org.simulator.domain.Card} entity.
  */
 public class CardDTO implements Serializable {
-
+    
     private Long id;
 
     @NotNull
     @Size(min = 3, max = 255)
     @Pattern(regexp = "[a-zA-Z0-9 _.]*")
     private String cardDescription;
+
+    @NotNull
+    private CardScheme scheme;
+
+    @NotNull
+    private CardType type;
 
     @NotNull
     @Size(min = 16, max = 19)
@@ -44,11 +52,10 @@ public class CardDTO implements Serializable {
 
 
     private Long emvId;
-
     private Set<TestCaseDTO> testCases = new HashSet<>();
 
     private Long bankId;
-
+    
     public Long getId() {
         return id;
     }
@@ -63,6 +70,22 @@ public class CardDTO implements Serializable {
 
     public void setCardDescription(String cardDescription) {
         this.cardDescription = cardDescription;
+    }
+
+    public CardScheme getScheme() {
+        return scheme;
+    }
+
+    public void setScheme(CardScheme scheme) {
+        this.scheme = scheme;
+    }
+
+    public CardType getType() {
+        return type;
+    }
+
+    public void setType(CardType type) {
+        this.type = type;
     }
 
     public String getCardNumber() {
@@ -155,12 +178,15 @@ public class CardDTO implements Serializable {
         return "CardDTO{" +
             "id=" + getId() +
             ", cardDescription='" + getCardDescription() + "'" +
+            ", scheme='" + getScheme() + "'" +
+            ", type='" + getType() + "'" +
             ", cardNumber='" + getCardNumber() + "'" +
             ", cvv='" + getCvv() + "'" +
             ", expiry='" + getExpiry() + "'" +
             ", pin='" + getPin() + "'" +
             ", track2data='" + getTrack2data() + "'" +
             ", emvId=" + getEmvId() +
+            ", testCases='" + getTestCases() + "'" +
             ", bankId=" + getBankId() +
             "}";
     }

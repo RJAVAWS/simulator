@@ -11,7 +11,8 @@
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                      [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}
+                      [translateValues]="{ username: account.login, bankId: account.bankId  }">
+                    You are logged in as user "{{ account.login }} - Bank Id: {{account.bankId}}
                     ".</span>
             </div>
 

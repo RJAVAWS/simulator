@@ -12,6 +12,14 @@
                 <dd>
                     <span>{{ card.cardDescription }}</span>
                 </dd>
+                <dt><span jhiTranslate="simulatorApp.card.scheme">Scheme</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.CardScheme.' + card.scheme }}">{{ card.scheme }}</span>
+                </dd>
+                <dt><span jhiTranslate="simulatorApp.card.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'simulatorApp.CardType.' + card.type }}">{{ card.type }}</span>
+                </dd>
                 <dt><span jhiTranslate="simulatorApp.card.cardNumber">Card Number</span></dt>
                 <dd>
                     <span>{{ card.cardNumber }}</span>

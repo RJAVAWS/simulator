@@ -7,7 +7,7 @@
         Added the constraints for entity Card.
     -->
     <changeSet id="20200225153700-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="emv_id"
                                  baseTableName="card"
                                  constraintName="fk_card_emv_id"
@@ -25,7 +25,7 @@
                                  constraintName="fk_card_test_case_test_case_id"
                                  referencedColumnNames="id"
                                  referencedTableName="test_case"/>
-        
+
         <addForeignKeyConstraint baseColumnNames="bank_id"
                                  baseTableName="card"
                                  constraintName="fk_card_bank_id"

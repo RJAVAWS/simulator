@@ -3,7 +3,7 @@
     "title": "Simulator Application",
     "subtitle": "Welcome to simulate transactions like real-time entities.",
     "logged": {
-      "message": "You are logged in as user \"{{username}}\"."
+      "message": "You are logged in as user \"{{username}} - {{bankId}}\"."
     },
     "registration-info": {
       "gt1": "Please contact CBO to create user or request test access."

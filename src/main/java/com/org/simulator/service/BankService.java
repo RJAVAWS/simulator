@@ -10,7 +10,7 @@ import java.util.Optional;
 /**
  * Service Interface for managing {@link com.org.simulator.domain.Bank}.
  */
-public interface BankService {
+public interface BankService extends GenericService {
 
     /**
      * Save a bank.

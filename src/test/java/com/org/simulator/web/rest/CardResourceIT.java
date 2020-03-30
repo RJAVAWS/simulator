@@ -7,43 +7,50 @@ import com.org.simulator.repository.CardRepository;
 import com.org.simulator.service.CardService;
 import com.org.simulator.service.dto.CardDTO;
 import com.org.simulator.service.mapper.CardMapper;
-import com.org.simulator.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Validator;
-
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.org.simulator.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.org.simulator.domain.enumeration.CardScheme;
+import com.org.simulator.domain.enumeration.CardType;
 /**
  * Integration tests for the {@link CardResource} REST controller.
  */
 @SpringBootTest(classes = SimulatorApp.class)
+@ExtendWith(MockitoExtension.class)
+@AutoConfigureMockMvc
+@WithMockUser
 public class CardResourceIT {
 
     private static final String DEFAULT_CARD_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_CARD_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final CardScheme DEFAULT_SCHEME = CardScheme.MASTER;
+    private static final CardScheme UPDATED_SCHEME = CardScheme.VISA;
+
+    private static final CardType DEFAULT_TYPE = CardType.MAGNETIC;
+    private static final CardType UPDATED_TYPE = CardType.EMV;
 
     private static final String DEFAULT_CARD_NUMBER = "AAAAAAAAAAAAAAAA";
     private static final String UPDATED_CARD_NUMBER = "BBBBBBBBBBBBBBBB";
@@ -76,35 +83,12 @@ public class CardResourceIT {
     private CardService cardService;
 
     @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
-
-    @Autowired
-    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
-
-    @Autowired
-    private ExceptionTranslator exceptionTranslator;
-
-    @Autowired
     private EntityManager em;
 
     @Autowired
-    private Validator validator;
-
     private MockMvc restCardMockMvc;
 
     private Card card;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final CardResource cardResource = new CardResource(cardService);
-        this.restCardMockMvc = MockMvcBuilders.standaloneSetup(cardResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter)
-            .setValidator(validator).build();
-    }
 
     /**
      * Create an entity for this test.
@@ -115,6 +99,8 @@ public class CardResourceIT {
     public static Card createEntity(EntityManager em) {
         Card card = new Card()
             .cardDescription(DEFAULT_CARD_DESCRIPTION)
+            .scheme(DEFAULT_SCHEME)
+            .type(DEFAULT_TYPE)
             .cardNumber(DEFAULT_CARD_NUMBER)
             .cvv(DEFAULT_CVV)
             .expiry(DEFAULT_EXPIRY)
@@ -141,6 +127,8 @@ public class CardResourceIT {
     public static Card createUpdatedEntity(EntityManager em) {
         Card card = new Card()
             .cardDescription(UPDATED_CARD_DESCRIPTION)
+            .scheme(UPDATED_SCHEME)
+            .type(UPDATED_TYPE)
             .cardNumber(UPDATED_CARD_NUMBER)
             .cvv(UPDATED_CVV)
             .expiry(UPDATED_EXPIRY)
@@ -172,7 +160,7 @@ public class CardResourceIT {
         // Create the Card
         CardDTO cardDTO = cardMapper.toDto(card);
         restCardMockMvc.perform(post("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isCreated());
 
@@ -181,6 +169,8 @@ public class CardResourceIT {
         assertThat(cardList).hasSize(databaseSizeBeforeCreate + 1);
         Card testCard = cardList.get(cardList.size() - 1);
         assertThat(testCard.getCardDescription()).isEqualTo(DEFAULT_CARD_DESCRIPTION);
+        assertThat(testCard.getScheme()).isEqualTo(DEFAULT_SCHEME);
+        assertThat(testCard.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testCard.getCardNumber()).isEqualTo(DEFAULT_CARD_NUMBER);
         assertThat(testCard.getCvv()).isEqualTo(DEFAULT_CVV);
         assertThat(testCard.getExpiry()).isEqualTo(DEFAULT_EXPIRY);
@@ -199,7 +189,7 @@ public class CardResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCardMockMvc.perform(post("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isBadRequest());
 
@@ -220,7 +210,45 @@ public class CardResourceIT {
         CardDTO cardDTO = cardMapper.toDto(card);
 
         restCardMockMvc.perform(post("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Card> cardList = cardRepository.findAll();
+        assertThat(cardList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkSchemeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = cardRepository.findAll().size();
+        // set the field null
+        card.setScheme(null);
+
+        // Create the Card, which fails.
+        CardDTO cardDTO = cardMapper.toDto(card);
+
+        restCardMockMvc.perform(post("/api/cards")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Card> cardList = cardRepository.findAll();
+        assertThat(cardList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkTypeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = cardRepository.findAll().size();
+        // set the field null
+        card.setType(null);
+
+        // Create the Card, which fails.
+        CardDTO cardDTO = cardMapper.toDto(card);
+
+        restCardMockMvc.perform(post("/api/cards")
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isBadRequest());
 
@@ -239,7 +267,7 @@ public class CardResourceIT {
         CardDTO cardDTO = cardMapper.toDto(card);
 
         restCardMockMvc.perform(post("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isBadRequest());
 
@@ -258,7 +286,7 @@ public class CardResourceIT {
         CardDTO cardDTO = cardMapper.toDto(card);
 
         restCardMockMvc.perform(post("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isBadRequest());
 
@@ -277,7 +305,7 @@ public class CardResourceIT {
         CardDTO cardDTO = cardMapper.toDto(card);
 
         restCardMockMvc.perform(post("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isBadRequest());
 
@@ -296,7 +324,7 @@ public class CardResourceIT {
         CardDTO cardDTO = cardMapper.toDto(card);
 
         restCardMockMvc.perform(post("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isBadRequest());
 
@@ -315,7 +343,7 @@ public class CardResourceIT {
         CardDTO cardDTO = cardMapper.toDto(card);
 
         restCardMockMvc.perform(post("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isBadRequest());
 
@@ -335,6 +363,8 @@ public class CardResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(card.getId().intValue())))
             .andExpect(jsonPath("$.[*].cardDescription").value(hasItem(DEFAULT_CARD_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].scheme").value(hasItem(DEFAULT_SCHEME.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].cardNumber").value(hasItem(DEFAULT_CARD_NUMBER)))
             .andExpect(jsonPath("$.[*].cvv").value(hasItem(DEFAULT_CVV)))
             .andExpect(jsonPath("$.[*].expiry").value(hasItem(DEFAULT_EXPIRY)))
@@ -344,35 +374,22 @@ public class CardResourceIT {
     
     @SuppressWarnings({"unchecked"})
     public void getAllCardsWithEagerRelationshipsIsEnabled() throws Exception {
-        CardResource cardResource = new CardResource(cardServiceMock);
         when(cardServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
-        MockMvc restCardMockMvc = MockMvcBuilders.standaloneSetup(cardResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
         restCardMockMvc.perform(get("/api/cards?eagerload=true"))
-        .andExpect(status().isOk());
+            .andExpect(status().isOk());
 
         verify(cardServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({"unchecked"})
     public void getAllCardsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        CardResource cardResource = new CardResource(cardServiceMock);
-            when(cardServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-            MockMvc restCardMockMvc = MockMvcBuilders.standaloneSetup(cardResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+        when(cardServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restCardMockMvc.perform(get("/api/cards?eagerload=true"))
-        .andExpect(status().isOk());
+            .andExpect(status().isOk());
 
-            verify(cardServiceMock, times(1)).findAllWithEagerRelationships(any());
+        verify(cardServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test
@@ -387,6 +404,8 @@ public class CardResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(card.getId().intValue()))
             .andExpect(jsonPath("$.cardDescription").value(DEFAULT_CARD_DESCRIPTION))
+            .andExpect(jsonPath("$.scheme").value(DEFAULT_SCHEME.toString()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.cardNumber").value(DEFAULT_CARD_NUMBER))
             .andExpect(jsonPath("$.cvv").value(DEFAULT_CVV))
             .andExpect(jsonPath("$.expiry").value(DEFAULT_EXPIRY))
@@ -416,6 +435,8 @@ public class CardResourceIT {
         em.detach(updatedCard);
         updatedCard
             .cardDescription(UPDATED_CARD_DESCRIPTION)
+            .scheme(UPDATED_SCHEME)
+            .type(UPDATED_TYPE)
             .cardNumber(UPDATED_CARD_NUMBER)
             .cvv(UPDATED_CVV)
             .expiry(UPDATED_EXPIRY)
@@ -424,7 +445,7 @@ public class CardResourceIT {
         CardDTO cardDTO = cardMapper.toDto(updatedCard);
 
         restCardMockMvc.perform(put("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isOk());
 
@@ -433,6 +454,8 @@ public class CardResourceIT {
         assertThat(cardList).hasSize(databaseSizeBeforeUpdate);
         Card testCard = cardList.get(cardList.size() - 1);
         assertThat(testCard.getCardDescription()).isEqualTo(UPDATED_CARD_DESCRIPTION);
+        assertThat(testCard.getScheme()).isEqualTo(UPDATED_SCHEME);
+        assertThat(testCard.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testCard.getCardNumber()).isEqualTo(UPDATED_CARD_NUMBER);
         assertThat(testCard.getCvv()).isEqualTo(UPDATED_CVV);
         assertThat(testCard.getExpiry()).isEqualTo(UPDATED_EXPIRY);
@@ -450,7 +473,7 @@ public class CardResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCardMockMvc.perform(put("/api/cards")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cardDTO)))
             .andExpect(status().isBadRequest());
 
@@ -469,7 +492,7 @@ public class CardResourceIT {
 
         // Delete the card
         restCardMockMvc.perform(delete("/api/cards/{id}", card.getId())
-            .accept(TestUtil.APPLICATION_JSON))
+            .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
