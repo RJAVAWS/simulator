@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-        <property name="autoIncrement" value="true"/>
+    <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity Card.
@@ -17,34 +17,37 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="card_description" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="scheme" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
+            </column>
+            <column name="use_case" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
             <column name="type" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="card_number" type="varchar(19)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="cvv" type="varchar(3)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="expiry" type="varchar(4)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="pin" type="varchar(4)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="track_2_data" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="emv_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_card_emv_id" />
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_card_emv_id"/>
             </column>
             <column name="bank_id" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="true"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -76,19 +79,19 @@
     -->
     <changeSet id="20200225153700-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/card.csv"
-                  separator=";"
-                  tableName="card">
+            file="config/liquibase/fake-data/card.csv"
+            separator=","
+            tableName="card">
             <column name="id" type="numeric"/>
             <column name="card_description" type="string"/>
             <column name="scheme" type="string"/>
+            <column name="use_case" type="string"/>
             <column name="type" type="string"/>
             <column name="card_number" type="string"/>
             <column name="cvv" type="string"/>
             <column name="expiry" type="string"/>
             <column name="pin" type="string"/>
             <column name="track_2_data" type="string"/>
-            <column name="emv_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

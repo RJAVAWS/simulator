@@ -90,7 +90,7 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public Map<Long, String> getKeyValuePair(Long id) {
-        if (id != null && id != 0L) {
+        if (id != null) {
             return bankRepository.findById(id).stream().collect(Collectors.toMap(Bank::getId, Bank::getName));
         } else {
             return bankRepository.findAll().stream().collect(Collectors.toMap(Bank::getId, Bank::getName));

@@ -116,6 +116,12 @@
                 <dd>
                     <span>{{ emv.others }}</span>
                 </dd>
+                <dt><span jhiTranslate="simulatorApp.emv.bank">Bank</span></dt>
+                <dd>
+                    <div *ngIf="emv.bankId">
+                        <a [routerLink]="['/bank', emv.bankId, 'view']">{{ emv.bankId }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

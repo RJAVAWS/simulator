@@ -1,4 +1,4 @@
 export const enum AcqIssType {
-  ACQUIRING,
-  ISSUING
+  ACQUIRING = 'ACQUIRING',
+  ISSUING = 'ISSUING'
 }

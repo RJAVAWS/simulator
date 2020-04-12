@@ -97,7 +97,6 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "emv",
             "otherEntityRelationshipName": "card",
-            "relationshipValidateRules": "required",
             "relationshipName": "emv",
             "otherEntityField": "id",
             "ownerSide": true

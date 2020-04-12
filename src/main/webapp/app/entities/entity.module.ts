@@ -31,6 +31,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'transaction',
         loadChildren: () => import('./transaction/transaction.module').then(m => m.SimulatorTransactionModule)
+      },
+      {
+        path: 'transaction-hub',
+        loadChildren: () => import('./transaction-hub/transaction-hub.module').then(m => m.SimulatorTransactionHubModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

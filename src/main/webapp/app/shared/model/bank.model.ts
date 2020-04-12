@@ -1,4 +1,5 @@
 import { ICard } from 'app/shared/model/card.model';
+import { IEmv } from 'app/shared/model/emv.model';
 import { IKeyConfig } from 'app/shared/model/key-config.model';
 import { ITransaction } from 'app/shared/model/transaction.model';
 import { IsoVersions } from 'app/shared/model/enumerations/iso-versions.model';
@@ -18,6 +19,7 @@ export interface IBank {
   cutoverFlag?: boolean;
   masterKey?: string;
   cards?: ICard[];
+  emvs?: IEmv[];
   keyConfigs?: IKeyConfig[];
   transactions?: ITransaction[];
 }
@@ -38,6 +40,7 @@ export class Bank implements IBank {
     public cutoverFlag?: boolean,
     public masterKey?: string,
     public cards?: ICard[],
+    public emvs?: IEmv[],
     public keyConfigs?: IKeyConfig[],
     public transactions?: ITransaction[]
   ) {

@@ -1,1 +1,3 @@
-id;name;code;logo;ip;port;iso_type;sign_on_off_flag;pin_exchange_flag;mac_exchange_flag;echo_flag;cutover_flag;master_key
+id,name,code,logo,ip,port,iso_type,sign_on_off_flag,pin_exchange_flag,mac_exchange_flag,echo_flag,cutover_flag,master_key
+1,"LANDMARK BANK",300300300,landmark,192.168.1.2,1234567,MBIISO93,1,1,1,1,0,MGI4598TH4578H8JF9KF0DL034FMKK490JG5689
+2,"ARCHWAY BANK",400400400,archway,192.168.1.2,1234567,MBIISO93,1,1,1,1,0,N84C5846HV9483M309VM95U4M95U4

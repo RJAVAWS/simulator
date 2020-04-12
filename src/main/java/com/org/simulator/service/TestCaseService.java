@@ -1,5 +1,6 @@
 package com.org.simulator.service;
 
+import com.org.simulator.domain.enumeration.AcqIssType;
 import com.org.simulator.service.dto.TestCaseDTO;
 
 import org.springframework.data.domain.Page;
@@ -10,7 +11,7 @@ import java.util.Optional;
 /**
  * Service Interface for managing {@link com.org.simulator.domain.TestCase}.
  */
-public interface TestCaseService {
+public interface TestCaseService extends GenericService {
 
     /**
      * Save a testCase.
@@ -26,7 +27,7 @@ public interface TestCaseService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Page<TestCaseDTO> findAll(Pageable pageable);
+    Page<TestCaseDTO> findAll(Pageable pageable, AcqIssType useCase);
 
     /**
      * Get the "id" testCase.

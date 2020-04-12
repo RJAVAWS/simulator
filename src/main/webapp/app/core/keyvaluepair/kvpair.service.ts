@@ -7,11 +7,11 @@ import { SERVER_API_URL } from 'app/app.constants';
 export class KvpairService {
   constructor(private http: HttpClient) {}
 
-  getBank(id?: any): Observable<Map<any, any>> {
+  getKeyValuePairs(module: string, id?: any): Observable<Map<number, string>> {
     let options: HttpParams = new HttpParams();
     if (id) {
       options = options.set('id', id);
     }
-    return this.http.get<Map<any, any>>(SERVER_API_URL + 'api/banks/kvpairs', { params: options });
+    return this.http.get<Map<number, string>>(SERVER_API_URL + 'api/' + module + '/kvpairs', { params: options });
   }
 }

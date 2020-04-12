@@ -1,6 +1,6 @@
 export const enum PsdnType {
-  PRIMARY,
-  SECONDARY,
-  DEFAULT,
-  NMM
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+  DEFAULT = 'DEFAULT',
+  NMM = 'NMM'
 }

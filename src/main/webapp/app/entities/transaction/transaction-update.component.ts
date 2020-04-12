@@ -9,8 +9,9 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { ITransaction, Transaction } from 'app/shared/model/transaction.model';
 import { TransactionService } from './transaction.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
-import { IBank } from 'app/shared/model/bank.model';
-import { BankService } from 'app/entities/bank/bank.service';
+import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
+import { AccountService } from 'app/core/auth/account.service';
+import { appEntitiesRoot } from 'app/shared/constants/app.generic.constants';
 
 @Component({
   selector: 'jhi-transaction-update',
@@ -18,7 +19,8 @@ import { BankService } from 'app/entities/bank/bank.service';
 })
 export class TransactionUpdateComponent implements OnInit {
   isSaving = false;
-  banks: IBank[] = [];
+  transaction!: ITransaction;
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
 
   editForm = this.fb.group({
     id: [],
@@ -161,16 +163,19 @@ export class TransactionUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected transactionService: TransactionService,
-    protected bankService: BankService,
+    protected kvpairService: KvpairService,
+    protected accountService: AccountService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ transaction }) => {
+      this.transaction = transaction;
       this.updateForm(transaction);
-
-      this.bankService.query().subscribe((res: HttpResponse<IBank[]>) => (this.banks = res.body || []));
+      this.kvpairService.getKeyValuePairs(appEntitiesRoot.BANK, this.accountService.getBankId()).subscribe(bankKeyValueMap => {
+        this.bankKeyValueMap = bankKeyValueMap;
+      });
     });
   }
 
@@ -497,9 +502,5 @@ export class TransactionUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IBank): any {
-    return item.id;
   }
 }

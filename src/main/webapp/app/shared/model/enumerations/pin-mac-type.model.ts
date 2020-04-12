@@ -1,4 +1,4 @@
 export const enum PinMacType {
-  PIN,
-  MAC
+  PIN = 'PIN',
+  MAC = 'MAC'
 }

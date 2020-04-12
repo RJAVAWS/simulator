@@ -9,6 +9,9 @@ import { IKeyConfig } from 'app/shared/model/key-config.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { KeyConfigService } from './key-config.service';
 import { KeyConfigDeleteDialogComponent } from './key-config-delete-dialog.component';
+import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
+import { AccountService } from 'app/core/auth/account.service';
+import { appEntitiesRoot } from 'app/shared/constants/app.generic.constants';
 
 @Component({
   selector: 'jhi-key-config',
@@ -22,12 +25,15 @@ export class KeyConfigComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
 
   constructor(
     protected keyConfigService: KeyConfigService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    protected kvpairService: KvpairService,
+    private accountService: AccountService
   ) {
     this.keyConfigs = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -44,7 +50,8 @@ export class KeyConfigComponent implements OnInit, OnDestroy {
       .query({
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
+        bankId: this.accountService.getBankId()
       })
       .subscribe((res: HttpResponse<IKeyConfig[]>) => this.paginateKeyConfigs(res.body, res.headers));
   }
@@ -63,6 +70,9 @@ export class KeyConfigComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInKeyConfigs();
+    this.kvpairService.getKeyValuePairs(appEntitiesRoot.BANK).subscribe(bankKeyValueMap => {
+      this.bankKeyValueMap = bankKeyValueMap;
+    });
   }
 
   ngOnDestroy(): void {

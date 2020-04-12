@@ -137,6 +137,7 @@ export interface ITestCase {
   de127?: any;
   de128?: any;
   cards?: ICard[];
+  isLinked?: boolean;
 }
 
 export class TestCase implements ITestCase {
@@ -274,6 +275,7 @@ export class TestCase implements ITestCase {
     public de126?: any,
     public de127?: any,
     public de128?: any,
-    public cards?: ICard[]
+    public cards?: ICard[],
+    public isLinked?: boolean
   ) {}
 }

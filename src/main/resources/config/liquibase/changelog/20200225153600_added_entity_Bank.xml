@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-        <property name="autoIncrement" value="true"/>
+    <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity Bank.
@@ -17,47 +17,48 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(150)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="code" type="varchar(150)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="logo" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="ip" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="port" type="varchar(10)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="iso_type" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="sign_on_off_flag" type="boolean">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="pin_exchange_flag" type="boolean">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="mac_exchange_flag" type="boolean">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="echo_flag" type="boolean">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="cutover_flag" type="boolean">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="master_key" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+
+
     </changeSet>
 
     <changeSet id="20200225153600-1-relations" author="jhipster">
-
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
@@ -69,11 +70,12 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
+
     <changeSet id="20200225153600-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/bank.csv"
-                  separator=";"
-                  tableName="bank">
+            file="config/liquibase/fake-data/bank.csv"
+            separator=","
+            tableName="bank">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="code" type="string"/>

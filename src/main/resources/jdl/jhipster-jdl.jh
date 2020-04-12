@@ -391,6 +391,7 @@ relationship OneToOne{
 
 relationship OneToMany{
 	Bank{card required} to Card,
+	Bank{emv required} to Emv,
     Bank{keyConfig required} to KeyConfig,
     Bank{transaction required} to Transaction
 }

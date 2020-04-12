@@ -1,4 +1,4 @@
 export const enum ReqResType {
-  REQUEST,
-  RESPONSE
+  REQUEST = 'REQUEST',
+  RESPONSE = 'RESPONSE'
 }

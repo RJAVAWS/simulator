@@ -4,19 +4,12 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { ICard, Card } from 'app/shared/model/card.model';
+import { Card, ICard } from 'app/shared/model/card.model';
 import { CardService } from './card.service';
-import { IEmv } from 'app/shared/model/emv.model';
-import { EmvService } from 'app/entities/emv/emv.service';
-import { ITestCase } from 'app/shared/model/test-case.model';
-import { TestCaseService } from 'app/entities/test-case/test-case.service';
-import { IBank } from 'app/shared/model/bank.model';
 import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
 import { AccountService } from 'app/core/auth/account.service';
-
-type SelectableEntity = IEmv | ITestCase | IBank;
+import { CardType } from 'app/shared/model/enumerations/card-type.model';
+import { appEntitiesRoot } from 'app/shared/constants/app.generic.constants';
 
 @Component({
   selector: 'jhi-card-update',
@@ -25,11 +18,9 @@ type SelectableEntity = IEmv | ITestCase | IBank;
 export class CardUpdateComponent implements OnInit {
   card!: ICard;
   isSaving = false;
-  emvs: IEmv[] = [];
-  testcases: ITestCase[] = [];
   isEmv = false;
-  emv = 'EMV';
-  bankKeyValueMap: Map<any, any> = new Map<any, any>();
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
+  emvKeyValueMap: Map<number, string> = new Map<number, string>();
 
   editForm = this.fb.group({
     id: [],
@@ -39,6 +30,7 @@ export class CardUpdateComponent implements OnInit {
     ],
     scheme: [null, [Validators.required]],
     type: [null, [Validators.required]],
+    useCase: [null, [Validators.required]],
     cardNumber: [null, [Validators.required, Validators.minLength(16), Validators.maxLength(19), Validators.pattern('[0-9]*')]],
     cvv: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3), Validators.pattern('[0-9]*')]],
     expiry: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*')]],
@@ -51,8 +43,6 @@ export class CardUpdateComponent implements OnInit {
 
   constructor(
     protected cardService: CardService,
-    protected emvService: EmvService,
-    protected testCaseService: TestCaseService,
     protected kvpairService: KvpairService,
     protected activatedRoute: ActivatedRoute,
     protected accountService: AccountService,
@@ -63,38 +53,17 @@ export class CardUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ card }) => {
       this.card = card;
       this.updateForm(card);
-      this.emvService
-        .query({ filter: 'card-is-null' })
-        .pipe(
-          map((res: HttpResponse<IEmv[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IEmv[]) => {
-          if (!card.emvId) {
-            this.emvs = resBody;
-          } else {
-            this.emvService
-              .find(card.emvId)
-              .pipe(
-                map((subRes: HttpResponse<IEmv>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IEmv[]) => (this.emvs = concatRes));
-          }
-        });
-
-      this.testCaseService.query().subscribe((res: HttpResponse<ITestCase[]>) => (this.testcases = res.body || []));
-
-      this.kvpairService.getBank(this.accountService.getBankId()).subscribe(bankKeyValueMap => {
+      this.kvpairService.getKeyValuePairs(appEntitiesRoot.BANK, this.accountService.getBankId()).subscribe(bankKeyValueMap => {
         this.bankKeyValueMap = bankKeyValueMap;
+      });
+      this.kvpairService.getKeyValuePairs(appEntitiesRoot.EMV, this.accountService.getBankId()).subscribe(emvKeyValueMap => {
+        this.emvKeyValueMap = emvKeyValueMap;
       });
     });
   }
 
   updateForm(card: ICard): void {
-    if (card.type === this.emv) {
+    if (card.type === CardType.EMV) {
       this.isEmv = true;
     } else {
       this.isEmv = false;
@@ -104,6 +73,7 @@ export class CardUpdateComponent implements OnInit {
       cardDescription: card.cardDescription,
       scheme: card.scheme,
       type: card.type,
+      useCase: card.useCase,
       cardNumber: card.cardNumber,
       cvv: card.cvv,
       expiry: card.expiry,
@@ -136,6 +106,7 @@ export class CardUpdateComponent implements OnInit {
       cardDescription: this.editForm.get(['cardDescription'])!.value,
       scheme: this.editForm.get(['scheme'])!.value,
       type: this.editForm.get(['type'])!.value,
+      useCase: this.editForm.get(['useCase'])!.value,
       cardNumber: this.editForm.get(['cardNumber'])!.value,
       cvv: this.editForm.get(['cvv'])!.value,
       expiry: this.editForm.get(['expiry'])!.value,
@@ -163,23 +134,8 @@ export class CardUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
-    return item.id;
-  }
-
-  getSelected(selectedVals: ITestCase[], option: ITestCase): ITestCase {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
-  }
-
   private onCardTypeChange($event: any): void {
-    if ($event.target.value === this.emv) {
+    if ($event.target.value === CardType.EMV) {
       this.isEmv = true;
       this.editForm.get(['emvId'])!.setValidators(Validators.required);
     } else {

@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+
+import com.org.simulator.domain.enumeration.AcqIssType;
 import com.org.simulator.domain.enumeration.CardScheme;
 import com.org.simulator.domain.enumeration.CardType;
 
@@ -12,7 +14,7 @@ import com.org.simulator.domain.enumeration.CardType;
  * A DTO for the {@link com.org.simulator.domain.Card} entity.
  */
 public class CardDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -22,6 +24,9 @@ public class CardDTO implements Serializable {
 
     @NotNull
     private CardScheme scheme;
+
+    @NotNull
+    private AcqIssType useCase;
 
     @NotNull
     private CardType type;
@@ -52,10 +57,11 @@ public class CardDTO implements Serializable {
 
 
     private Long emvId;
+
     private Set<TestCaseDTO> testCases = new HashSet<>();
 
     private Long bankId;
-    
+
     public Long getId() {
         return id;
     }
@@ -152,6 +158,14 @@ public class CardDTO implements Serializable {
         this.bankId = bankId;
     }
 
+    public AcqIssType getUseCase() {
+        return useCase;
+    }
+
+    public void setUseCase(AcqIssType useCase) {
+        this.useCase = useCase;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -179,6 +193,7 @@ public class CardDTO implements Serializable {
             "id=" + getId() +
             ", cardDescription='" + getCardDescription() + "'" +
             ", scheme='" + getScheme() + "'" +
+            ", useCase='" + getUseCase() + "'" +
             ", type='" + getType() + "'" +
             ", cardNumber='" + getCardNumber() + "'" +
             ", cvv='" + getCvv() + "'" +
@@ -186,7 +201,6 @@ public class CardDTO implements Serializable {
             ", pin='" + getPin() + "'" +
             ", track2data='" + getTrack2data() + "'" +
             ", emvId=" + getEmvId() +
-            ", testCases='" + getTestCases() + "'" +
             ", bankId=" + getBankId() +
             "}";
     }

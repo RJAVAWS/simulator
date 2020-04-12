@@ -9,6 +9,9 @@ import { ITransaction } from 'app/shared/model/transaction.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { TransactionService } from './transaction.service';
 import { TransactionDeleteDialogComponent } from './transaction-delete-dialog.component';
+import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
+import { AccountService } from 'app/core/auth/account.service';
+import { appEntitiesRoot } from 'app/shared/constants/app.generic.constants';
 
 @Component({
   selector: 'jhi-transaction',
@@ -22,13 +25,16 @@ export class TransactionComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
 
   constructor(
     protected transactionService: TransactionService,
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    protected kvpairService: KvpairService,
+    private accountService: AccountService
   ) {
     this.transactions = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -45,7 +51,8 @@ export class TransactionComponent implements OnInit, OnDestroy {
       .query({
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
+        bankId: this.accountService.getBankId()
       })
       .subscribe((res: HttpResponse<ITransaction[]>) => this.paginateTransactions(res.body, res.headers));
   }
@@ -64,6 +71,9 @@ export class TransactionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInTransactions();
+    this.kvpairService.getKeyValuePairs(appEntitiesRoot.BANK).subscribe(bankKeyValueMap => {
+      this.bankKeyValueMap = bankKeyValueMap;
+    });
   }
 
   ngOnDestroy(): void {

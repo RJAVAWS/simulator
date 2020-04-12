@@ -37,7 +37,7 @@ export class UserService {
     return this.http.get<string[]>(SERVER_API_URL + 'api/users/authorities');
   }
 
-  bankKeyValueMap(): Observable<Map<any, any>> {
-    return this.http.get<Map<any, any>>(SERVER_API_URL + 'api/users/bankKeyValueMap');
+  bankKeyValueMap(): Observable<Map<number, string>> {
+    return this.http.get<Map<number, string>>(SERVER_API_URL + 'api/users/bankKeyValueMap');
   }
 }

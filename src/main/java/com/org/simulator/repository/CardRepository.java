@@ -17,6 +17,11 @@ import java.util.Optional;
 @Repository
 public interface CardRepository extends JpaRepository<Card, Long> {
 
+
+    List<Card> findAllByBank_Id(Long id);
+
+    Page<Card> findAllByBank_Id(Long id, Pageable pageable);
+
     @Query(value = "select distinct card from Card card left join fetch card.testCases",
         countQuery = "select count(distinct card) from Card card")
     Page<Card> findAllWithEagerRelationships(Pageable pageable);
@@ -26,4 +31,5 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
     @Query("select card from Card card left join fetch card.testCases where card.id =:id")
     Optional<Card> findOneWithEagerRelationships(@Param("id") Long id);
+
 }

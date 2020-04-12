@@ -14,7 +14,7 @@ export class UserManagementUpdateComponent implements OnInit {
   user!: User;
   languages = LANGUAGES;
   authorities: string[] = [];
-  bankKeyValueMap: Map<any, any> = new Map<any, any>();
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
   isSaving = false;
   isRoleUser = false;
   roleUser = 'ROLE_USER';

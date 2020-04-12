@@ -91,7 +91,9 @@
                     <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.bank" for="field_bank">Bank</label>
                     <select class="form-control" id="field_bank" name="bank" formControlName="bankId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="bankOption.id" *ngFor="let bankOption of banks; trackBy: trackById">{{ bankOption.id }}</option>
+                        <option *ngFor="let entry of bankKeyValueMap | keyvalue"
+                                [selected]="entry.key === keyConfig.bankId.toString()"
+                                value="{{entry.key}}">{{entry.key}} - {{ entry.value }}</option>
                     </select>
                 </div>
             </div>

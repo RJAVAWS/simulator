@@ -83,6 +83,9 @@ public class Bank implements Serializable {
     private Set<Card> cards = new HashSet<>();
 
     @OneToMany(mappedBy = "bank")
+    private Set<Emv> emvs = new HashSet<>();
+
+    @OneToMany(mappedBy = "bank")
     private Set<KeyConfig> keyConfigs = new HashSet<>();
 
     @OneToMany(mappedBy = "bank")
@@ -276,6 +279,31 @@ public class Bank implements Serializable {
 
     public void setCards(Set<Card> cards) {
         this.cards = cards;
+    }
+
+    public Set<Emv> getEmvs() {
+        return emvs;
+    }
+
+    public Bank emvs(Set<Emv> emvs) {
+        this.emvs = emvs;
+        return this;
+    }
+
+    public Bank addEmv(Emv emv) {
+        this.emvs.add(emv);
+        emv.setBank(this);
+        return this;
+    }
+
+    public Bank removeEmv(Emv emv) {
+        this.emvs.remove(emv);
+        emv.setBank(null);
+        return this;
+    }
+
+    public void setEmvs(Set<Emv> emvs) {
+        this.emvs = emvs;
     }
 
     public Set<KeyConfig> getKeyConfigs() {

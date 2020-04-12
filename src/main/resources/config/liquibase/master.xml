@@ -25,5 +25,6 @@
     <include file="config/liquibase/changelog/20200225153700_added_entity_constraints_Card.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200225154100_added_entity_constraints_KeyConfig.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200225154200_added_entity_constraints_Transaction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200225153800_added_entity_constraints_Emv.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

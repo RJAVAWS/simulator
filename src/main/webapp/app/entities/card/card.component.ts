@@ -11,6 +11,7 @@ import { CardService } from './card.service';
 import { CardDeleteDialogComponent } from './card-delete-dialog.component';
 import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
 import { AccountService } from 'app/core/auth/account.service';
+import { appEntitiesRoot } from 'app/shared/constants/app.generic.constants';
 
 @Component({
   selector: 'jhi-card',
@@ -24,7 +25,7 @@ export class CardComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
-  bankKeyValueMap: Map<any, any> = new Map<any, any>();
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
 
   constructor(
     protected cardService: CardService,
@@ -49,7 +50,8 @@ export class CardComponent implements OnInit, OnDestroy {
       .query({
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
+        bankId: this.accountService.getBankId()
       })
       .subscribe((res: HttpResponse<ICard[]>) => this.paginateCards(res.body, res.headers));
   }
@@ -68,7 +70,7 @@ export class CardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInCards();
-    this.kvpairService.getBank().subscribe(bankKeyValueMap => {
+    this.kvpairService.getKeyValuePairs(appEntitiesRoot.BANK).subscribe(bankKeyValueMap => {
       this.bankKeyValueMap = bankKeyValueMap;
     });
   }

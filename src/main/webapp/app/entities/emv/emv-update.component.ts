@@ -9,6 +9,9 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { IEmv, Emv } from 'app/shared/model/emv.model';
 import { EmvService } from './emv.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
+import { appEntitiesRoot } from 'app/shared/constants/app.generic.constants';
+import { AccountService } from 'app/core/auth/account.service';
+import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
 
 @Component({
   selector: 'jhi-emv-update',
@@ -16,6 +19,8 @@ import { AlertError } from 'app/shared/alert/alert-error.model';
 })
 export class EmvUpdateComponent implements OnInit {
   isSaving = false;
+  emv!: IEmv;
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
 
   editForm = this.fb.group({
     id: [],
@@ -48,7 +53,8 @@ export class EmvUpdateComponent implements OnInit {
     de71: [],
     de72: [],
     de91: [],
-    others: []
+    others: [],
+    bankId: []
   });
 
   constructor(
@@ -56,12 +62,18 @@ export class EmvUpdateComponent implements OnInit {
     protected eventManager: JhiEventManager,
     protected emvService: EmvService,
     protected activatedRoute: ActivatedRoute,
+    protected kvpairService: KvpairService,
+    protected accountService: AccountService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ emv }) => {
+      this.emv = emv;
       this.updateForm(emv);
+      this.kvpairService.getKeyValuePairs(appEntitiesRoot.BANK, this.accountService.getBankId()).subscribe(bankKeyValueMap => {
+        this.bankKeyValueMap = bankKeyValueMap;
+      });
     });
   }
 
@@ -94,7 +106,8 @@ export class EmvUpdateComponent implements OnInit {
       de71: emv.de71,
       de72: emv.de72,
       de91: emv.de91,
-      others: emv.others
+      others: emv.others,
+      bankId: emv.bankId
     });
   }
 
@@ -158,7 +171,8 @@ export class EmvUpdateComponent implements OnInit {
       de71: this.editForm.get(['de71'])!.value,
       de72: this.editForm.get(['de72'])!.value,
       de91: this.editForm.get(['de91'])!.value,
-      others: this.editForm.get(['others'])!.value
+      others: this.editForm.get(['others'])!.value,
+      bankId: this.editForm.get(['bankId'])!.value
     };
   }
 

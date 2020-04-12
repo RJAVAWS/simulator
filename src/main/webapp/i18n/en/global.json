@@ -15,6 +15,7 @@
         "mtiConfig": "Mti Config",
         "keyConfig": "Key Config",
         "transaction": "Transaction",
+        "transactionHub": "Transaction Hub",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -106,7 +107,8 @@
       "edit": "Edit",
       "open": "Open",
       "save": "Save",
-      "view": "View"
+      "view": "View",
+      "link": "Link"
     },
     "detail": {
       "field": "Field",

@@ -29,6 +29,7 @@
       "cutoverFlag": "Cutover Flag",
       "masterKey": "Master Key",
       "card": "Card",
+      "emv": "Emv",
       "keyConfig": "Key Config",
       "transaction": "Transaction"
     }

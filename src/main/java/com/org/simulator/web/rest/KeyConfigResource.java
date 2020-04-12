@@ -91,9 +91,9 @@ public class KeyConfigResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of keyConfigs in body.
      */
     @GetMapping("/key-configs")
-    public ResponseEntity<List<KeyConfigDTO>> getAllKeyConfigs(Pageable pageable) {
+    public ResponseEntity<List<KeyConfigDTO>> getAllKeyConfigs(Pageable pageable, @RequestParam(required = false) Long bankId) {
         log.debug("REST request to get a page of KeyConfigs");
-        Page<KeyConfigDTO> page = keyConfigService.findAll(pageable);
+        Page<KeyConfigDTO> page = keyConfigService.findAll(pageable, bankId);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

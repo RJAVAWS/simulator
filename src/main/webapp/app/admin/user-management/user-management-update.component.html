@@ -120,7 +120,7 @@
                         <label jhiTranslate="userManagement.bank">Bank</label>
                         <select class="form-control" name="bankId" formControlName="bankId">
                             <option *ngFor="let entry of bankKeyValueMap | keyvalue"
-                                    selected="{{entry.key === user.bankId}}"
+                                    [selected]="entry.key === user.bankId+''"
                                     value="{{entry.key}}">{{entry.key}} - {{ entry.value }}</option>
                         </select>
                         <div

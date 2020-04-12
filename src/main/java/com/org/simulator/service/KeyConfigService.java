@@ -26,7 +26,7 @@ public interface KeyConfigService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Page<KeyConfigDTO> findAll(Pageable pageable);
+    Page<KeyConfigDTO> findAll(Pageable pageable, Long bankId);
 
     /**
      * Get the "id" keyConfig.

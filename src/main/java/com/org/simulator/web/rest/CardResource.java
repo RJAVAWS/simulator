@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -87,21 +88,33 @@ public class CardResource {
     /**
      * {@code GET  /cards} : get all the cards.
      *
-     * @param pageable the pagination information.
+     * @param pageable  the pagination information.
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cards in body.
      */
     @GetMapping("/cards")
-    public ResponseEntity<List<CardDTO>> getAllCards(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public ResponseEntity<List<CardDTO>> getAllCards(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload,
+                                                     @RequestParam(required = false) Long bankId) {
         log.debug("REST request to get a page of Cards");
         Page<CardDTO> page;
         if (eagerload) {
             page = cardService.findAllWithEagerRelationships(pageable);
         } else {
-            page = cardService.findAll(pageable);
+            page = cardService.findAll(pageable, bankId);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /banks/kvpairs} : get all the card id and name pairs.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of card id and names in body.
+     */
+    @GetMapping("/cards/kvpairs")
+    public ResponseEntity<Map<Long, String>> getKvpairs(@RequestParam(required = false) Long id) {
+        log.debug("REST request to get all pairs of card id and name");
+        return ResponseEntity.ok().body(cardService.getKeyValuePair(id));
     }
 
     /**
@@ -115,6 +128,18 @@ public class CardResource {
         log.debug("REST request to get Card : {}", id);
         Optional<CardDTO> cardDTO = cardService.findOne(id);
         return ResponseUtil.wrapOrNotFound(cardDTO);
+    }
+
+    /**
+     * {@code GET  /cards/linkedtestcases} : get the "testcases" of card.
+     *
+     * @param id the id of the cardDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the testcaseid list, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/cards/linkedtestcases")
+    public ResponseEntity<List<Long>> getLinkedTestCases(@RequestParam Long id) {
+        log.debug("REST request to get Card Linked Testcases : {}", id);
+        return ResponseEntity.ok().body(cardService.findLinkedTestCases(id));
     }
 
     /**

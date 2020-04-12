@@ -145,7 +145,15 @@
             "fieldTypeBlobContent": "text"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bank",
+            "otherEntityRelationshipName": "emv",
+            "relationshipName": "bank",
+            "otherEntityField": "id"
+        }
+    ],
     "changelogDate": "20200225153800",
     "entityTableName": "emv",
     "dto": "mapstruct",

@@ -1,5 +1,6 @@
 package com.org.simulator.web.rest;
 
+import com.org.simulator.domain.enumeration.AcqIssType;
 import com.org.simulator.service.TestCaseService;
 import com.org.simulator.web.rest.errors.BadRequestAlertException;
 import com.org.simulator.service.dto.TestCaseDTO;
@@ -22,6 +23,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -91,11 +93,22 @@ public class TestCaseResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of testCases in body.
      */
     @GetMapping("/test-cases")
-    public ResponseEntity<List<TestCaseDTO>> getAllTestCases(Pageable pageable) {
-        log.debug("REST request to get a page of TestCases");
-        Page<TestCaseDTO> page = testCaseService.findAll(pageable);
+    public ResponseEntity<List<TestCaseDTO>> getAllTestCases(Pageable pageable, @RequestParam(required = false) AcqIssType useCase) {
+        log.debug("REST request to get a page of TestCases with useCase: " + useCase);
+        Page<TestCaseDTO> page = testCaseService.findAll(pageable, useCase);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /banks/kvpairs} : get all the testcase id and name pairs.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of testcase id and names in body.
+     */
+    @GetMapping("/test-cases/kvpairs")
+    public ResponseEntity<Map<Long, String>> getKvpairs(@RequestParam(required = false) Long id) {
+        log.debug("REST request to get all pairs of testcase id and name");
+        return ResponseEntity.ok().body(testCaseService.getKeyValuePair(id));
     }
 
     /**

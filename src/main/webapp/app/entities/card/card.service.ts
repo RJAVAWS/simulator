@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
@@ -25,6 +25,14 @@ export class CardService {
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICard>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  findLinkedTestCase(id: any): Observable<Array<number>> {
+    let options: HttpParams = new HttpParams();
+    if (id) {
+      options = options.set('id', id);
+    }
+    return this.http.get<Array<number>>(this.resourceUrl + '/linkedtestcases', { params: options });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

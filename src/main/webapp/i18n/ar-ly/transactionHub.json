@@ -1,0 +1,9 @@
+{
+  "simulatorApp": {
+    "transaction-hub": {
+      "home": {
+        "title": "Transaction Hub"
+      }
+    }
+  }
+}

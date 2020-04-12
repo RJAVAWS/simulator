@@ -1,4 +1,4 @@
 export const enum TranType {
-  NMM,
-  TRANSACTIONS
+  NMM = 'NMM',
+  TRANSACTIONS = 'TRANSACTIONS'
 }

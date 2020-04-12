@@ -27,6 +27,7 @@ export interface IEmv {
   de72?: any;
   de91?: any;
   others?: any;
+  bankId?: number;
 }
 
 export class Emv implements IEmv {
@@ -58,6 +59,7 @@ export class Emv implements IEmv {
     public de71?: any,
     public de72?: any,
     public de91?: any,
-    public others?: any
+    public others?: any,
+    public bankId?: number
   ) {}
 }

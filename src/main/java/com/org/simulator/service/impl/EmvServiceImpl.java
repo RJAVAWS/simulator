@@ -1,5 +1,6 @@
 package com.org.simulator.service.impl;
 
+import com.org.simulator.domain.Card;
 import com.org.simulator.service.EmvService;
 import com.org.simulator.domain.Emv;
 import com.org.simulator.repository.EmvRepository;
@@ -13,7 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Emv}.
@@ -55,10 +58,16 @@ public class EmvServiceImpl implements EmvService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<EmvDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all Emvs");
-        return emvRepository.findAll(pageable)
-            .map(emvMapper::toDto);
+    public Page<EmvDTO> findAll(Pageable pageable, Long bankId) {
+        if (bankId != null) {
+            log.debug("Request to get all emvs with bank id - " + bankId);
+            return emvRepository.findAllByBank_Id(bankId, pageable)
+                .map(emvMapper::toDto);
+        } else {
+            log.debug("Request to get all emvs without bank id");
+            return emvRepository.findAll(pageable)
+                .map(emvMapper::toDto);
+        }
     }
 
     /**
@@ -84,5 +93,14 @@ public class EmvServiceImpl implements EmvService {
     public void delete(Long id) {
         log.debug("Request to delete Emv : {}", id);
         emvRepository.deleteById(id);
+    }
+
+    @Override
+    public Map<Long, String> getKeyValuePair(Long id) {
+        if (id != null) {
+            return emvRepository.findAllByBank_Id(id).stream().collect(Collectors.toMap(Emv::getId, Emv::getEmvDescription));
+        } else {
+            return emvRepository.findAll().stream().collect(Collectors.toMap(Emv::getId, Emv::getEmvDescription));
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.org.simulator.web.rest;
 import com.org.simulator.SimulatorApp;
 import com.org.simulator.domain.Bank;
 import com.org.simulator.domain.Card;
+import com.org.simulator.domain.Emv;
 import com.org.simulator.domain.KeyConfig;
 import com.org.simulator.domain.Transaction;
 import com.org.simulator.repository.BankRepository;
@@ -147,6 +148,16 @@ public class BankResourceIT {
         }
         bank.getCards().add(card);
         // Add required entity
+        Emv emv;
+        if (TestUtil.findAll(em, Emv.class).isEmpty()) {
+            emv = EmvResourceIT.createEntity(em);
+            em.persist(emv);
+            em.flush();
+        } else {
+            emv = TestUtil.findAll(em, Emv.class).get(0);
+        }
+        bank.getEmvs().add(emv);
+        // Add required entity
         KeyConfig keyConfig;
         if (TestUtil.findAll(em, KeyConfig.class).isEmpty()) {
             keyConfig = KeyConfigResourceIT.createEntity(em);
@@ -198,6 +209,16 @@ public class BankResourceIT {
             card = TestUtil.findAll(em, Card.class).get(0);
         }
         bank.getCards().add(card);
+        // Add required entity
+        Emv emv;
+        if (TestUtil.findAll(em, Emv.class).isEmpty()) {
+            emv = EmvResourceIT.createUpdatedEntity(em);
+            em.persist(emv);
+            em.flush();
+        } else {
+            emv = TestUtil.findAll(em, Emv.class).get(0);
+        }
+        bank.getEmvs().add(emv);
         // Add required entity
         KeyConfig keyConfig;
         if (TestUtil.findAll(em, KeyConfig.class).isEmpty()) {

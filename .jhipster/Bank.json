@@ -116,6 +116,13 @@
         },
         {
             "relationshipType": "one-to-many",
+            "otherEntityName": "emv",
+            "otherEntityRelationshipName": "bank",
+            "relationshipValidateRules": "required",
+            "relationshipName": "emv"
+        },
+        {
+            "relationshipType": "one-to-many",
             "otherEntityName": "keyConfig",
             "otherEntityRelationshipName": "bank",
             "relationshipValidateRules": "required",

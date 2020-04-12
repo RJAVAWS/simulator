@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -91,11 +92,22 @@ public class EmvResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of emvs in body.
      */
     @GetMapping("/emvs")
-    public ResponseEntity<List<EmvDTO>> getAllEmvs(Pageable pageable) {
+    public ResponseEntity<List<EmvDTO>> getAllEmvs(Pageable pageable, @RequestParam(required = false) Long bankId) {
         log.debug("REST request to get a page of Emvs");
-        Page<EmvDTO> page = emvService.findAll(pageable);
+        Page<EmvDTO> page = emvService.findAll(pageable, bankId);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /banks/kvpairs} : get all the env id and name pairs.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of emv id and names in body.
+     */
+    @GetMapping("/emvs/kvpairs")
+    public ResponseEntity<Map<Long, String>> getKvpairs(@RequestParam(required = false) Long id) {
+        log.debug("REST request to get all pairs of emv id and name");
+        return ResponseEntity.ok().body(emvService.getKeyValuePair(id));
     }
 
     /**

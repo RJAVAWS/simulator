@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="simulatorApp.testCase.home.title">Test Cases</span>
+
+        <button id="jh-back-entity" (click)="save()" type="button"
+                class="btn btn-primary float-right jh-create-entity create-card m-1">
+            <fa-icon icon="save"></fa-icon>
+            <span jhiTranslate="entity.action.save">
+            Save
+            </span>
+        </button>
+        <button id="jh-link-entity" class="btn btn-warning float-right jh-create-entity create-card m-1"
+                [routerLink]="['/card/']">
+            <fa-icon icon="arrow-left"></fa-icon>
+            <span jhiTranslate="entity.action.back">
+            Back
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="testCases?.length === 0">
+        <span jhiTranslate="simulatorApp.testCase.home.notFound">No testCases found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="testCases?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                <th scope="col">
+                    <input type="checkbox" id="toggleAll" [(ngModel)]="toggleAll" (ngModelChange)="checkUncheckAll()">
+                </th>
+                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                    <fa-icon icon="sort"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="caseDescription"><span jhiTranslate="simulatorApp.testCase.caseDescription">Case Description</span>
+                    <fa-icon icon="sort"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="psdnType"><span
+                    jhiTranslate="simulatorApp.testCase.psdnType">Psdn Type</span>
+                    <fa-icon icon="sort"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="reqResType"><span jhiTranslate="simulatorApp.testCase.reqResType">Req Res Type</span>
+                    <fa-icon icon="sort"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="mti"><span jhiTranslate="simulatorApp.testCase.mti">Mti</span>
+                    <fa-icon icon="sort"></fa-icon>
+                </th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']"
+                   [infiniteScrollDistance]="0">
+            <tr *ngFor="let testCase of testCases ;trackBy: trackId">
+                <td><input type="checkbox" id="{{ testCase.id }}" [(ngModel)]="testCase.isLinked"></td>
+                <td><a [routerLink]="['/test-case', testCase.id, 'view']">{{ testCase.id }}</a></td>
+                <td>{{ testCase.caseDescription }}</td>
+                <td jhiTranslate="{{ 'simulatorApp.PsdnType.' + testCase.psdnType }}">{{ testCase.psdnType }}</td>
+                <td jhiTranslate="{{ 'simulatorApp.ReqResType.' + testCase.reqResType }}">{{ testCase.reqResType }}</td>
+                <td>{{ testCase.mti }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

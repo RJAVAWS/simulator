@@ -1,11 +1,11 @@
 package com.org.simulator.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A Emv.
@@ -129,6 +129,10 @@ public class Emv implements Serializable {
     @Lob
     @Column(name = "others")
     private String others;
+
+    @ManyToOne
+    @JsonIgnoreProperties("emvs")
+    private Bank bank;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -488,6 +492,19 @@ public class Emv implements Serializable {
 
     public void setOthers(String others) {
         this.others = others;
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public Emv bank(Bank bank) {
+        this.bank = bank;
+        return this;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

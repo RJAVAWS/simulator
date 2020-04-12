@@ -55,10 +55,16 @@ public class TransactionServiceImpl implements TransactionService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<TransactionDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all Transactions");
-        return transactionRepository.findAll(pageable)
-            .map(transactionMapper::toDto);
+    public Page<TransactionDTO> findAll(Pageable pageable, Long bankId) {
+        if (bankId != null) {
+            log.debug("Request to get all Cards with bank id - " + bankId);
+            return transactionRepository.findAllByBank_Id(bankId, pageable)
+                .map(transactionMapper::toDto);
+        } else {
+            log.debug("Request to get all Cards without bank id");
+            return transactionRepository.findAll(pageable)
+                .map(transactionMapper::toDto);
+        }
     }
 
     /**

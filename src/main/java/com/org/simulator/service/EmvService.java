@@ -10,7 +10,7 @@ import java.util.Optional;
 /**
  * Service Interface for managing {@link com.org.simulator.domain.Emv}.
  */
-public interface EmvService {
+public interface EmvService extends GenericService {
 
     /**
      * Save a emv.
@@ -26,7 +26,7 @@ public interface EmvService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Page<EmvDTO> findAll(Pageable pageable);
+    Page<EmvDTO> findAll(Pageable pageable, Long bankId);
 
     /**
      * Get the "id" emv.

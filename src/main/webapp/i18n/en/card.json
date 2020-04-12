@@ -19,6 +19,7 @@
       "cardDescription": "Card Description",
       "scheme": "Scheme",
       "type": "Type",
+      "useCase": "Use For",
       "cardNumber": "Card Number",
       "cvv": "Cvv",
       "expiry": "Expiry",

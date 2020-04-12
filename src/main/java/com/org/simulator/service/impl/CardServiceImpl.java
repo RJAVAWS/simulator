@@ -1,5 +1,6 @@
 package com.org.simulator.service.impl;
 
+import com.org.simulator.domain.TestCase;
 import com.org.simulator.service.CardService;
 import com.org.simulator.domain.Card;
 import com.org.simulator.repository.CardRepository;
@@ -13,7 +14,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Card}.
@@ -55,10 +59,16 @@ public class CardServiceImpl implements CardService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<CardDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all Cards");
-        return cardRepository.findAll(pageable)
-            .map(cardMapper::toDto);
+    public Page<CardDTO> findAll(Pageable pageable, Long bankId) {
+        if (bankId != null) {
+            log.debug("Request to get all Cards with bank id - " + bankId);
+            return cardRepository.findAllByBank_Id(bankId, pageable)
+                .map(cardMapper::toDto);
+        } else {
+            log.debug("Request to get all Cards without bank id");
+            return cardRepository.findAll(pageable)
+                .map(cardMapper::toDto);
+        }
     }
 
     /**
@@ -85,6 +95,19 @@ public class CardServiceImpl implements CardService {
     }
 
     /**
+     * Get the "id" card's Linked Testcases.
+     *
+     * @param id the id of the entity.
+     * @return the List.
+     */
+    @Override
+    public List<Long> findLinkedTestCases(Long id) {
+        log.debug("Request to get Card Linked Transactions: {}", id);
+        return cardRepository.findById(id).get().getTestCases().stream().map(TestCase::getId).collect(Collectors.toList());
+    }
+
+
+    /**
      * Delete the card by id.
      *
      * @param id the id of the entity.
@@ -93,5 +116,14 @@ public class CardServiceImpl implements CardService {
     public void delete(Long id) {
         log.debug("Request to delete Card : {}", id);
         cardRepository.deleteById(id);
+    }
+
+    @Override
+    public Map<Long, String> getKeyValuePair(Long id) {
+        if (id != null) {
+            return cardRepository.findAllByBank_Id(id).stream().collect(Collectors.toMap(Card::getId, Card::getCardDescription));
+        } else {
+            return cardRepository.findAll().stream().collect(Collectors.toMap(Card::getId, Card::getCardDescription));
+        }
     }
 }

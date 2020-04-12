@@ -90,9 +90,9 @@ public class TransactionResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of transactions in body.
      */
     @GetMapping("/transactions")
-    public ResponseEntity<List<TransactionDTO>> getAllTransactions(Pageable pageable) {
+    public ResponseEntity<List<TransactionDTO>> getAllTransactions(Pageable pageable, @RequestParam(required = false) Long bankId) {
         log.debug("REST request to get a page of Transactions");
-        Page<TransactionDTO> page = transactionService.findAll(pageable);
+        Page<TransactionDTO> page = transactionService.findAll(pageable, bankId);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

@@ -4,6 +4,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Lob;
+
 import com.org.simulator.domain.enumeration.PsdnType;
 import com.org.simulator.domain.enumeration.ReqResType;
 
@@ -411,6 +412,7 @@ public class TestCaseDTO implements Serializable {
     @Lob
     private String de128;
 
+    private boolean isLinked;
 
     public Long getId() {
         return id;
@@ -1476,6 +1478,14 @@ public class TestCaseDTO implements Serializable {
         this.de128 = de128;
     }
 
+    public boolean isLinked() {
+        return isLinked;
+    }
+
+    public void setLinked(boolean linked) {
+        isLinked = linked;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -1633,6 +1643,7 @@ public class TestCaseDTO implements Serializable {
             ", de126='" + getDe126() + "'" +
             ", de127='" + getDe127() + "'" +
             ", de128='" + getDe128() + "'" +
+            ", isLinked='" + isLinked() + "'" +
             "}";
     }
 }

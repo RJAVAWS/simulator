@@ -9,7 +9,7 @@ import javax.persistence.Lob;
  * A DTO for the {@link com.org.simulator.domain.Emv} entity.
  */
 public class EmvDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -95,7 +95,9 @@ public class EmvDTO implements Serializable {
     @Lob
     private String others;
 
-    
+
+    private Long bankId;
+
     public Long getId() {
         return id;
     }
@@ -320,6 +322,14 @@ public class EmvDTO implements Serializable {
         this.others = others;
     }
 
+    public Long getBankId() {
+        return bankId;
+    }
+
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -372,6 +382,7 @@ public class EmvDTO implements Serializable {
             ", de72='" + getDe72() + "'" +
             ", de91='" + getDe91() + "'" +
             ", others='" + getOthers() + "'" +
+            ", bankId=" + getBankId() +
             "}";
     }
 }

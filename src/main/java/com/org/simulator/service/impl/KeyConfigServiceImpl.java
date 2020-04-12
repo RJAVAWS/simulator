@@ -55,10 +55,16 @@ public class KeyConfigServiceImpl implements KeyConfigService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<KeyConfigDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all KeyConfigs");
-        return keyConfigRepository.findAll(pageable)
-            .map(keyConfigMapper::toDto);
+    public Page<KeyConfigDTO> findAll(Pageable pageable, Long bankId) {
+        if (bankId != null) {
+            log.debug("Request to get all Key config with bank id - " + bankId);
+            return keyConfigRepository.findAllByBank_Id(bankId, pageable)
+                .map(keyConfigMapper::toDto);
+        } else {
+            log.debug("Request to get all key config without bank id");
+            return keyConfigRepository.findAll(pageable)
+                .map(keyConfigMapper::toDto);
+        }
     }
 
     /**

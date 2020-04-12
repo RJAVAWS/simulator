@@ -6,10 +6,10 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.org.simulator.domain.enumeration.AcqIssType;
 import com.org.simulator.domain.enumeration.CardScheme;
 
 import com.org.simulator.domain.enumeration.CardType;
@@ -37,6 +37,11 @@ public class Card implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "scheme", nullable = false)
     private CardScheme scheme;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "use_case", nullable = false)
+    private AcqIssType useCase;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -72,7 +77,7 @@ public class Card implements Serializable {
     @Column(name = "track_2_data", nullable = false)
     private String track2data;
 
-    @OneToOne(optional = false)
+    @OneToOne
     @JoinColumn(unique = true)
     private Emv emv;
 
@@ -120,6 +125,19 @@ public class Card implements Serializable {
 
     public void setScheme(CardScheme scheme) {
         this.scheme = scheme;
+    }
+
+    public AcqIssType getUseCase() {
+        return useCase;
+    }
+
+    public void setUseCase(AcqIssType useCase) {
+        this.useCase = useCase;
+    }
+
+    public Card useCase(AcqIssType useCase) {
+        this.useCase = useCase;
+        return this;
     }
 
     public CardType getType() {
@@ -274,6 +292,7 @@ public class Card implements Serializable {
             "id=" + getId() +
             ", cardDescription='" + getCardDescription() + "'" +
             ", scheme='" + getScheme() + "'" +
+            ", useCase='" + getUseCase() + "'" +
             ", type='" + getType() + "'" +
             ", cardNumber='" + getCardNumber() + "'" +
             ", cvv='" + getCvv() + "'" +

@@ -10,6 +10,7 @@ import { CardService } from './card.service';
 import { CardComponent } from './card.component';
 import { CardDetailComponent } from './card-detail.component';
 import { CardUpdateComponent } from './card-update.component';
+import { TestCaseLinkComponent } from 'app/entities/card/test-case-link/test-case-link.component';
 
 @Injectable({ providedIn: 'root' })
 export class CardResolve implements Resolve<ICard> {
@@ -70,6 +71,18 @@ export const cardRoute: Routes = [
   {
     path: ':id/edit',
     component: CardUpdateComponent,
+    resolve: {
+      card: CardResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'simulatorApp.card.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/link',
+    component: TestCaseLinkComponent,
     resolve: {
       card: CardResolve
     },

@@ -9,10 +9,14 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Emv} and its DTO {@link EmvDTO}.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {BankMapper.class})
 public interface EmvMapper extends EntityMapper<EmvDTO, Emv> {
 
+    @Mapping(source = "bank.id", target = "bankId")
+    EmvDTO toDto(Emv emv);
 
+    @Mapping(source = "bankId", target = "bank")
+    Emv toEntity(EmvDTO emvDTO);
 
     default Emv fromId(Long id) {
         if (id == null) {

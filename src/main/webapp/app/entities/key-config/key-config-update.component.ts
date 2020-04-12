@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 
 import { IKeyConfig, KeyConfig } from 'app/shared/model/key-config.model';
 import { KeyConfigService } from './key-config.service';
-import { IBank } from 'app/shared/model/bank.model';
-import { BankService } from 'app/entities/bank/bank.service';
+import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
+import { appEntitiesRoot } from 'app/shared/constants/app.generic.constants';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-key-config-update',
@@ -16,7 +17,8 @@ import { BankService } from 'app/entities/bank/bank.service';
 })
 export class KeyConfigUpdateComponent implements OnInit {
   isSaving = false;
-  banks: IBank[] = [];
+  keyConfig!: IKeyConfig;
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
 
   editForm = this.fb.group({
     id: [],
@@ -34,16 +36,20 @@ export class KeyConfigUpdateComponent implements OnInit {
 
   constructor(
     protected keyConfigService: KeyConfigService,
-    protected bankService: BankService,
     protected activatedRoute: ActivatedRoute,
+    protected kvpairService: KvpairService,
+    protected accountService: AccountService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ keyConfig }) => {
+      this.keyConfig = keyConfig;
       this.updateForm(keyConfig);
 
-      this.bankService.query().subscribe((res: HttpResponse<IBank[]>) => (this.banks = res.body || []));
+      this.kvpairService.getKeyValuePairs(appEntitiesRoot.BANK, this.accountService.getBankId()).subscribe(bankKeyValueMap => {
+        this.bankKeyValueMap = bankKeyValueMap;
+      });
     });
   }
 
@@ -108,9 +114,5 @@ export class KeyConfigUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IBank): any {
-    return item.id;
   }
 }

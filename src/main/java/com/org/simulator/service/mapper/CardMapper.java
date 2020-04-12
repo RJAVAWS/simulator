@@ -19,6 +19,7 @@ public interface CardMapper extends EntityMapper<CardDTO, Card> {
     @Mapping(source = "emvId", target = "emv")
     @Mapping(target = "removeTestCase", ignore = true)
     @Mapping(source = "bankId", target = "bank")
+    @Mapping(source = "useCase", target = "useCase")
     Card toEntity(CardDTO cardDTO);
 
     default Card fromId(Long id) {

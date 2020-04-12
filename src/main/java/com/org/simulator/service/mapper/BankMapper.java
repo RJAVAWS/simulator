@@ -15,6 +15,8 @@ public interface BankMapper extends EntityMapper<BankDTO, Bank> {
 
     @Mapping(target = "cards", ignore = true)
     @Mapping(target = "removeCard", ignore = true)
+    @Mapping(target = "emvs", ignore = true)
+    @Mapping(target = "removeEmv", ignore = true)
     @Mapping(target = "keyConfigs", ignore = true)
     @Mapping(target = "removeKeyConfig", ignore = true)
     @Mapping(target = "transactions", ignore = true)

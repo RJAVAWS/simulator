@@ -77,6 +77,23 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="simulatorApp.card.useCase"
+                           for="field_type">Use For</label>
+                    <select class="form-control" name="type" formControlName="useCase" id="field_useCase">
+                        <option value="ACQUIRING">{{ 'simulatorApp.AcqIssType.ACQUIRING' | translate }}</option>
+                        <option value="ISSUING">{{ 'simulatorApp.AcqIssType.ISSUING' | translate }}</option>
+                    </select>
+                    <div
+                        *ngIf="editForm.get('useCase')!.invalid && (editForm.get('useCase')!.dirty || editForm.get('useCase')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('useCase')?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="simulatorApp.card.cardNumber"
                            for="field_cardNumber">Card Number</label>
                     <input type="text" class="form-control" name="cardNumber" id="field_cardNumber"
@@ -216,8 +233,9 @@
                     <label class="form-control-label" jhiTranslate="simulatorApp.card.emv" for="field_emv">Emv</label>
                     <select class="form-control" id="field_emv" name="emv" formControlName="emvId">
                         <option *ngIf="!editForm.get('emvId')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="emvOption.id"
-                                *ngFor="let emvOption of emvs; trackBy: trackById">{{ emvOption.id }}</option>
+                        <option *ngFor="let entry of emvKeyValueMap | keyvalue"
+                                [selected]="entry.key === card.emvId+''"
+                                value="{{entry.key}}">{{entry.key + ' - ' + entry.value }}</option>
                     </select>
                 </div>
                 <div
@@ -229,20 +247,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="simulatorApp.card.testCase" for="field_testCases">Test Case</label>
-                    <select class="form-control" id="field_testCases" multiple name="testCases"
-                            formControlName="testCases">
-                        <option [ngValue]="getSelected(editForm.get('testCases')!.value, testCaseOption)"
-                                *ngFor="let testCaseOption of testcases; trackBy: trackById">{{ testCaseOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label jhiTranslate="simulatorApp.card.bank">Bank</label>
                     <select class="form-control" name="bankId" formControlName="bankId">
+                        <option *ngIf="!editForm.get('emvId')!.value" [ngValue]="null" selected></option>
                         <option *ngFor="let entry of bankKeyValueMap | keyvalue"
-                                [selected]="entry.key === card.bankId"
-                                value="{{entry.key}}">{{entry.key}} - {{ entry.value }}</option>
+                                [selected]="entry.key === card.bankId+''"
+                                value="{{entry.key}}">{{entry.key + ' - ' + entry.value }}</option>
                     </select>
                     <div
                         *ngIf="editForm.get('bankId')!.invalid && (editForm.get('bankId')!.dirty || editForm.get('bankId')!.touched)">

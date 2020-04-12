@@ -9,6 +9,9 @@ import { IEmv } from 'app/shared/model/emv.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { EmvService } from './emv.service';
 import { EmvDeleteDialogComponent } from './emv-delete-dialog.component';
+import { appEntitiesRoot } from 'app/shared/constants/app.generic.constants';
+import { KvpairService } from 'app/core/keyvaluepair/kvpair.service';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-emv',
@@ -22,13 +25,16 @@ export class EmvComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  bankKeyValueMap: Map<number, string> = new Map<number, string>();
 
   constructor(
     protected emvService: EmvService,
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    protected kvpairService: KvpairService,
+    private accountService: AccountService
   ) {
     this.emvs = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -45,7 +51,8 @@ export class EmvComponent implements OnInit, OnDestroy {
       .query({
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
+        bankId: this.accountService.getBankId()
       })
       .subscribe((res: HttpResponse<IEmv[]>) => this.paginateEmvs(res.body, res.headers));
   }
@@ -64,6 +71,9 @@ export class EmvComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInEmvs();
+    this.kvpairService.getKeyValuePairs(appEntitiesRoot.BANK).subscribe(bankKeyValueMap => {
+      this.bankKeyValueMap = bankKeyValueMap;
+    });
   }
 
   ngOnDestroy(): void {

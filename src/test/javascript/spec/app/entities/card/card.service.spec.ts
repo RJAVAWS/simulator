@@ -4,6 +4,7 @@ import { CardService } from 'app/entities/card/card.service';
 import { ICard, Card } from 'app/shared/model/card.model';
 import { CardScheme } from 'app/shared/model/enumerations/card-scheme.model';
 import { CardType } from 'app/shared/model/enumerations/card-type.model';
+import { AcqIssType } from 'app/shared/model/enumerations/acq-iss-type.model';
 
 describe('Service Tests', () => {
   describe('Card Service', () => {
@@ -22,7 +23,17 @@ describe('Service Tests', () => {
       service = injector.get(CardService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Card(0, 'AAAAAAA', CardScheme.MASTER, CardType.MAGNETIC, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Card(
+        0,
+        'AAAAAAA',
+        CardScheme.MASTER,
+        CardType.MAGNETIC,
+        AcqIssType.ACQUIRING,
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA'
+      );
     });
 
     describe('Service methods', () => {
