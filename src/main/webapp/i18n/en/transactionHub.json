@@ -3,6 +3,36 @@
     "transaction-hub": {
       "home": {
         "title": "Transaction Hub"
+      },
+      "table": {
+        "bank": "Bank",
+        "code": "Code",
+        "ip": "Ip",
+        "port": "Port",
+        "connectionStatus": "Connection Status",
+        "signOn": "Sign On",
+        "pinExchange": "Pin Exchange",
+        "macExchange": "Mac Exchange"
+      },
+      "choose": "Choose...",
+      "option1": {
+        "acquiring": "Acquiring",
+        "issuing": "Issuing"
+      },
+      "option2": {
+        "keyManagement": "Key Management",
+        "test": "Test"
+      },
+      "optionText": {
+        "type": "Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+        "transaction": "Transaction",
+        "card": "Card",
+        "case": "Case"
+      },
+      "button": {
+        "generate": "Generate",
+        "request": "Request",
+        "refresh": "Refresh"
       }
     }
   }

@@ -1,5 +1,6 @@
 package com.org.simulator.service;
 
+import com.org.simulator.domain.enumeration.PinMacType;
 import com.org.simulator.service.dto.KeyConfigDTO;
 
 import org.springframework.data.domain.Page;
@@ -35,6 +36,14 @@ public interface KeyConfigService {
      * @return the entity.
      */
     Optional<KeyConfigDTO> findOne(Long id);
+
+    /**
+     * Get the "count" of keyConfig.
+     *
+     * @param pinMacType the PinMacType of the entity.
+     * @return the count as Long.
+     */
+    Long getCount(PinMacType pinMacType, Long bankId);
 
     /**
      * Delete the "id" keyConfig.

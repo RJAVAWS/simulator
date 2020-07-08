@@ -1,5 +1,6 @@
 package com.org.simulator.web.rest;
 
+import com.org.simulator.domain.enumeration.PinMacType;
 import com.org.simulator.service.KeyConfigService;
 import com.org.simulator.web.rest.errors.BadRequestAlertException;
 import com.org.simulator.service.dto.KeyConfigDTO;
@@ -57,6 +58,13 @@ public class KeyConfigResource {
         if (keyConfigDTO.getId() != null) {
             throw new BadRequestAlertException("A new keyConfig cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (keyConfigService.getCount(PinMacType.PIN, keyConfigDTO.getBankId()) >= 1 && PinMacType.PIN.equals(keyConfigDTO.getPmType())) {
+            throw new BadRequestAlertException("Cannot create more than 1 pin key.", ENTITY_NAME, "pinerror");
+        } else if (keyConfigService.getCount(PinMacType.MAC, keyConfigDTO.getBankId()) >= 1 && PinMacType.MAC.equals(keyConfigDTO.getPmType())) {
+            throw new BadRequestAlertException("Cannot create more than 1 mac key.", ENTITY_NAME, "macerror");
+        } else if (keyConfigService.getCount(null, keyConfigDTO.getBankId()) >= 2) {
+            throw new BadRequestAlertException("Cannot create more than 2 keys.", ENTITY_NAME, "keysizeerror");
+        }
         KeyConfigDTO result = keyConfigService.save(keyConfigDTO);
         return ResponseEntity.created(new URI("/api/key-configs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -77,6 +85,13 @@ public class KeyConfigResource {
         log.debug("REST request to update KeyConfig : {}", keyConfigDTO);
         if (keyConfigDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        if (keyConfigService.getCount(PinMacType.PIN, keyConfigDTO.getBankId()) >= 1 && PinMacType.PIN.equals(keyConfigDTO.getPmType())) {
+            throw new BadRequestAlertException("Cannot update more than 1 pin key.", ENTITY_NAME, "pinerror");
+        } else if (keyConfigService.getCount(PinMacType.MAC, keyConfigDTO.getBankId()) >= 1 && PinMacType.MAC.equals(keyConfigDTO.getPmType())) {
+            throw new BadRequestAlertException("Cannot update more than 1 mac key.", ENTITY_NAME, "macerror");
+        } else if (keyConfigService.getCount(null, keyConfigDTO.getBankId()) >= 2) {
+            throw new BadRequestAlertException("Cannot update more than 2 keys.", ENTITY_NAME, "keysizeerror");
         }
         KeyConfigDTO result = keyConfigService.save(keyConfigDTO);
         return ResponseEntity.ok()

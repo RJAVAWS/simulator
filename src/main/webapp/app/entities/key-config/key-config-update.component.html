@@ -1,18 +1,20 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-key-config-heading" jhiTranslate="simulatorApp.keyConfig.home.createOrEditLabel">Create or edit a Key Config</h2>
+            <h2 id="jhi-key-config-heading" jhiTranslate="simulatorApp.keyConfig.home.createOrEditLabel">Create or edit
+                a Key Config</h2>
 
             <div>
                 <jhi-alert-error></jhi-alert-error>
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.pmType" for="field_pmType">Pm Type</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.pmType" for="field_pmType">Pm
+                        Type</label>
                     <select class="form-control" name="pmType" formControlName="pmType" id="field_pmType">
                         <option value="PIN">{{ 'simulatorApp.PinMacType.PIN' | translate }}</option>
                         <option value="MAC">{{ 'simulatorApp.PinMacType.MAC' | translate }}</option>
@@ -20,81 +22,100 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.key" for="field_key">Key</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.key"
+                           for="field_key">Key</label>
                     <input type="text" class="form-control" name="key" id="field_key"
                            formControlName="key"/>
-                    <div *ngIf="editForm.get('key')!.invalid && (editForm.get('key')!.dirty || editForm.get('key')!.touched)">
+                    <div
+                        *ngIf="editForm.get('key')!.invalid && (editForm.get('key')!.dirty || editForm.get('key')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('key')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('key')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Key' }">
+                               *ngIf="editForm.get('key')?.errors?.pattern" jhiTranslate="entity.validation.pattern"
+                               [translateValues]="{ pattern: 'Key' }">
                             This field should follow pattern for "Key".
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.kcv" for="field_kcv">Kcv</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.kcv"
+                           for="field_kcv">Kcv</label>
                     <input type="text" class="form-control" name="kcv" id="field_kcv"
                            formControlName="kcv"/>
-                    <div *ngIf="editForm.get('kcv')!.invalid && (editForm.get('kcv')!.dirty || editForm.get('kcv')!.touched)">
+                    <div
+                        *ngIf="editForm.get('kcv')!.invalid && (editForm.get('kcv')!.dirty || editForm.get('kcv')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('kcv')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('kcv')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Kcv' }">
+                               *ngIf="editForm.get('kcv')?.errors?.pattern" jhiTranslate="entity.validation.pattern"
+                               [translateValues]="{ pattern: 'Kcv' }">
                             This field should follow pattern for "Kcv".
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.status" for="field_status">Status</label>
-                    <input type="checkbox" class="form-control" name="status" id="field_status"
-                           formControlName="status"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de01" for="field_de01">De 01</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de01" for="field_de01">De
+                        01</label>
                     <input type="text" class="form-control" name="de01" id="field_de01"
                            formControlName="de01"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de02" for="field_de02">De 02</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de02" for="field_de02">De
+                        02</label>
                     <input type="text" class="form-control" name="de02" id="field_de02"
                            formControlName="de02"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de03" for="field_de03">De 03</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de03" for="field_de03">De
+                        03</label>
                     <input type="text" class="form-control" name="de03" id="field_de03"
                            formControlName="de03"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de04" for="field_de04">De 04</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de04" for="field_de04">De
+                        04</label>
                     <input type="text" class="form-control" name="de04" id="field_de04"
                            formControlName="de04"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de05" for="field_de05">De 05</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.de05" for="field_de05">De
+                        05</label>
                     <input type="text" class="form-control" name="de05" id="field_de05"
                            formControlName="de05"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.bank" for="field_bank">Bank</label>
+                    <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.bank"
+                           for="field_bank">Bank</label>
                     <select class="form-control" id="field_bank" name="bank" formControlName="bankId">
                         <option [ngValue]="null"></option>
                         <option *ngFor="let entry of bankKeyValueMap | keyvalue"
-                                [selected]="entry.key === keyConfig.bankId.toString()"
+                                [selected]="entry.key === keyConfig.bankId +''"
                                 value="{{entry.key}}">{{entry.key}} - {{ entry.value }}</option>
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-3">
+                            <label class="form-control-label" jhiTranslate="simulatorApp.keyConfig.status"
+                                   for="field_status">Status</label>
+                        </div>
+                        <div class="col">
+                            <ui-switch name="status" id="field_status"
+                                       formControlName="status"></ui-switch>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -103,7 +124,8 @@
                     <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                        class="btn btn-primary">
                     <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>

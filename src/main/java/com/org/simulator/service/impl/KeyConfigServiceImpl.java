@@ -1,5 +1,6 @@
 package com.org.simulator.service.impl;
 
+import com.org.simulator.domain.enumeration.PinMacType;
 import com.org.simulator.service.KeyConfigService;
 import com.org.simulator.domain.KeyConfig;
 import com.org.simulator.repository.KeyConfigRepository;
@@ -79,6 +80,23 @@ public class KeyConfigServiceImpl implements KeyConfigService {
         log.debug("Request to get KeyConfig : {}", id);
         return keyConfigRepository.findById(id)
             .map(keyConfigMapper::toDto);
+    }
+
+    /**
+     * Get the "count" of keyConfig.
+     *
+     * @param pinMacType the PinMacType of the entity.
+     * @return the count as Long.
+     */
+    @Override
+    public Long getCount(PinMacType pinMacType, Long bankId) {
+        if (pinMacType != null && (PinMacType.PIN.equals(pinMacType) || PinMacType.MAC.equals(pinMacType))) {
+            return keyConfigRepository.countAllByPmTypeAndBank_Id(pinMacType, bankId);
+        } else if (pinMacType == null && bankId != null && bankId != 0L) {
+            return keyConfigRepository.countAllByBank_Id(bankId);
+        } else {
+            return keyConfigRepository.count();
+        }
     }
 
     /**

@@ -25,6 +25,7 @@ export class KeyConfigComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  createNew: boolean;
   bankKeyValueMap: Map<number, string> = new Map<number, string>();
 
   constructor(
@@ -43,6 +44,7 @@ export class KeyConfigComponent implements OnInit, OnDestroy {
     };
     this.predicate = 'id';
     this.ascending = true;
+    this.createNew = false;
   }
 
   loadAll(): void {
@@ -109,6 +111,9 @@ export class KeyConfigComponent implements OnInit, OnDestroy {
     if (data) {
       for (let i = 0; i < data.length; i++) {
         this.keyConfigs.push(data[i]);
+      }
+      if (this.keyConfigs.length < 2) {
+        this.createNew = true;
       }
     }
   }

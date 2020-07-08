@@ -1,82 +1,118 @@
 <div>
-    <div class="row">
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-striped">
+    <div class="card">
+        <div class="card-body pt-0">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped table-borderless p-0 mt-0">
                         <thead>
                         <tr>
-                            <th scope="col">Bank</th>
-                            <th scope="col">Code</th>
-                            <th scope="col">IP</th>
-                            <th scope="col">Port</th>
+                            <th scope="col" jhiTranslate="simulatorApp.transaction-hub.table.bank">Bank</th>
+                            <th scope="col" jhiTranslate="simulatorApp.transaction-hub.table.code">Code</th>
+                            <th scope="col" jhiTranslate="simulatorApp.transaction-hub.table.ip">IP</th>
+                            <th scope="col" jhiTranslate="simulatorApp.transaction-hub.table.port">Port</th>
+                            <th scope="col" jhiTranslate="simulatorApp.transaction-hub.table.connectionStatus">
+                                Connection Status
+                            </th>
+                            <th scope="col" jhiTranslate="simulatorApp.transaction-hub.table.signOn">Sign On</th>
+                            <th scope="col" jhiTranslate="simulatorApp.transaction-hub.table.pinExchange">Pin Exchange
+                            </th>
+                            <th scope="col" jhiTranslate="simulatorApp.transaction-hub.table.macExchange">Mac Exchange
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">Archway Bank</th>
-                            <td>300300300</td>
-                            <td>192.168.1.1</td>
-                            <td>12345</td>
+                            <th scope="row">{{bank.name}}</th>
+                            <td>{{bank.code}}</td>
+                            <td>{{bank.ip}}</td>
+                            <td>{{bank.port}}</td>
+                            <td></td>
+                            <td>OK</td>
+                            <td>OK</td>
+                            <td>OK</td>
                         </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Type</label>
+                            <label class="input-group-text" for="inputGroupSelect01"
+                                   jhiTranslate="simulatorApp.transaction-hub.optionText.type">Type
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </label>
                         </div>
                         <select class="custom-select" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
-                            <option value="1">Key Management</option>
-                            <option value="2">Test</option>
+                            <option selected jhiTranslate="simulatorApp.transaction-hub.choose">Choose...</option>
+                            <option
+                                value="1">{{ 'simulatorApp.transaction-hub.option1.acquiring' | translate }}</option>
+                            <option value="2">{{ 'simulatorApp.transaction-hub.option1.issuing' | translate }}</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect02"
+                                   jhiTranslate="simulatorApp.transaction-hub.optionText.transaction">Transaction</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected jhiTranslate="simulatorApp.transaction-hub.choose">Choose...</option>
+                            <option value="1" jhiTranslate="simulatorApp.transaction-hub.keyManagement">Key Management
+                            </option>
+                            <option value="2" jhiTranslate="simulatorApp.transaction-hub.test">Test</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect03"
+                                   jhiTranslate="simulatorApp.transaction-hub.optionText.card">Card</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect03">
+                            <option selected jhiTranslate="simulatorApp.transaction-hub.choose">Choose...</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect04"
+                                   jhiTranslate="simulatorApp.transaction-hub.optionText.case">Case</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect04">
+                            <option selected jhiTranslate="simulatorApp.transaction-hub.choose">Choose...</option>
                         </select>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th scope="col">Connection Status</th>
-                            <th scope="col">Sign On</th>
-                            <th scope="col">Pin Exchange</th>
-                            <th scope="col">Mac Exchange</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Active</td>
-                            <td>OK</td>
-                            <td>OK</td>
-                            <td>OK</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect02">Card</label>
-                        </div>
-                        <select class="custom-select" id="inputGroupSelect02">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect03">Case</label>
-                        </div>
-                        <select class="custom-select" id="inputGroupSelect03">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" id="generate-entity"
+                            class="btn btn-primary">
+                        <fa-icon icon="arrow-alt-circle-right"></fa-icon>&nbsp;<span
+                        jhiTranslate="simulatorApp.transaction-hub.button.generate">Generate</span>
+                    </button>
+                    <button type="submit" id="request-entity"
+                            class="btn btn-success">
+                        <fa-icon icon="arrow-alt-circle-right"></fa-icon>&nbsp;<span
+                        jhiTranslate="simulatorApp.transaction-hub.button.request">Request</span>
+                    </button>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="submit" id="refresh-entity"
+                            class="btn btn-warning">
+                        <fa-icon icon="sync-alt"></fa-icon>&nbsp;<span
+                        jhiTranslate="simulatorApp.transaction-hub.button.refresh">Refresh</span>
+                    </button>
+                </div>
+            </div>
+            <div class="border-top my-3"></div>
+            <div class="row">
+                <div class="col-6">
+                    <jhi-hub-entity></jhi-hub-entity>
+                </div>
+                <div class="col-6">
+                    <jhi-hub-entity></jhi-hub-entity>
                 </div>
             </div>
         </div>
